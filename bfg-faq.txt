@@ -9,7 +9,7 @@
                 _/      _/  _/           _/         _/
               _/_/_/_/    _/             _/_/_/_/_/           FAQ
 
-================ The BFG FAQ, Version 1.1, November 2, 1995 =================
+================ The BFG FAQ, Version 1.3, December 28, 1995 ================
 
                 Frequently Asked Questions About the BFG9000
 
@@ -63,6 +63,7 @@
     0A. What is this FAQ about?
     0B. How was the information is this FAQ obtained?
     0C. How accurate is this information?
+    0D. Where is the latest version of this and other FAQs?
 
   Section 1 - BFG Basics
     1A. What is the BFG9000?
@@ -70,6 +71,7 @@
     1C. Where can I find the BFG in the game?
     1D. What is the cheat code for the BFG?
     1E. Why is the BFG missing in my version?
+    1F. What's this I hear about the original BFG?
 
   Section 2 - The Direct Hit
     2A. What is a direct hit?
@@ -85,6 +87,8 @@
     3F. How many targets can it hit?
     3G. How does altitude affect it?
     3H. If I am only partially exposed, do I only take partial damage?
+    3I. What happens if the attacker is fragged before detonation?
+    3J. What about multiple BFG shots?
 
   Section 4 - Deathmatch Techniques
     4A. What is considered unfair when using the BFG?
@@ -114,8 +118,8 @@
 
   We began writing this FAQ out of necessity. We were frustrated at the
   apparent inconsistencies in the way the weapon seemed to behave during
-  game play, especially during deathmatches. There were times when we would
-  get killed by the weapon when we thought we were completely safe.
+  game play, especially during deathmatches. There were times when we
+  would get killed by the weapon when we thought we were completely safe.
   Conversely, there were times when we thought we had used the weapon
   correctly against an opponent, but they walked away unscathed.
 
@@ -153,6 +157,36 @@
   this file are strictly conjecture, regardless of how carefully they were
   tested. Please see section 5 if you suspect this FAQ contains erroneous
   information.
+
+0D. Where is the latest version of this and other FAQs?
+
+  The latest Doom-related FAQ files and other documents can be found at
+  all of the Doom mirror FTP sites. The central location for the Doom
+  mirrors is at ftp.cdrom.com. However, that site is usually quite busy,
+  and you may need to locate another mirror site from which to download.
+  Listing all the mirror sites is beyond the scope of this document.
+  See the 'DOOM: Rec.Games.Computer.Doom FAQ' or 'DOOM: FTP and WWW
+  Sites' postings in the rec.games.computer.doom.* newsgroups for a
+  complete list.
+
+  The URL of the directory that contains the Doom FAQ files (usually in
+  TXT format, compressed in a ZIP file) is:
+
+  ftp://ftp.cdrom.com/pub/idgames/docs/faqs/
+
+  The latest official version of the BFG FAQ is also posted monthly to
+  the rec.games.computer.doom.announce and .playing newsgroups. This is
+  part of the RGCD Periodic Information Postings (PIPs). If your news
+  server does not keep the articles long enough for you to find one of
+  the PIPs, they are archived at:
+
+  ftp://ftp.cdrom.com/pub/idgames/docs/rgcd-pips/
+
+  The official location for the hypertext version of the BFG FAQ is
+  DoomGate on the World Wide Web. The hypertext version is highly cool.
+  Check it out here, along with some other good documents:
+
+  http://doomgate.cs.buffalo.edu/docs/
 
 -- Section 1 - BFG Basics --------------------------------------------------
 
@@ -223,6 +257,27 @@
   commercial version of Doom from a retailer or id Software before the
   BFG can glorify your screen.
 
+1F. What's this I hear about the original BFG?
+
+  The current version of the BFG is not the way id's designers
+  originally envisioned it. According to a recent thread on the
+  newsgroups, the BFG behaved quite differently in a pre-release beta
+  of Doom. Several people independently reported this feature:
+
+  Apparently, it worked by shooting multiple streams of different types
+  of plasma and fireballs. Because this required an unusually large
+  number of moving objects, it tended to slow down the game. Therefore,
+  the BFG was redesigned with the invisible blast area that is used
+  today.
+
+  This may explain why the behavior of the blast area is so unusual.
+  It seems that the trace calculations still use some of this old code.
+  See section 3A for more information.
+
+  Note: Please don't bug the authors for copies of the Doom beta. We
+  don't have one. The information in this section was obtained by
+  reading a newsgroup thread.
+
 -- Section 2 - The Direct Hit ----------------------------------------------
 
 2A. What is a direct hit?
@@ -235,9 +290,16 @@
 
   A direct hit with the BFG will cause a random amount of damage between
   100 and 800 points. Keep in mind that these are the base values as
-  stored in the game engine. It appears as though your marine can
-  withstand different amounts of damage at different skill settings,
-  although this has not been confirmed.
+  stored in the game engine. The actual amount of damage taken by a
+  player is modified depending on skill level. How much is it modified?
+  We don't know.
+
+  A note about skill levels: Testing seems to show that weapons always
+  do the same amount of damage to monsters, but that the player objects
+  can absorb the weapons better at lower skill levels. Therefore, it
+  takes more shots to kill a player at lower skill levels, and fewer
+  shots at higher skill levels. This is why some players prefer to
+  deathmatch at the higher skill levels: The frags are quicker that way.
 
   If your target is lucky enough to survive a direct hit, he is still
   susceptible to damage from the blast area. This happens sometimes in a
@@ -314,7 +376,7 @@
   The 20 traces that make up the blast area's damage cone each do a
   random amount of damage between 5 and 15 points. Again, these are only
   the base values stored in the game engine, and may do different amounts
-  of real damage at different skill levels.
+  of real damage at different skill levels. See section 2B for more info.
 
   Because these traces radiate outward from the attacker in a fan shape,
   a target will more likely be hit by a given trace if he is close to the
@@ -332,27 +394,59 @@
   any), making the total possible damage points for the BFG a whopping
   1100 points.
 
+  A note about random numbers:
+
+  A phenomenon known as the 'bell curve' happens when you combine the
+  outcome of multiple random numbers. Players of book-and-paper role-
+  playing games may recognize it. In those games, you would often use
+  three dice to generate a random statistic. In theory, adding the three
+  dice would generate a random number between 3 and 18. But in reality,
+  the actual results would be weighted towards the middle of the range,
+  around eleven. The odds of getting a three or an eighteen are rare
+  because you'd have to roll 1+1+1 or 6+6+6. There's only one possible
+  combination for each outcome. On the other hand, rolling an eleven is
+  relatively easy: 6+4+1, 5+5+1, 3+3+5, etc. If you were to graph the
+  outcome of a thousand rolls, the graph would be shaped like an arc or
+  a bell, with more rolls coming up in the middle of the range of
+  possible values. Hence the name 'bell curve'. The role-playing games
+  use this to make certain random statistics more fair.
+
+  This applies to the damage traces, as well, because they are
+  essentially a group of multiple random numbers. For instance, if you
+  hit your victim with all twenty traces, the possible damage should be
+  between 100 and 300 points. But the odds are that the total damage
+  will more likely be around 200 points, due to the bell curve. The odds
+  of doing 100 or 300 points damage in that situation would be extremely
+  rare.
+
 3C. How long does the blast effect last?
 
   Testing has shown that there is a brief time window in which a hapless
   player can wander into the damage cone after detonation and still take
   some blast damage.
 
-  At the time of this writing, the exact duration of this time window has
-  not been determined. It is possible that the trace calculations work
-  more slowly when there are many things happening in the game, i.e.,
-  when there are a lot of monsters on the screen. However, this has not
-  been confirmed, and may in fact be machine-dependent. This question
-  will hopefully be addressed in a later version of this FAQ.
+  There seems to be two factors at work here:
 
-  Special note: The BFG's traces are still active, even if the attacking
-  player is dead. If you fire the BFG, then get fragged, do not press the
-  space bar to respawn your marine right away. Wait until the green ball
-  has detonated before you respawn. As long as you are still looking at
-  the action from your fixed point of view on the ground (your 'dead'
-  state), the traces remain active and can still frag an opposing player
-  (hopefully the one that fragged you). If you press the space bar before
-  the traces are calculated, you will lose this chance.
+  1) There is a brief pause between the moment of detonation and the
+     moment that the damage traces begin to work. This pause seems to
+     have been inserted deliberately by the designers. The exact
+     duration of this pause is not known. Some evidence suggests that
+     the pause is about four-tenths of a second long, but this is not
+     confirmed. It's not known exactly how it affects the trace
+     calculations, but it seems as though all calculations begin
+     -after- the pause.
+
+  2) It seems as though the traces are not calculated instantly. If a
+     player moves into the damage cone during the trace calculations
+     (after the deliberate pause), he might still take some damage. At
+     the time of this writing, the exact duration of the calculations
+     has not been determined. It is possible that the trace calculations
+     work more slowly when there are many things happening in the game,
+     i.e., when there are a lot of monsters on the screen. However, this
+     has not been confirmed, and we might even be imagining the whole
+     thing. It's possible we're mistaking this for the deliberate pause
+     mentioned above. This question will hopefully be addressed in more
+     detail in a later version of this FAQ.
 
 3D. How exactly does the blast area work?
 
@@ -385,6 +479,25 @@
   the green ball was actually fired, not where you were when you pulled
   the trigger. As far as the game engine is concerned, you haven't fired
   it until it actually leaves the barrel of the gun.
+
+  Here's a diagram of how it works:
+
+        * <- Blast
+             detonates         \   Damage  /
+             here               \   Cone  /
+                                 \       /
+        ^                         \     /
+        |                          \   /
+        |                           \ /
+        X          X -->             X
+    Attacker      Attacker       Attacker
+    fires BFG     runs east      is here at
+    northward                    detonation
+
+  Note that this diagram is foreshortened. The detonation point would
+  have to be quite far away in order for the attacker to run that far.
+  But the principle is the same, regardless of how far the green ball
+  flies: The damage cone is calculated after the green ball detonates.
 
   When the green ball detonates, the traces are calculated one at a time,
   using the same criteria for calculation that the engine might use for a
@@ -463,7 +576,7 @@
   (Please note: In the discussion below, we refer to 'line of sight'
   loosely. Remember that the attacker does not need to be looking at his
   targets to inflict damage.)
-
+ 
   In the following scenario, imagine that the attacker is standing in a
   direct line with several targets (imps, perhaps) lined up in front of
   him, and the green ball detonates on a wall somewhere:
@@ -548,7 +661,7 @@
   If you are hiding behind a decorative sprite (such as a tree or a
   technical column) you are fully exposed. All weapons in Doom always
   pass completely through decorative sprites.
-
+  
   If you are peeking over a podium, or partially obscured by a raising
   lift, or a closing door, and only half or one-tenth of you is showing,
   you still take the full amount of damage. The traces are calculated
@@ -569,8 +682,67 @@
   seems as though your radius is slightly larger (in some cases) than
   the sprite (picture) that represents your player. In tests, it is
   possible to inflict damage upon a player that seems to be out of sight
-  (no visible pixels) but whose radius is large enough to count as
+  (no visible pixels) but whose radius is large enough to count as 
   'visible' to the BFG traces.
+
+3I. What happens if the attacker is fragged before detonation?
+
+  The BFG's traces are still active, even if the attacking player is
+  dead. So if you fire the BFG, then get fragged, do not press the space
+  bar to respawn your marine right away. Wait until the green ball has
+  detonated before you respawn.
+
+  Here's why:
+ 
+  Even after being fragged, you can still see the action from your fixed
+  point of view on the ground (your 'dead' state). The traces remain
+  active and can still frag an opposing player (hopefully the one that
+  fragged you). The traces will radiate from your dead body's 'eyes'.
+  The traces still follow the same rules, i.e., they radiate in the
+  direction the green ball was fired, regardless of which direction your
+  'dead view' is facing.
+
+  In a previous version of this FAQ, we reported that you will lose
+  the chance to frag your opponent if you respawn before detonation.
+  Several people pointed out to the authors that the statement was in
+  error. The traces remain active even after respawning. Testing shows
+  that the traces do, in fact, continue to radiate from the dead body
+  even after you have respawned in a completely different area of the
+  map. This testing was performed at the prompting of Kirby Nixon, who
+  insisted that it was true. Whaddya know? He was right.
+
+  This means that, technically, you don't need to hang around and watch
+  your opponent in order for the traces to work. But Kirby pointed out
+  a good reason to wait for the detonation before respawning: Your dead
+  body's traces can frag you, too! Just because they were once your
+  traces doesn't mean you're immune. If you are unlucky enough to
+  respawn within your dead body's damage cone, you can kiss your butt
+  goodbye.
+
+  Of course, the same thing applies to projectile weapons like the
+  rockets and the green ball. It has long been known that those items
+  behaved in that way. But this information about the damage traces is,
+  to the authors' knowledge, new.
+
+  Please note: Any projectile kills made by a respawned player (whether
+  by rockets, plasma, BFG traces, etc.) do not contribute to that
+  player's frag count. Killing -yourself- in this manner does not change
+  your frag count, either. This appears to be because the game engine
+  creates a new instance of the player-object at respawn-time, and
+  therefore 'forgets' to award that frag. In any case, if you wait
+  before respawining, you will get credit for the frag as long as you're
+  still dead. This is another reason to wait for detonation before
+  respawning. Special thanks to John Castelli for pointing this one out.
+
+3J. What about multiple BFG shots?
+
+  Each BFG shot is tracked and calculated independently. Testing seems
+  to indicate that the game engine's code is object-oriented, and has no
+  trouble keeping track of multiple blast areas. Each damage cone's
+  direction is based on the direction of its corresponding green ball.
+  The origin point of the damage cone is based on the current location
+  of the marine who fired it (even if that marine is just a dead body-
+  see section 3I for more info).
 
 -- Section 4 - Deathmatch Techniques ---------------------------------------
 
@@ -649,7 +821,7 @@
     your attacker, simply move so the column is between you and him.
     Wait for the blast to detonate and die down, then step out from the
     column and place some ordnance in his face. This technique works
-    well on Doom II's 'Circle of Death' level.
+    well on Doom II's 'Circle of Death' level (11).
 
   - If you are very close to him, you can attempt to frag him before his
     shot gets off. When he pulls the trigger, there is a slight pause
@@ -665,11 +837,11 @@
     damage will hardly ever be pointing at you. He will eventually run
     out of ammo, or you will frag him with conventional firepower. This
     technique works well in the main courtyard of Doom II's 'Citadel'
-    level. In this kind of melee, it is nearly impossible to keep track
-    of the cone (for either you or your attacker), so you are really
-    taking a gamble that the turning fight will be to your advantage.
-    But the exhilaration of winning that kind of fight is one of the best
-    rushes you can get.
+    level (19). In this kind of melee, it is nearly impossible to keep
+    track of the cone (for either you or your attacker), so you are
+    really taking a gamble that the turning fight will be to your
+    advantage. But the exhilaration of winning that kind of fight is one
+    of the best rushes you can get.
 
   - If you are well armed and very healthy, you can judge whether or not
     you can survive a blast area hit at your current distance. Then take
@@ -718,6 +890,15 @@
     reference. If your targets are trying to run behind you to get behind
     your damage cone, running backwards while strafing may also help.
 
+  - Combine the two previous attack methods: Shoot a nearby wall, then
+    strafe toward your targets. This takes advantage of the pause that
+    happens after detonation. You have a few heartbeats before the traces
+    are calculated, so use this time to strafe your targets into view.
+    The best example would be at a 90 degree hallway intersection: Shoot
+    the wall at the corner, then strafe out into the hall. This is really
+    just a shortened version of the level one strafe trick, except you
+    don't have to wait for detonation.
+
   - "Everything I need to know, I learned at Top Gun." Avoid turning
     fights. See the related item under the defense techniques, above.
 
@@ -747,7 +928,7 @@
     detonates, your target will simply see himself crumble to the ground,
     realizing too late that you were standing still because you were
     keeping your traces on him. See section 4E for an example of this.
-
+  
   - Use 'combo' moves. Use the above 'distant wall' technique, but switch
     to a conventional weapon as you run into the room. Your traces still
     work, even if you have switched weapons. Blast 'em with both the BFG
@@ -987,6 +1168,8 @@
   5) Note: Do not attempt to send us information for FAQ files other than
      this one. We do not maintain other FAQ files and we do not echo
      information amongst other FAQ authors.
+
+============================ End of BFG 9000 FAQ ============================
 
 
 
