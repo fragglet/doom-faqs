@@ -1,0 +1,1066 @@
+=============================================================================
+
+              THE           _/_/_/_/    _/_/_/_/_/    _/_/_/_/
+                          _/      _/  _/           _/        _/
+                        _/      _/  _/          _/          _/
+                      _/_/_/_/    _/_/_/_/    _/
+                    _/      _/  _/          _/    _/_/_/_/
+                  _/      _/  _/          _/           _/
+                _/      _/  _/           _/         _/
+              _/_/_/_/    _/             _/_/_/_/_/           FAQ
+
+================ The BFG FAQ  Version 1.01  October 6, 1995 =================
+
+                Frequently Asked Questions About the BFG9000
+
+                               By Tony Fabris
+
+                    Contributors, in alphabetical order:
+
+                Doug Bora ....... Content, Editing, Proofing
+                Tod Bouris ............ Content, Playtesting
+                Chris McAllen ......... Content, Playtesting
+                American McGee .............. Technical Data
+                Dean Stretton ..................... Proofing
+          
+================================= Disclaimer ================================
+
+      This text is intended to give the public information about
+      some elements of the computer game Doom and its sequels, by
+      id Software. This text was not written by id Software, so
+      bugging them about its contents is probably a very bad idea.
+
+      Additionally, the computer game referenced in the text is of
+      an adult and graphic nature. In no way is this text intended
+      to promote violence of any kind. Any references to violence
+      in this text are meant in relation to the playing of the
+      computer game, not real violence. The author is adamantly
+      non-violent.
+
+      Additionally, this text is being presented in the form of a
+      text-only computer file. Any illegal or damaging activity
+      related to the use or transfer of this or any other computer
+      file is not the responsibility of the authors.
+
+=========================== Trademark Information ===========================
+
+      All specific names included herein are trademarks and are so
+      acknowledged: id Software, DOOM, DOOM II, THE ULTIMATE DOOM.
+      Any trademarks not mentioned here are still hypothetically
+      acknowledged.
+
+============================= Copyright Notice ==============================
+
+   This article is Copyright (c) 1995 by Tony Fabris. All rights reserved.
+
+      You may make and distribute copies of this work in original
+      form, so long as the copies are exact and complete, the copies
+      include the copyright notice in its entirety, and the copies
+      are in electronic form. You may not charge any sort of a price
+      or fee relating to any copies of this work in any form.
+
+=============================================================================
+
+=========================== Table of Contents ===============================
+
+  Section 0 - Introduction
+    0A. What is this FAQ about?
+    0B. How was the information is this FAQ obtained?
+    0C. How accurate is this information?
+
+  Section 1 - BFG Basics
+    1A. What is the BFG9000?
+    1B. What does "BFG" mean?
+    1C. Where can I find the BFG in the game?
+    1D. What is the cheat code for the BFG?
+    1E. Why is the BFG missing in my version?
+
+  Section 2 - The Direct Hit
+    2A. What is a direct hit?
+    2B. How much damage does a direct hit do?
+    2C. What are the limitations of a direct hit?
+
+  Section 3 - The Blast Area
+    3A. What is the blast area?
+    3B. How much damage does the blast area do?
+    3C. How long does the blast effect last?
+    3D. How exactly does the blast area work?
+    3E. What are the limitations of the blast area?
+    3F. How many targets can it hit?
+    3G. How does altitude affect it?
+    3H. If I am only partially exposed, do I only take partial damage?
+  
+  Section 4 - Deathmatch Techniques
+    4A. What is considered "unfair" when using the BFG?
+    4B. What is the best way to defend against the BFG in a deathmatch?
+    4C. What is the best way to attack with the BFG in a deathmatch?
+    4D. What is the "Silent BFG" trick?
+    4E. What is the "Level One Strafe" trick?
+
+  Section 5 - Submitting Corrections
+    5A. Common misconceptions
+    5B. I think the FAQ is in error. How do I get it corrected?
+
+=============================================================================
+
+-- Section 0 - Introduction -------------------------------------------------
+
+0A. What is this FAQ about?
+
+      A FAQ file, stated simply, is a Frequently Asked Questions file.
+
+      This FAQ file describes, in as much detail as possible, the
+      behavior of the BFG9000 weapon in the MS-DOS version of the
+      games Doom, Doom II, and The Ultimate Doom. It is not intended
+      to answer general questions about the game itself. Please refer
+      to the other FAQ files for help in other areas of the game. You
+      can also frequent the rec.games.computer.doom.* newsgroups for
+      more information.
+
+      We began writing this FAQ out of necessity. We were frustrated
+      at the apparent inconsistencies in the way the weapon seemed to
+      behave during game play, especially during deathmatches. There
+      were times when we would get killed by the weapon when we
+      thought we were completely safe. Conversely, there were times
+      when we thought we had used the weapon correctly against an
+      opponent, but they walked away unscathed.
+
+      Our intent is to provide players with enough information to
+      attack effectively with the BFG, and to correctly defend against
+      it in a deathmatch. Our hope is that this information will give
+      players a new attitude toward the weapon. We want to transform
+      it from "The weapon we love to hate" into "The thinking man's
+      weapon".
+
+0B. How was the information in this FAQ obtained?
+
+      The primary source of information was American McGee at id
+      Software. He patiently answered our questions while this FAQ
+      was in its draft stages. He corrected several serious errors in
+      our descriptions of the way the weapon calculates damage. He
+      provided us with a great deal of detailed information, and
+      reviewed the file during its development. His help was
+      invaluable in putting this FAQ together.
+
+      Most of the other information here is a result of careful
+      testing during game play. Testing was performed on Pentium
+      computers running the MS-DOS versions of Doom II and The
+      Ultimate Doom. Tests were done both in single player mode and
+      in 4-player deathmatch mode. Testing was performed on the
+      regular levels as well as custom made levels. In some cases,
+      a special .WAD file was created to test situations that would
+      be difficult to reproduce with the regular levels.
+
+0C. How accurate is this information?
+
+      Fairly accurate. Accurate enough to base your playing
+      strategies on. However, it has not been tested with every
+      single version of Doom, and there may be differences among
+      platforms. In addition, at the time of this writing, we were
+      unable to verify every single item with American McGee. Quake
+      is the big project at id Software at the moment, and he didn't
+      have a lot of time to devote to us. As a result, some items in
+      this file are strictly conjecture, regardless of how carefully
+      they were tested. Please see section 5 if you suspect this FAQ
+      contains erroneous information.
+
+-- Section 1 - BFG Basics --------------------------------------------------
+
+1A. What is the BFG9000?
+
+      The BFG9000 (or BFG) is arguably the most powerful weapon in
+      the computer games Doom, Doom II, and The Ultimate Doom. It
+      is also the most difficult weapon to use well in a deathmatch
+      (multi-player competition), because it does not behave in a
+      simple "point and shoot" fashion.
+
+      When you have it in your arsenal, the BFG is selected by
+      pressing the "7" key on your keyboard.
+
+      When you pull the trigger, there is an excruciatingly long
+      pause as the weapon warms up. Then a large green ball of plasma
+      is emitted from its barrel. The plasma ball flies in the
+      direction you fired it until it hits a target or a wall. Like
+      all weapons in Doom, it will fly straight through "decorative"
+      objects like torches or trees.
+
+      When the green ball hits a solid object, it detonates and does
+      two types of damage: Direct Hit and Blast Area. Each damage
+      type is outlined in its own section, later in the FAQ.
+
+1B. What does "BFG" mean?
+
+      The general consensus is that BFG stands for "Big Fragging
+      Gun". Well, that's the G-rated version at least.
+
+      The term "frag" is used in Doom to represent a confirmed kill
+      in a deathmatch game. This comes from the idea that in a
+      deathmatch, you are killing your fellow space marines. The
+      definition of frag, according to the dictionary, is:
+
+        frag Slang. Verb, transitive
+        fragged, fragging, frags
+          To wound or kill (a fellow soldier) by throwing a grenade
+          or similar explosive at the victim: "He got fragged. Blown
+          away" (Bobbie Ann Mason).
+
+1C. Where can I find the BFG in the game?
+
+      Listing all the locations that the BFG can be found is beyond
+      the scope of this document. For detailed information on the
+      location of all weapons, please consult the other FAQ files.
+      Keep in mind that the BFG appears more often in deathmatch
+      games than it does in single-player games.
+
+1D. What is the cheat code for the BFG?
+
+      While you are playing the game, type the keys IDKFA to give
+      your marine all weapons, keys, and ammunition. Then press
+      the "7" key to select the BFG.
+
+      Note: This cheat code is disabled in multi-player games and
+      single-player nightmare-skill games.
+
+1E. Why is the BFG missing in my version?
+
+      If you perform the above cheat correctly, but do not get the
+      BFG, you may be playing the shareware version of Doom. You must
+      purchase the commercial version of Doom from a retailer or id
+      Software before the BFG can glorify your screen.
+
+-- Section 2 - The Direct Hit ----------------------------------------------
+
+2A. What is a direct hit?
+
+      A direct hit happens when the BFG's green plasma ball directly
+      hits a target. The target can be a monster, an exploding
+      barrel, or an opposing player in a multi-player game.
+
+2B. How much damage does a direct hit do?
+
+      A direct hit with the BFG will cause a random amount of damage
+      between 100 and 800 points. Keep in mind that these are the
+      base values as stored in the game engine. It appears as though
+      your marine can withstand different amounts of damage at
+      different skill settings, although this has not been confirmed.
+
+      If your target is lucky enough to survive a direct hit, he
+      is still susceptible to damage from the blast area. This
+      happens sometimes in a deathmatch. Since there is a brief
+      pause between the direct hit and the blast area calculation,
+      your victim may go through several stages of fear and
+      elation in the space of one second:
+        
+        1) Victim sees the BFG coming towards him (Uh-oh.)
+        2) BFG scores a direct hit (D'oh!)
+        3) Victim realizes he has miraculously survived (Woo-Hoo!)
+        4) The flash damage kills him a moment later (D'oh!)
+      
+2C. What are the limitations of a direct hit?
+
+      The direct hit is not limited by the same parameters as the
+      blast area. There is no range limit, and the damage does not
+      decrease with distance.
+      
+      The hard part is that the BFG's plasma ball travels at a
+      fixed speed, and can be avoided by an alert deathmatch player.
+      The reference number for the BFG ball's speed, as stored in
+      the .EXE file, is 25. For comparison, rockets travel at 20 and
+      plasma gun shots travel at 25.
+
+      If it seems like this is "fast" and would not be easy to
+      avoid, remember that the plasma gun fires in a continuous
+      stream. The BFG can only be fired once every few seconds.
+      The BFG's green ball is also very bright and large on the
+      screen. All of those factors make it generally easier to
+      avoid in a deathmatch game.
+      
+      A direct hit in a deathmatch (against good players) is usually
+      the result of luck, or the result of a player that did not
+      know the BFG ball was coming towards him. See section 4 for
+      details of a trick that can help you achieve the latter
+      scenario.
+
+      The direct hit can only "get" one target. If there are two
+      targets very close together, the green ball can only hit one
+      of them directly- whichever one it touches first.
+
+-- Section 3 - The Blast Area ----------------------------------------------
+
+3A. What is the blast area?
+
+      After the green plasma ball detonates, and after the damage
+      is calculated and deducted from the target that received the
+      direct hit (if any), the area effect of the BFG is calculated.
+      Targets that fall within a specially defined area will take
+      varying amounts of damage.
+
+      Simply put, the blast area is like an imaginary "cone" or
+      "fan" of 20 damage traces that briefly extends outward from
+      the attacking player. The cone always points in the direction
+      that the weapon was fired. For instance, if you originally
+      fired the weapon in the northwest direction, the cone will
+      always face northwest, regardless of which direction you're
+      facing at the moment of detonation.
+
+      Note that this does not mean that the attacker must continue to
+      face in that direction. The attacker is free to turn away from
+      his targets, as long as he moves to a position that keeps this
+      imaginary cone pointed at them. Common misconceptions are that
+      you must be facing either the targets, the detonation point, or
+      the same direction as the weapon was fired. None of those things
+      are necessary in order to inflict damage.
+
+      Also note that this imaginary cone has no relation whatsoever
+      to the detonation point. The location of the detonation point
+      is only important for the direct hit (see section 2). Only the
+      moment of detonation is important, not the location. It is
+      possible to have the green ball detonate twenty miles away in
+      a completely different room at a totally different altitude,
+      but the blast can still cause damage right next to you.
+
+      The paragraphs above cover the basic concepts of the blast
+      area. More detailed information can be found in section 3D,
+      below.
+
+3B. How much damage does the blast area do?
+
+      The 20 traces that make up the blast area's damage cone
+      each do a random amount of damage between 5 and 15 points.
+      Again, these are only the base values stored in the game
+      engine, and may do different amounts of real damage at
+      different skill levels.
+
+      Because these traces radiate outward from the attacker in a
+      fan shape, a target will more likely be hit by a given trace
+      if he is close to the attacker. Therefore, targets closer to
+      the attacker will generally take more damage because they are
+      hit by more traces.
+
+      If a target is very close to the attacker (for instance,
+      standing right next to him), the target might be within the
+      hit range of all 20 traces. The amount of blast area damage
+      in this situation would be between 100 and 300 points.
+      However, all 20 traces would not necessarily be absorbed by
+      that target, and might move on to other targets. See section
+      3F, below, for more information on this phenomenon.
+
+      This blast damage is calculated in addition to the direct hit
+      damage (if any), making the total possible damage points for
+      the BFG a whopping 1100 points.
+
+3C. How long does the blast effect last?
+
+      Testing has shown that there is a brief time window in which
+      a hapless player can wander into the damage cone after
+      detonation and still take some blast damage.
+      
+      At the time of this writing, the exact duration of this
+      time window has not been determined. It is possible that
+      the trace calculations work more slowly when there are many
+      things happening in the game, i.e., when there are a lot of
+      monsters on the screen. However, this has not been confirmed,
+      and may in fact be machine-dependent. This question will
+      hopefully be addressed in a later version of this FAQ.
+
+      Special note: The BFG's traces are still active, even if the
+      attacking player is dead. If you fire the BFG, then get
+      fragged, do not press the space bar to respawn your marine
+      right away. Wait until the green ball has detonated before
+      you respawn. As long as you are still looking at the action
+      from your fixed point of view on the ground (your "dead"
+      state), the traces remain active and can still frag an
+      opposing player (hopefully the one that fragged you). If you
+      press the space bar before the traces are calculated, you
+      will lose this chance.
+
+3D. How exactly does the blast area work?
+
+      The blast area is a spread of 20 invisible traces that
+      radiate outward from the attacking player. The damage for
+      the traces is calculated shortly after the green ball
+      detonates against a target or a wall.
+
+      The traces radiate outward in an imaginary cone that is
+      roughly as wide as the player's view, i.e., about 45
+      degrees to either side of the centerline. The cone always
+      points the same direction as the attacker was facing when
+      he fired the weapon. For instance, if you fire the BFG in
+      the southeast direction, your cone of traces will always
+      radiate towards the southeast.
+      
+      Regardless of how much you run and turn between the time
+      you fire and the time the green ball detonates, the traces
+      will always radiate from your location. Think of it like
+      a tank with a gyroscopically stabilized turret: only the
+      cone's origin point moves around with you, not its
+      direction. The cone's direction remains fixed on the same
+      compass heading.
+
+      From a technical point of view, the game engine does not
+      actually keep track of the cone while you're running around.
+      That's just the effect it seems to have. All it does is
+      store the vector of the direction you fired in a variable.
+      When the time comes for the ball to detonate, the variable
+      is retrieved to begin the calculations for the traces.
+
+      When the green ball detonates, the traces are calculated
+      one at a time, using the same criteria for calculation that
+      the engine might use for a bullet: If there is a solid
+      object (a wall, etc.) between the target and the attacker,
+      the trace is harmlessly absorbed by the object. With one
+      exception: In order to hit a target with a bullet, you had
+      to be facing the target. You don't have to be facing your
+      target in order to do damage with one of the traces.
+
+      Quick review:
+        - The cone of traces always points in the same compass
+          direction, the direction you originally fired the BFG.
+        - You sort of "carry the cone around" with you as long as
+          the green ball is still flying.
+        - When the green ball detonates, the cone of traces does 
+          its damage depending on where you're standing at that
+          moment, and who is in the cone.
+        - You do not have to be facing the targets to do
+          damage, you only have to maneuver into a position
+          where the cone is pointing at your targets.
+
+3E. What are the limitations of the blast area?
+
+      There is no range limit for the blast area, but the farther
+      a target is from the attacker, the less of a chance it will
+      be hit by a given trace, therefore the less damage it takes.
+
+      Because of this, the effective range of the blast area ends
+      up being in the neighborhood of 1000 units. At the outer
+      edges of this range, a deathmatch opponent will only get hit
+      by one trace, taking only 5-15 points of damage. Farther out
+      from that range, it becomes increasingly unlikely that a 
+      target will be hit by any traces at all. Of course, larger
+      targets such as spiderdemons have a wider radius, and
+      therefore the BFG's effective range is slightly farther
+      against such targets.
+
+      Keep in mind that there is no part of the program that
+      explicitly prevents traces from hitting targets outside the
+      1000 unit range. It can happen, and does in fact happen,
+      it is simply less likely. For the purposes of learning how
+      to use the weapon in a deathmatch game, base your
+      strategies on the idea that its main effective range is
+      about 1000 units, and you'll be OK.
+
+      If you are unfamiliar with the Doom engine's "units",
+      remember that a standard teleporter pad is 64 units across.
+      Line up 16 of those and you've got a basic idea of what
+      1000 units is.
+
+      The blast damage is also limited to targets that have an
+      unblocked line of sight to the attacking player. This does
+      not mean the attacker must see the target. It means that the
+      attacker must be in a position where his traces can see the
+      target, i.e., he could see the target if he were facing in
+      that direction.
+
+3F. How many targets can it hit?
+
+      The blast area can only hit as many targets as its traces
+      can touch. Since one trace can damage more than one target,
+      you can theoretically kill more than 20 targets. In tests
+      on an artificially created grid of monsters, it is not
+      uncommon for a single shot to kill 25 imps. But in regular
+      game play, rarely are that many targets standing in such a
+      perfectly aligned pattern. Usually, some individual targets
+      will soak up more than one trace, while other traces miss
+      targets completely.
+
+      The traces are calculated on a "first come, first fragged"
+      basis. For each trace, the damage is calculated and
+      subtracted from the target and the trace. Where applicable,
+      any target that dies from the trace is removed from the map.
+      Then the engine moves on to the next target in the line of
+      that trace. When the trace runs out of damage, the
+      calculation routine moves on to the next trace.
+
+      Here is how it works:
+
+      (Please note: In the discussion below, we refer to "line of
+      sight" loosely. Remember that the attacker does not need to
+      be looking at his targets to inflict damage.)
+ 
+      In the following scenario, imagine that the attacker is
+      standing in a direct line with several targets (imps, perhaps)
+      lined up in front of him, and the green ball detonates on a
+      wall somewhere:
+
+      Attacker:  X->      X X X X X X X          Detonation point: X
+                              (Imps)
+
+      The first couple of imps are close to the attacker. They
+      crumble, having soaked up some of the traces that are pointing
+      ahead of the attacker. The next few imps are a little farther
+      away, and absorb some more of the traces, but not as many. They
+      absorb fewer traces for two reasons:
+        1) because the imps in front of them absorbed some of them
+           already, and
+        2) because they are farther away and the traces are more
+           spread out.
+      But they still die. The next imp gets damaged, but does not
+      die. He has soaked up the last trace that was headed in that
+      general direction. The last imp is not damaged at all because
+      there are no more traces left in his direction.
+
+      In order for the above scenario to work, the targets must be
+      perfectly aligned. For instance, in the following scenario, all
+      of the targets take full damage, because there's no one in front
+      of them to soak up traces.
+
+                          X
+      Attacker:  X->    X                        Detonation point: X
+                      X    Y
+
+      The one target in the back ("Y") is still susceptible because it
+      is not blocked by another target. The attacker can see him
+      through the gap. So an imp standing directly behind a cyberdemon
+      is fairly safe, but an imp standing next to a cyberdemon is a
+      sitting duck.
+
+      The moral to this story is: In deathmatch, do not depend upon
+      other players or monsters to absorb the BFG blast unless they
+      are exactly between you and your attacker. And you'd better
+      hope they're very healthy. In all other cases you take full
+      damage.
+
+3G. How does altitude affect it?
+
+      For the most part, it does not. With a few exceptions.
+
+      Again, in the discussions that follow, we refer to "line of
+      sight" loosely. You do not have to look at your targets to
+      hit them.
+
+      If your altitude brings you out of the sight of your
+      attacker's traces, then yes, it makes you safe from the blast
+      damage. But if his traces can see any part of you, you take
+      full damage regardless of how much higher or lower you are
+      than he is.
+
+      As far as altitude is concerned, the traces seem to use the
+      same criteria as your view does to determine if the target is 
+      visible. In other words, if both you and the damage cone are
+      facing the target, but the target is above the top of the
+      screen, you can't hit him.
+
+      But there is a catch. The upper and lower angle limit of the
+      traces seems to be the same as your view would be if your
+      screen was fully zoomed in. For instance, if you are displaying
+      the status bar at the bottom of the screen, your view window is
+      slightly cut off at the top and bottom. Press the plus (+)
+      key repeatedly to zoom all the way in, and you can see what
+      this means. The BFG's traces seem to use the same angle as this
+      full view does to determine if they can hit the target. So if
+      you've got the status bar showing, you can actually hit
+      someone who is off the top of your screen. If you are fully
+      zoomed in, your view seems to be an accurate representation of
+      the damage cone's angle.
+
+      If your attacker is standing on a ledge above you, and he is
+      so close that he can "touch" you (i.e., he can't step off the
+      ledge because he's bumping into you), his shots will go right
+      over your head and the blast damage will not affect you. This
+      is because, technically, the traces can't see you. Well if 
+      your attacker could look down he would see you, but you can't
+      look down in Doom. Must be those darned restrictive space
+      helmets.
+
+3H. If I am only partially exposed, do I only take partial damage?
+
+      No such luck. The only thing that reduces your damage is
+      getting hit with fewer traces. Here is how it works:
+
+      If you are hiding behind a decorative sprite (such as a tree
+      or a technical column) you are fully exposed. All weapons in 
+      Doom always pass completely through decorative sprites.
+      
+      If you are peeking over a podium, or partially obscured by a
+      raising lift, or a closing door, and only half or one-tenth of
+      you is showing, you still take the full amount of damage. The
+      traces are calculated based on the game's two-dimensional
+      block map. As far as the game engine is concerned, all of the
+      traces can still hit you.
+
+      If you are hiding behind a vertical wall with your rear end
+      peeking out, you might take a little less damage because some
+      of the traces may hit the wall instead. But don't count on it.
+      Tests seem to show that your distance from the attacker is
+      more important than how much of you is exposed. This is an
+      observed phenomenon, not necessarily supported by hard facts.
+      It is difficult to test due to the random nature of the damage
+      traces.
+
+      Also remember that what counts as "showing" may not be what
+      you think. The Doom engine uses the radius of the player to
+      determine visibility. Your player's aspect ratio does not
+      change when you rotate. It also seems as though your radius
+      is slightly larger (in some cases) than the sprite (picture)
+      that represents your player. In tests, it is possible to
+      inflict damage upon a player that seems to be out of sight
+      (no visible pixels) but whose radius is large enough to count
+      as "visible" to the BFG traces.
+
+-- Section 4 - Deathmatch Techniques ---------------------------------------
+
+4A. What is considered "unfair" when using the BFG?
+
+      Many deathmatch players moan and groan when the BFG is used
+      successfully against them. "What a cheap frag, you craven
+      coward!" they shout. Well, they usually use fewer words to
+      express the idea, but that's what they mean. This is usually
+      due to a lack of understanding about how the weapon works.
+
+      The purpose of this FAQ is to educate players about how the
+      BFG behaves. If you know how it works, you will know how to
+      defend yourself against it. You will also know how to
+      effectively attack with it. If both (or all four) players have
+      the same knowledge about how the weapon functions, then
+      the BFG by definition is not unfair. If you play against an
+      opponent who does not know how the BFG works, then you should
+      make sure to educate them on its behavior before turning them
+      into paste.
+
+      Having said that, the following things are debatable regarding
+      fairness. I'm not saying they are patently unfair, I'm just
+      saying that their fairness is debatable:
+
+      - The "Silent BFG" trick (see section 4D).
+
+      - "Sitting on" or "guarding" the BFG when you are playing
+        deathmatch 2.0, and picking it up again every time it
+        reappears.
+
+      - Having a BFG left over from a previous level when there is
+        no BFG available to the other players on the current level.
+
+      In the last two examples, four-player deathmatch tends to
+      cancel out any advantages to those techniques. The remaining
+      three players usually coordinate and attempt to bring down the
+      king of the hill in these situations.
+
+4B. What is the best way to defend against the BFG in a deathmatch?
+
+      AVOID THE DIRECT HIT, AND GET OUT OF THE CONE OF DAMAGE.
+
+      (Duh.)
+
+      This requires, of course, that you know where the cone of
+      damage actually is. That, in turn, requires that you know
+      where your attacker is and in what direction he fired the
+      weapon. That, in turn, requires that you know the weapon
+      was even fired at all. Which, in turn, may be difficult
+      against a player who has mastered the "Silent BFG" trick
+      (See section 4D).
+
+      It still helps if you are playing the game with a stereo
+      sound card and headphones. This allows you to hear how far
+      away and in which direction your opponents are. If you
+      think in three dimensions, the sounds you hear in the game
+      will give you a great tactical advantage.
+
+      You must understand completely how the weapon works before
+      any avoidance technique would be meaningful. So if you
+      skipped ahead to this section, go back and read the gory
+      details.
+
+      With all that said, here are a few ideas. These are just
+      things to try, not necessarily good things in all cases.
+
+      - Run past the attacking player so that you end up behind
+        him. This assumes that he is still facing the same
+        direction as his damage cone. You will be completely safe
+        if you're on the opposite side of his cone. This can
+        backfire if you're not careful. You could end up three
+        feet from him and inside his cone when the green ball
+        detonates, and soak up some rays. Twenty of them, to be
+        exact. That SPF 60 sun block won't help, either.
+
+      - If you think you're about 1000 units away from the
+        attacker, and you don't think he's running towards you
+        too fast, you can try running away, and hope that the
+        traces will be too thinned out to damage you seriously.
+
+      - You can duck behind a nearby wall or a solid column. If
+        you can see your attacker, simply move so the column is
+        between you and him. Wait for the blast to detonate and
+        die down, then step out from the column and place some
+        ordnance in his face. This technique works well on Doom
+        II's "Circle of Death" level.
+
+      - If you are very close to him, you can attempt to frag
+        him before his shot gets off. When he pulls the trigger,
+        there is a slight pause while the weapon warms up where
+        you can still stop him dead in his tracks. There is
+        nothing more exhilarating than hearing his BFG spinning
+        up, then the sound of his scream as your super shotgun
+        removes his face. Muahahahaha...
+
+      - If you are involved in a turning, running, spinning melee
+        in an open area, keep it up. Learn how to circle-strafe
+        (use a combination of mouse and keyboard controls to
+        turn, run, and strafe all at the same time). If you keep
+        your attacker running in circles, his cone of damage will
+        hardly ever be pointing at you. He will eventually run out
+        of ammo, or you will frag him with conventional firepower.
+        This technique works well in the main courtyard of Doom
+        II's "Citadel" level. In this kind of melee, it is nearly
+        impossible to keep track of the cone (for either you or
+        your attacker), so you are really taking a gamble that the
+        turning fight will be to your advantage. But the
+        exhilaration of winning that kind of fight is one of the
+        best rushes you can get.
+
+      - If you are well armed and very healthy, you can judge
+        whether or not you can survive a blast area hit at
+        your current distance. Then take advantage of the fact
+        that he's trying to keep you in his sight. He's got a
+        moment or two where he must leave himself exposed
+        while he tries to soak you with his traces. Pepper
+        him with rockets or plasma. Grit your teeth and take
+        the blast area hit, but keep on him. Just don't get
+        too close.
+
+      - Anything else that takes advantage of the particular
+        quirks of the weapon. Remember that you can use your
+        knowledge of BFG attacking techniques to your
+        advantage, like the example above.
+
+4C. What is the best way to attack with the BFG in a deathmatch?
+
+      KEEP YOUR TARGETS IN THE CONE OF DAMAGE.
+
+      (Sha, nice try.)
+
+      This requires, of course, that you know where the cone of
+      damage actually is. So if you looked here first, go back
+      and check out the rest of this FAQ for details.
+
+      Anyway, here's some ideas. Not necessarily comprehensive:
+
+      - The best universally accepted method is to shoot a wall
+        or solid column that is very close to you. In this
+        situation, your cone of damage roughly equals the visible
+        targets on the screen. This is because you don't have much
+        time to move around before detonation. Your targets don't
+        have much time, either (You will notice that all of the
+        "defense" tips in this FAQ assume having time to react).
+        Because we already know two things:
+           1) The direct hit is difficult to achieve,
+           2) The location of the detonation does not matter,
+        there is no reason to try shooting the green ball at your
+        targets. Your goal is to get the green ball to detonate
+        as quickly as possible after you decide upon your
+        targets. Just make sure you're facing your targets when
+        you fire. If you have to rotate away from the direction
+        of fire in order to see your targets, your cone of damage
+        may not hit them.
+
+      - The next best thing is to use the strafe feature heavily.
+        Don't rotate, just keep strafing and keep your targets in
+        sight while you wait for the detonation. This also keeps
+        your cone of damage roughly lined up with your view,
+        allowing you to use your view as a reference. If your
+        targets are trying to run behind you to get behind your
+        damage cone, running backwards while strafing may also
+        help.
+
+      - "Everything I need to know, I learned at Top Gun." Avoid
+        turning fights. See the related item under the defense
+        techniques, above.
+
+      - "Keep your friends close, but keep your enemies closer."
+        Really. The closer you are, the more traces will hit 
+        their faces. Don't even bother firing if your opponents
+        are more than 1000 units away: you will either miss, or
+        do very little damage.
+
+      - Don't be afraid to use it in close quarters. You might
+        think the BFG is designed for open-area use, but it
+        actually works best when things get cramped. The "shoot
+        the wall" trick really mulches 'em in a narrow hallway.
+
+      - Keep it loaded, then use it liberally. Find lots of
+        ammo for it. Use a backpack to double your ammo capacity.
+        Then shoot it off whenever you get the urge. For instance,
+        every time you enter a new room or open a door.
+
+      - Set up pre-timed shots that take advantage of its long
+        warm-up time. Like this: pull the trigger, *then* open the
+        door. Or pull the trigger, *then* drop off the ledge into
+        the room with your target.
+
+      - Shoot the green ball at a very distant wall (such as
+        outdoors or down a long hallway), then run into the room
+        where your target is. He may not know you even fired,
+        or he may think it already detonated. Either way, you
+        can just stand there. When the ball eventually detonates,
+        your target will simply see himself crumble to the
+        ground, realizing too late that you were standing still
+        because you were keeping your traces on him. See section
+        4E for an example of this.
+
+4D. What is the "Silent BFG" trick?
+
+      Defending yourself against the BFG pretty much depends on
+      your ability to know precisely when it is being used against
+      you.
+
+      If you are fortunate enough to play deathmatch with a stereo
+      sound card and headphones, you know that sound cues are vital
+      to playing well in deathmatch. In many cases, the only way a
+      potential victim knows the green ball is in the air is by the
+      distinctive sound the weapon makes when fired. The headphones
+      can give him directional cues as to its origin, and therefore
+      point the way towards a proper escape.
+
+      So if you wish to get the drop on someone, wouldn't it be
+      great if you could put a silencer on that weapon? Well you
+      can. A limitation in Doom's sound code allows you to silence
+      the firing sound of the BFG. Regardless of the "Number of
+      Sound FX to Mix" that you chose in Doom's setup program,
+      your character can actually only utter one sound at a time.
+      This includes all weapons firing. If you cause your character
+      to grunt, i.e., you jump off of a ledge or press the space
+      bar on a blank wall, you have a brief period while the
+      grunting sound is being played in which you can pull the
+      trigger and no sound will be emitted from the weapon. Your
+      grunt makes a little noise, but it's relatively quiet and is
+      sometimes ignored by your opponents.
+
+      While it works well in theory, in practice the trick is hard
+      to perform. It also may be a little unfair. As with all
+      secrets, it definitely makes the game unfair if you don't
+      share this information with your opponents.
+
+      As of this writing, there seems to be a small handful of
+      players on the doom newsgroups who use this trick. The
+      first person to submit this trick to the author of this
+      document was John Fedor.
+
+      Interesting anecdote: When reviewing a draft copy of this
+      FAQ, American McGee at id Software informed us that they
+      have been using the silent BFG trick in their deathmatch
+      games since day one.
+
+4E. What is the "Level One Strafe" trick?
+
+      The level one strafe trick is not a deathmatch technique
+      per se, but it's a demonstration of the BFG behavior that
+      educates many folks on how the BFG really works. The act of
+      performing this trick tends to open one's eyes to the amazing
+      possibilities of the weapon. It also proves some points made
+      in this FAQ.
+
+      Doug Bora first pointed this demo out to our particular
+      group. Credit for the original version of this demo goes to
+      John Ripley of the UK. The full deathmatch demo file
+      PETALK2.ZIP is the first example of this specific action.
+      This file may (or may not) be available on ftp.cdrom.com.
+      Since that time, this has been repeated by many folks on the
+      Doom newsgroups.
+
+      How to do this:
+      - Set up a deathmatch game with Doom II, starting on level
+        one, no monsters, deathmatch 2.0, ultra violence skill
+        level.
+
+      - Player one (Green) will most likely appear on the
+        ledge with the chainsaw, BFG, rocket launcher, and super
+        shotgun. Tell him to move so that he is within view of
+        that first entrance room, standing on the ledge where
+        he can see down the brightly lit hallway from his perch
+        above the brown room. Tell him to sit tight right there.
+        He is frag bait for this demonstration.
+
+      - Player two (whoever) will stroll into the brown room and
+        pick up the BFG behind the column. Wave to the nice guinea
+        pig waiting patiently on the platform above. (Hi Phil. Hi
+        Ralph.)
+
+      - Player two strolls down the brightly lit hallway to the
+        intersection where he can see the other dark room, way
+        down the long hallway. You can just make out the plasma
+        gun sitting on that podium in there.
+
+      - While facing the plasma gun from the intersection in the
+        bright hallway, fire the BFG. When the shot actually
+        leaves the barrel of the gun and begins traveling 
+        toward the plasma gun, strafe quickly back toward the
+        intersection where you can see Greenie standing on the
+        ledge in the first brown room.
+
+      - If you reached that hallway intersection in time (before
+        the green ball detonated in the plasma gun room) you will
+        be rewarded with seeing the frag bait get fragged. Well,
+        at least damaged. Maybe fragged.
+
+      - One extra credit point to anyone who guessed that you
+        don't have to be facing Green Boy to kill him. You just
+        have to make it to that intersection in time. You could
+        be turned completely away from him, he will still be hit
+        by the traces. You can prove this by running straight to
+        the intersection rather than strafing to it.
+
+      This demonstration proves the following:
+
+      - You don't have to be anywhere near, or even facing the
+        detonation point to damage your targets. You only have
+        to move to a position where your cone of traces is on
+        them.
+
+      - The cone of traces always points the same direction
+        regardless of which direction you turn.
+
+      - You do not have to face your targets in order to hit
+        them.
+
+      - You can fire the BFG in a totally different area than
+        where you want your targets to be damaged.
+
+      Players who perform this stunt successfully the first
+      time are usually amazed that it actually works. This is
+      also a good practice for using similar moves in real
+      deathmatches.
+
+-- Section 5 - Submitting Corrections --------------------------------------
+
+5A. Common misconceptions
+
+      This is a list of the most common misunderstandings about the
+      behavior of the BFG. Please review this list before submitting
+      corrections.
+
+      1) You have to be looking at your target in order to inflict
+         blast area damage.
+
+         This is untrue. The target must be within an imaginary
+         line-of-sight to you at detonation time, but you can be
+         facing away from the target, provided it meets all the
+         other criteria.
+
+         This is an easy mistake to make because you tend to be
+         more accurate in positioning your cone of damage if you
+         keep your eyes on your targets. Especially if you are
+         strafing instead of rotating.
+
+         See section 4E for proof of this.
+
+      2) You have to see the detonation point in order to inflict
+         blast area damage.
+
+         Nope. The detonation point can be completely out of your
+         range of sight, and can be separated from you and your
+         targets by a hundred solid stone walls.
+
+         Again, see section 4E for proof of this.
+
+      3) The location of the detonation point is a factor in the
+         blast damage area calculations.
+
+         Only the moment of detonation is important. The location
+         of the detonation point is not used. See number 2, above.
+
+      4) The location you were standing when you fired, or the
+         location of targets at firing time, is a factor.
+
+         Only the location where you are standing when the blast
+         detonates is important. The compass direction that you
+         fired is important, but not the location where you fired.
+         The traces are only calculated at detonation time. The
+         game engine does not care where the targets are until
+         the traces are calculated.
+
+         Again, see section 4E for proof of this.
+
+      5) You have to be facing the same direction at detonation
+         time as you were at firing time.
+
+         No, the cone of traces extends outward in the same
+         compass direction regardless of which way you are
+         facing at detonation time.
+
+         Again, an easy mistake to make because you tend to be
+         more accurate if you keep your eyes on your targets.
+         Again, especially if you are strafing.
+
+         Again, see section 4E for proof of this.
+
+      6) Your BFG blast can frag someone behind you, but only
+         if they are close enough to touch you.
+
+         You can frag someone behind you if they fall anywhere
+         within the cone of traces. Sure they can be behind you,
+         but they don't have to be touching you. In order to
+         frag someone behind you, you must rotate away from the
+         direction you fired, then maneuver so that your targets
+         are within the cone behind you.
+
+         Having said that, if the victim is standing right next
+         to the attacker, at 90 degrees perpendicular to the
+         cone of damage, they will fall within the cone if they
+         are in front of the attacker's centerline. But if they
+         are truly behind the attacker's cone of damage (behind
+         the centerline of the attacker), they will walk away
+         unscathed.
+
+         This seems to be due to the fact that the player's
+         "hittable" radius is larger than the player's "walk
+         into" radius. When you walk up to a player and bump
+         into him, his "hittable" area is overlapping into your
+         area.
+
+         This is an easy mistake to make when looking at a
+         deathmatch game, where everyone is moving around each
+         other so quickly that it's hard to keep track of the
+         location of the cone of damage. If you really think you
+         fragged someone behind you, it's probably because of
+         one of two reasons:
+            1) They were actually next to you and slightly
+               forward of your centerline.
+            2) You rotated away from the direction of fire,
+               and the victim stepped into the cone of damage
+               that still existed behind you.
+
+5B. I think the FAQ is in error. How do I get it corrected?
+
+      Please go through this checklist before submitting information:
+
+      1) Read the entire FAQ to be sure we did not cover your point
+         in another section. Check the "Common Misconceptions"
+         section, above, too.
+
+      2) If you have a theory about the BFG behavior, please test it
+         carefully before submitting it. If you can't reproduce the
+         effect under controlled conditions, you were probably
+         witnessing a side effect of one of its known behaviors. Or
+         perhaps it happened in a deathmatch game, where the action
+         is so fast that you often can't keep track of what's
+         going on.
+         
+      3) If you think you have tested your theory thoroughly and
+         are ready to submit the theory as proven, please prepare
+         a short description statement that details how to reproduce
+         the effect during game play. Please make sure the
+         description is short and precise.
+         
+      4) When you have composed your description message (please
+         make it as short as possible), e-mail it to tfabris@oro.net
+         and wait patiently for a reply.
+
+      5) Note: Do not attempt to send us information for FAQ files
+         other than this one. We do not maintain other FAQ files and
+         we do not echo information amongst other FAQ authors.
+
+=============================================================================
+
+
+
+
+
