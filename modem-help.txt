@@ -1,0 +1,114 @@
+
+Having problems with DOOM 1.2 serial?  I tried several modems and
+configurations.  The below string seemed to provide the most 
+consistent results across the widest number of modems.
+
+AT &F S46=0 &K0 &Q0 &D2 &W
+AT Z H0
+
+
+Line 1 is the initialization string, which does the following:
+
+&F    - This fetches the factory default in most modems.  Always a
+        good starting point.
+
+S46=0 - This register setting disables compression on many v.32 and v.42
+        modems.  You might also try S46=136 or %C0.
+
+&K0   - Disable flow control between the modem (DCE) and your PC (DTE).
+        This was one of the most common problems -- You should look
+        at flow control options more closely if you connect and just hang
+        WITHOUT the screen clearing and displaying the blue banner.  Check
+        your modem documentation carefully.  The command(s) to manipulate
+        flow control varies quite a bit on various modems.
+
+&Q0   - Places the modem in DIRECT mode.  This is by far the best method
+        for pumping data down those wires!  Stay away from the error
+        correcting and speed buffering configurations.
+
+&D2   - DTR handling.  DTR is the signal (voltage) on the serial connector
+        on your PC that says "I'm here".  This control helps with initially
+        talking to the modem and disconnecting.  The &D2 in tells the modem
+        how to handle the loss of the DTR signal from the PC.  In this case,
+        the modem will go into COMMAND MODE from DATA MODE (if not already
+        there) and send the normal verbose response (i.e. "OK").
+
+&W    - Write the configuration to the modem's memory.  This is optional
+        but I always like to do this -- just like I always like to use
+        the factory reset (&F) at the beginning.  
+
+        IMPORTANT:  When you use the &W your permanently change your modem
+                    modem settings.  If your other communication programs
+                    do not set your modem each time, you may have to 
+                    configure your modem for those other programs again.
+
+
+An alternate configuration:
+
+Another common problem I found on the 14.4 flavor modems was the tendency
+for some of these to report a 14.4 CONNECT on one side, and a 9600 on the
+other.  Every modem has a method for forcing a connect speed.  The most
+common I found is on register S37.  The following init string usually fixed
+the problem:
+
+AT &F S46=0 &K0 &Q0 &D2 S37=F8 &W
+AT Z H0
+
+Which does the following:
+
+&F      - as described above.
+
+S46=0   - as described above.
+
+&K0     - as described above.
+
+&Q0     - as described above.
+
+&D2     - as described above.
+
+S37=F8  - Forces the modem to 9600 bps.  F8 is hexadecimal notation.  Your  
+          modem documentation may describe the settings in decimal or 
+          in binary notation.  For example:
+
+          F8        - hexadecimal
+          248       - decimal
+          11111000  - binary
+
+          The binary notation is the most clear when interpreting the 
+          effect to bit registers.  Once you set your bits correctly,
+          you can use the calculator in Windows 3.1 to binary/hex/decimal
+          conversions (when in the scientific mode).
+          
+          Keep in mind the place holders and the least to most significant
+          bits!  It's easy to work in the wrong direction when dealing
+          with bit registers.  
+
+          If binary notation is foreign to you, call your modem vendor
+          and describe what you need.  They will be able to give you the
+          proper code.
+
+I also tried the following init strings with varying degrees of success
+depending on the modem: 
+
+AT&Fs46=0&Q0&D2&W
+AT&F%C0&D2&W
+AT&F&Q0%C0&D2&W
+AT &F S46=0 S48=0 S23=187 &Q0 &D2 \J0 &W
+AT&F S46=0 &Q0 &D2 S37=F8 %C0 &W
+AT&F S46=0 S48=0 &Q0 &D2 S37=F8 %C0 &W
+AT&FE0V1X0S46=0&Q0&D2&W
+
+
+I hope this helps you frustrated serial players out there.
+
+Finally, thanks to ID for the most awesome games I've played.  Wolf3D,
+SPEAR, and DOOM have provided the best value for my money.  I urge you
+to register your software to help support them!
+
+
+Keith Turbyfill
+Compuserve ID: 73322,332
+America On Line ID: turby
+Internet ID: turby@aol.com
+
+
