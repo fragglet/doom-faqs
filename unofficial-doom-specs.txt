@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------
        T H E   U N O F F I C I A L   *-D-*-*-O-*-*-O-*-*-M-*   S P E C S
-                        Release v1.1 - February 19, 1994
+                       Release v1.2 - March 6, 1994 EST
                   Written by: Matt Fell (matt.burnett@acebbs.com)
               Released by: Hank Leukart (ap641@cleveland.freenet.edu)
           "DOOM: Where hackers gnaw the bones left from the banquet
@@ -41,528 +41,708 @@ INTRODUCTION
 ------------
 
         Here are the long awaited unofficial specs for DOOM.  These specs
-should be used for creating add-on software for the game.  I would like to
+should be used for creating add-on software for the game. I would like to
 request that these specs be used in making utilities that ONLY work on the
-registered version of DOOM.  You may not use these for modifing, translating,
-disassembling, decompiling, reverse engineering, or creating derivative works
-based upon DOOM.  Notwithstanding the foregoing, you may create a map editor,
-modify maps and make your own maps (collectively referenced as the "Permitted
-Derivative Works") for the Software.  You may not sell or distribute any
-Permitted Derivative Works but you may exchange the Permitted Derivative
-Works at no charge amongst other end-users.
+registered version of DOOM.
         I do not understand much of what is contained in this file, so if
 you have any questions about the information, write to Matt Fell at
 "matt.burnett@acebbs.com" on the Internet.  If you would like to request a
 copy of this file, or have any questions about its distribution, write to me,
 Hank Leukart, at "ap641@cleveland.freenet.edu" on the Internet.
 
---------------------
-(LONG) AUTHOR'S NOTE
---------------------
-
-This document is a summary and explanation of almost all the data structures
-in the DOOM.WAD file. ALMOST all. The structure of the NODES/SSECTOR/SEGS
-objects is apparent, but their exact purpose is proving elusive. Everything
-else is fairly easy. Thankfully, there is no compression or encryption used,
-that would really complicate things.
-
-All of this information is true to the best of my knowledge at this time,
-which means that there's certainly a few things in here which are WRONG!
-So here's the obligatory reminder to back up your DOOM.WAD file and any other
-files you intend to change, unless you enjoy re-installing the whole package
-[ Hope you have 11 megs just lying around :-) ]. If you aren't experienced
-with programming and/or data structures, you probably shouldn't be fooling
-around anyway. And remember, id Software will NOT give technical support for
-modifications.
-
-Whatever you do, do NOT distribute any data extracted from the original
-doom.wad file. It is COPYRIGHTED. This includes pictures, sounds, and the
-original maps. I don't know about the technicality of it, but I'm also,
-especially, referring to distributing changed versions of the original maps.
-E.g. you change one or two of the items on a level, or you move some walls
-around. Great! But don't distribute it! It's still THEIR level.
-
-As far as I can determine at this point in time, here is the preferred
-method of handling third-party additions:
-
-If you are writing a utility that will operate on DOOM, have it first check
-the WAD file for the existence of an "E3M1" entry in the directory (explained
-below), or some other entry that will only be in the registered version.
-
-If you are going to be distributing a modified map, plan on using the -file
-parameter. At the command line, the user will type
-
-DOOM -DEVPARM -FILE yourfile.wad
-
-(in addition to any other command line parameters they are using). This
-causes doom to use any resources in the "yourfile.wad" instead of the
-originals in the "doom.wad" file. Thus, if you only make one level (good
-luck on even making one!), you can distribute a wad file which will be very
-small compared to the full wad file. Your external wad file for a single
-level would have just eleven entries in its directory.
-
-When doom loads, the doom OS will say "adding external file (whatever).wad"
-Call your file something like JOELEVEL.WAD or XMENRULE.WAD; if you use a name
-like E1M1.WAD or E3M6.WAD or probably any real name from the real directory,
-it will either not work, or lock-up.
-
-By the way, I've known most of this info for weeks now, but have been
-"sitting" on it for various reasons....And if you like difficult levels
-oriented towards combat and thinking, remember me. When I get good enough
-tools, I guarantee I will make some interesting levels. The desire to create
-levels is what really got me started on this whole thing; my resume includes
-some critically acclaimed levels for wolf and spear.
-
-If you have any comments, or even better, possible additions, please send me
-e-mail. Questions will be gladly answered also, no matter how trivial, unless
-I get too many, which I doubt. Please note, however, that if it's not in
-here, I'm either working on it or I just don't know it. If YOU know "it", tell
-me!
-
 --------
 CONTENTS
 --------
 
-[1] Basics
-[2] Directory Overview
-[3] The Maps, The Levels
-        [3-1] ExMy
-        [3-2] THINGS
-                [3-2-1] Thing Types
-        [3-3] LINEDEFS
-                [3-3-1] Linedef Attributes
-                [3-3-2] Linedef Types
-        [3-4] SIDEDEFS
-        [3-5] VERTEXES
-        [3-6] SEGS
-        [3-7] SSECTORS
-        [3-8] NODES
-        [3-9] SECTORS
-        [3-10] REJECT
-        [3-11] BLOCKMAP
-[4] Pictures' Format
-        [4-1] Headers
-        [4-2] Pointers
-        [4-3] Pixel Data
-[5] Floor and Ceiling Textures
-[6] Songs and Sounds
-        [6-1] Songs
-        [6-2] Sounds
-[7] Miscellaneous Non-Picture Resources
-        [7-1] PLAYPAL
-        [7-2] COLORMAP
-        [7-3] DEMOs
-        [7-4] TEXTURE1 and TEXTURE2
-        [7-5] PNAMES
+[1] Author's Notes
+        [1-1] Acknowledgements
+[2] Basics
+[3] Directory Overview
+[4] The Maps, The Levels
+        [4-1] ExMy
+        [4-2] THINGS
+                [4-2-1] Thing Types
+        [4-3] LINEDEFS
+                [4-3-1] Linedef Attributes
+                [4-3-2] Linedef Types
+        [4-4] SIDEDEFS
+        [4-5] VERTEXES
+        [4-6] SEGS
+        [4-7] SSECTORS
+        [4-8] NODES
+        [4-9] SECTORS
+        [4-10] REJECT
+        [4-11] BLOCKMAP
+[5] Pictures' Format
+        [5-1] Headers
+        [5-2] Pointers
+        [5-3] Pixel Data
+[6] Floor and Ceiling Textures
+        [6-1] Animated floors
+[7] Songs and Sounds
+        [7-1] Songs
+        [7-2] Sounds
+[8] Miscellaneous Non-Picture Resources
+        [8-1] PLAYPAL
+        [8-2] COLORMAP
+        [8-3] DEMOs
+        [8-4] TEXTURE1 and TEXTURE2
+                [8-4-1] Animated walls
+        [8-5] PNAMES
+
+---------------------------
+CHAPTER [1]: Author's Notes
+---------------------------
+
+I didn't want to release another incomplete version of the specs, but
+the NODES structure is so much more difficult than all of the other stuff,
+I'm not sure how much longer it will be until either I or someone
+helping me can figure it out. Since I have almost complete information
+on everything else, I felt I should go ahead and release this now.
+
+Without knowing how to do the NODES, we still can't create levels from
+scratch. So these specs will have to undergo another revision. I've heard
+rumors of the hint book, with the official specs, being released "soon";
+if anyone knows more about this, or if they get the book, please contact me.
+
+I haven't kept track of all the minor revisions that have been made since
+1.1, sorry. You can get rid of the 1.1 specs, as this has everything it
+had except the errors :-)
+
+id SOFTWARE'S COPYRIGHT AND THE SHAREWARE VERSION:
+
+I'm moving the location of the soapbox I had in the 1.1 Specs to here. I'm
+certainly not an official spokesman for id. I have made some inquiries to
+them regarding specific questions on third-party additions. Until they
+respond, though, I'll just make a couple excerpts from the official
+documents we have at this time:
+
+
+The LICENSE.DOC says
+
+       "You may not:  rent, lease, modify, translate, disassemble,
+        decompile, reverse engineer, or create derivative works based
+        upon the Software. Notwithstanding the foregoing, you may create
+        a map editor, modify maps and make your own maps (collectively
+        referenced as the "Permitted Derivative Works") for the Software.
+        You may not sell or distribute any Permitted Derivative Works but
+        you may exchange the Permitted Derivative Works at no charge
+        amongst other end-users."
+
+It also says
+
+        (except for backup purposes) "You may not otherwise reproduce,
+        copy or disclose to others, in whole or in any part, the Software."
+
+I think this is clear. You may not distribute a WAD file that contains
+any of the original entries from DOOM.WAD.
+
+Then how can you just make a new set of THINGS for a level? Simple. Have
+a pwad file that has only two entries - E3M1 for example, and THINGS.
+
+The README.EXE says
+
+       "id Software respectfully requests that you do not modify the
+        levels for the shareware version of DOOM.  We feel that the
+        distribution of new levels that work with the shareware version
+        of DOOM will lessen a potential user's incentive to purchase the
+        registered version.
+
+       "If you would like to work with modified levels of DOOM, we
+        encourage you to purchase the registered version of the game."
+
+I feel that this is also pretty clear: if you distribute levels, they should
+not work with the shareware version. This is easily accomplished: do
+not distribute ANY episode one maps! The shareware version cannot work
+with episode 2 or 3 pwads, but it can work with episode 1 pwads (they
+should have disabled the -file feature in the shareware).
+
+If you are writing a utility that will operate on DOOM, have it first check
+the WAD file for the existence of an "E3M1" entry in the directory (explained
+below), or some other entry that will only be in the registered version.
+If it's not there, the program should quit. You should not be making
+programs that will work on the shareware version.
+
+The point is that the regular shareware players shouldn't be able to exceed
+their rights. They are getting a complete game as it is!
+
+[1-1]: Acknowledgements
+=======================
+
+I have received much assistance lately from the following people. They
+either brought mistakes to my attention, or provided additional information
+that I've incorporated into these specs:
+
+Ted (tedv@geom.umn.ed) - I had the THING angles wrong. Unforgivable.
+Matt Tagliaferri (matt.tagliaferri@pcohio.com) - I forgot to describe the
+        TEXTURE1/2 pointer table. Also, gave lots of help with linedef types.
+Raphael Quinet (quinet@montefiore.ulg.ac.be) - The author of the NEWDEU
+        editor; new info on linedef types and attributes, special sectors.
+Robert Fenske (fenske@swri.edu) - part of the VERDA team, gave lots of help
+        on linedef attributes and types, blockmap list, special sectors,
+        and other stuff
+John A. Matzen (jamatzen@cs.twsu.edu) - instrument names in GENMIDI.
+Jeff Bird (jeff@wench.ece.jcu.edu.au) - good ideas and suggestions about
+        the nodes.
+
+Sorry if I left anyone out. Thanks for all the help!
+
+If you have any comments, have spotted any errors, or have any possible
+additions, please send me e-mail. Questions will be gladly answered also,
+no matter how trivial, unless I get too many, which I doubt. Please note,
+however, that if it's not in here, I'm either working on it or I just don't
+know it. If YOU know "it", tell me!
 
 -------------------
-CHAPTER [1]: Basics
+CHAPTER [2]: Basics
 -------------------
 
-The first twelve bytes of a *.WAD file are as follows:
+Don't make episode 1 maps! Don't make utilities that work on the shareware
+version!  For more information on this, see Chapter [1].
 
-Bytes 0 to 3 - contain the ASCII letters "IWAD"
-               may also contain "PWAD", which will give the "modified game"
-               message during the Doom OS startup. Therefore, I recommend
-               that all modified WAD files have PWAD instead of IWAD. I have
-               been unable to find out what ID thinks about this, they are so
-               busy...
+There are two types of WAD files. The original DOOM.WAD file is an "IWAD",
+meaning it contains all of the data necessary to play. The other type is the
+"PWAD" file, an external file which has the same structure, but with far
+fewer entries in the directory (explained below). The data in a PWAD is
+substituted for the original data in the DOOM.WAD, thus allowing for much
+easier distribution of new levels. Only what the PWAD wants to change is
+changed, everything else stays the same. Most PWADs will contain the 11
+entries necessary to define a single level. For example, if Bill Clinton
+were to create a new level 7 for episode 3, he might call it BILLC-37.WAD
+
+To use this level instead of the original E3M7 level, a player would type
+
+DOOM -FILE BILLC-37.WAD
+
+at the command line, along with any other parameters. More than one can be
+done at the same time, thus in general
+
+DOOM -FILE [pwad_filename] [pwad_filename] [pwad_filename] ...
+
+When the game loads, a "modified game" message will appear if there are any
+PWADs involved, reminding the player that id Software will not give technical
+support or answer questions regarding modified levels.
+
+Note that PWAD files must have the .WAD extension to work - I've tried
+extensions like .PWD and .37 and they don't work.
+
+The original doom levels are pretty complicated, and they are from 50-200
+kilobytes in size, uncompressed. My simple prototype levels are just a
+few kbytes. I'm estimating that my first epsiode 2 with 9 complete levels
+plus a few other things, will be about 1 megabyte uncompressed, about 300k
+in a ZIP file.
+
+The first twelve bytes of a WAD file are as follows:
+
+Bytes 0 to 3 - must contain the ASCII letters "IWAD" or "PWAD"
+
 Bytes 4 to 7 - contain a long integer which is the number of entries in the
                "directory"
+
 Bytes 8 to 11 - contain a pointer to the first byte of the "directory"
 
 (Bytes 12 to the start of the directory contain resource data)
 
 The directory referred to is a list, located at the end of the WAD file,
 which contains the pointers, lengths, and names of all the resources in the
-WAD file. The resources in the wad: item pictures, enemies' pictures for
-animation, wall patches, floor and ceiling textures, songs, sound effects,
-map data, and many others.
+WAD file. The resources in the wad include item pictures, monster's pictures
+for animation, wall patches, floor and ceiling textures, songs, sound
+effects, map data, and many others.
 
-Specifically, the first 12 bytes of the DOOM.WAD file in version 1.1, which
-I am working with, are:
+Specifically, the first 12 bytes of the DOOM.WAD file in version 1.2, which
+I am working with, are (in hexadecimal):
 
-49 57 41 44 1a 08 00 00 be 20 9e 00
+49 57 41 44 fd 07 00 00 84 2e 9e 00
 
-This is "IWAD", then 81a hex (=2074 decimal) for the number of directory
-entries, then 9e20be (=10363070 decimal) for the first byte of the directory.
+This is "IWAD", then 7fd hex (=2045 decimal) for the number of directory
+entries, then 9e2e84 (=10366596 decimal) for the first byte of the directory.
 
 Each directory entry is 16 bytes long, arranged this way:
 
-First four bytes: pointer to start of resource (a long integer)
-Next four bytes: length of resource (another long integer)
-Last eight bytes: name of resource, in ASCII capitals, ending with 00s if
-        less than eight bytes.
+First four bytes:       pointer to start of resource (a long integer)
+Next four bytes:        length of resource (another long integer)
+Last eight bytes:       name of resource, in ASCII letters, ending with
+                        00s if less than eight bytes.
 
 -------------------------------
-CHAPTER [2]: Directory Overview
+CHAPTER [3]: Directory Overview
 -------------------------------
+
+This is a list of most of the directory entries.
 
 PLAYPAL   contains fourteen 256 color palettes, used while playing Doom.
 COLORMAP  maps colors in the palette down to darker ones, for areas of less
-          than maximum brightness (quite a few of these places, huh?)
+          than maximum brightness (quite a few of these places, huh?).
 ENDOOM    is the text message displayed when you exit to DOS.
-DEMO[1-3] are the demos which will play if you just sit and watch.
+DEMOx     x=1-3, are the demos which will play if you just sit and watch.
 
 E1M1      etc, to E3M9, along with its 10 subsequent entries, defines the
-          map data for a single level or mission. More on this below.
+          map data for a single level or mission.
 
 TEXTURE1  is a list of wall type names used in the SIDEDEF portion of each
           level's data, and their composition data, i.e. what wall patches
           make up each "meta-wall".
 TEXTURE2  contains the walls that are only in the registered version.
 PNAMES    is the list of wall patches, which are referenced by number in
-          the TEXTURE1/2 objects.
+          the TEXTURE1/2 resources.
 
-GENMIDI   has some instrument names in it, and obviously has to do with the
-          MIDI mappings used for the songs...?
-DMXGUS    has to do with Gravis Ultra Sound, I suppose.
+GENMIDI   has the names of every General Midi standard instrument in order
+          from 0-127. Anyone know more...?
+DMXGUS    obviously has to do with Gravis Ultra Sound...
 
-D_xxxxxx  is a song
+D_ExMy    is the music for episode x level y.
+D_INTER   is the music played on the summary screen between levels.
+D_INTRO   is the the 4 second music played when the game starts.
+D_INTROA  is also intoductory music.
+D_VICTOR  is the music played on the victory text-screen after an episode.
+D_BUNNY   is music for while a certain rabbit has his story told...
+
 DP_xxxxx  DP and DS come in pairs and are the sound effects.
 DS_xxxxx     DP_ are the PC speaker sounds, DS_ are the sound card sounds.
 
 all the remaining entries in the directory, except the floor textures at the
 end, and the "separators" like S_START, refer to resources which are pictures
+in the doom/wad picture format described in chapter [4].
 
-in the doom/wad picture format described in chapter 6. I could've listed here
+The next seven are full screen (320 by 200 pixel) pictures:
 
-what every single one of them is, e.g. WIMSTBP3 is text "FOUR" in grey, but
-I figured it to be a waste of time.
+HELP1     The ad-screen that says Register!, with some screen shots
+HELP2     The actual help, all the controls explained
+TITLEPIC  Maybe this is the title screen? Gee, I dunno...
+CREDIT    The credits, the people at id Software who created this great game
+VICTORY2  The screen shown after a victorious end to episode 2
+PFUB1     A nice little rabbit minding his own peas and queues...
+PFUB2     ...maybe a hint of what's waiting in Doom Commercial version.
 
-HELP[1-2] These are full screen (320 by 200 pixel) pictures.
-TITLEPIC
-CREDIT
-VICTORY2
-PFUB[1-2]
+ENDx      x=0-6, "THE END" text, with (x) bullet holes.
 
-END[0-6]  "THE END" text, with 0 to 6 bullet holes.
-
-AMMNUM[0-9] are the grey digits used in the status bar for ammo count.
+AMMNUMx   x=0-9, are the grey digits used in the status bar for ammo count.
 STxxxxxx  are small pictures and text used on the status bar.
-M_xxxxxx  are text messages (yes, in picture format), used in the menus.
+M_xxxxxx  are text messages (yes, in picture format) used in the menus.
 BRDR_xxx  are tiny two pixel wide pictures use to frame the viewing window
           when it is not full screen.
-WIxxxxxx  are pictures and messages used on the summary screen done after
+WIxxxxxx  are pictures and messages used on the summary screen after
           the completion of a level.
-WIMAP[0-2] are full screen, 320 by 200.
+WIMAPx    x=0-2, are the summary-screen maps used by each episode.
 
 S_START   has 0 length and is right before the item/enemy section
-S_END     is immediately after the last "frame"
-P_START   the beginning of the wall patches
+S_END     is immediately after the last "sprite"
+P_START   marks the beginning of the wall patches
 P1_START      before the first of the shareware wall patches
 P1_END        after the last of the shareware wall patches
 P2_START      before the first of the registered wall patches
 P2_END        before the first of the registered wall patches
-P_END     the end of the wall patches
-F_START   the beginnning of the floors
+P_END     marks the end of the wall patches
+F_START   marks the beginnning of the floors
 F1_START      before the first shareware floor texture
 F1_END        after the last shareware floor texture
 F2_START      before the first registered floor texture
 F2_END        after the last registered floor texture
-F_END     the end of the floors
+F_END     marks the end of the floors
 
 And that's the end of the directory. Detailed info on specific resources
 follows...
 
 ---------------------------------
-CHAPTER [3]: The Maps, The Levels
+CHAPTER [4]: The Maps, The Levels
 ---------------------------------
 
-Each level has eleven resources/directory entries: E[x]M[y] (where x is a
+Each level needs eleven resources/directory entries: E[x]M[y] (where x is a
 single digit 1-3 for the episode number and y is 1-9 for the mission/level
-#),
-THINGS, LINEDEFS, SIDEDEFS, VERTEXES, SEGS, SSECTORS, NODES, SECTORS, REJECT,
+#), THINGS, LINEDEFS, SIDEDEFS, VERTEXES, SEGS, SSECTORS, NODES, SECTORS,
+REJECT, BLOCKMAP.
 
-BLOCKMAP.
-
-[3-1]: ExMy
+[4-1]: ExMy
 ===========
 
-This is just the name resource for a (single) level, and has zero length. The
+This is just the name resource for a (single) level, and has zero length.
+In the DOOM.WAD file, each is followed by all ten of the component resources
+for that level. In a pwad external file, they don't all need to be present.
+Whichever entries are in a pwad will be substituted for the originals.
+For example, a pwad with just two entries, E3M1 and THINGS, would use all
+the walls and such from the original E3M1, but could have a completely
+different set of THINGS on it.
 
-next 10 entries in the directory after one of these must be
-THINGS...BLOCKMAP.
-
-[3-2]: THINGS
+[4-2]: THINGS
 =============
 
 Each thing is ten bytes, consisting of five (integer) fields:
 
-1. X coordinate of thing
-2. Y coordinate of thing
+(1) X coordinate of thing
+(2) Y coordinate of thing
 
 Each level has a different "range" to its coordinates. On E1M1, X ranges
 from (c.) -288 to +3440, and Y ranges from (c.) -4832 to -2144.
 On the automap within the game, with the grid on (press 'G'), the lines are
 hex 80 (decimal 128) apart, two lines = hex 100, dec 256.
 
-3. Angle the thing faces, 0 is west (according to automap).
+(3) Angle the thing faces. On the automap, 0 is east, 90 is north, 180 is
+    west, 270 is south.
 
-May be 0,45,90,135,180,225,270,315. Only important for enemies.
+This value is only used for enemies, player starts, deathmatch random starts,
+and teleporter incoming spots. Other things look the same from all
+directions. Values are rounded to the nearest 45 degree angle, so if the
+value is 80, it will actually face 90 - north.
 
-4. Type of thing, see next subsection
-5. Attributes of thing, which are set by bits:
+(4) Type of thing, see next subsection
+(5) Attributes of thing, which are set by bits:
 
-bit 0  is set if the THING is present at skill 1 and 2
-bit 1  is set if the THING is on skill 3 (hurt me plenty)
-bit 2  is set if the THING is on skill 4 (ultra-violence)
-bit 3  is set to indicate a deaf guard. This only has meaning for enemies,
-who will not attack until they see a player if they are "deaf". Otherwise,
-they will activate when they hear gunshots, etc. Sound does not travel
-through solid walls (walls that are solid at the time of the noise).
-bit 4  makes the THING only appear in multiplayer mode.
-bits 5-15 are never set in any THING , and have no effect.
+bit 0   is set if the THING is present at skill 1 and 2
+bit 1   is set if the THING is on skill 3 (hurt me plenty)
+bit 2   is set if the THING is on skill 4 and 5 (ultra-violence, nightmare)
 
-The skill settings are most used with the ENEMIES, of course...the most
-common skill level settings are hex 07/0f (on all skills), 06/0e (on skill
-3-4), and 04/0c (only on skill 4).
+        The skill settings are most used with the ENEMIES, of course...the
+        most common skill level settings are hex 07/0f (on all skills),
+        06/0e (on skill 3-4-5), and 04/0c (only on skill 4-5).
 
-[3-2-1]: Thing Types
+bit 3   is set to indicate a deaf guard. This only has meaning for enemies,
+
+        who will not attack until they see a player if they are "deaf".
+        Otherwise, they will activate when they hear gunshots, etc. Sound
+        does not travel through solid walls (walls that are solid at the
+        time of the noise). Also, lines can be set so that sound does not
+        pass through them (see [3-3-1] bit 6). This attribute is also
+        known as the "ambush" attribute.
+
+bit 4   makes the THING only appear in multiplayer mode.
+
+bits 5-15 have no effect.
+
+[4-2-1]: Thing Types
 --------------------
 
-Bytes 6-7 of each thing are an integer which means the thing at that x,y
-location is one of these:
+Bytes 6-7 of each thing are an integer which specifies what kind it is.
 
-1       Player 1 start
-2       Player 2 start
-3       Player 3 start
-4       Player 4 start
-5       Blue keycard
-6       Yellow keycard
-7       SPIDER BOSS (SPID)
-8       Backpack
-9       FORMER HUMAN SERGEANT (SPOS)
-10      Bloody mess
-11      The possible start positions for players in deathmatch mode. There
-        must be at least FOUR 11s on each level.
-12      Bloody mess 2
-13      Red Keycard
-14      Marks the spot where a player (or enemy) lands when they teleport
-        to the SECTOR that contains this thing.
-15      Dead player
-16      CYBER-BOSS (CYBR)
-17      Cell charge pack
-18      Dead former human
-19      Dead former sargeant
-20      Dead imp
-21      Dead demon
-22      Dead cacodemon
-23      ?
-24      Pool of blood
-25      Impaled human
-26      Twitching impaled human
-27      Skulltop pole
-28      Head shishkebob
-29      Pile of skulls with candle
-30      Tall green pillar
-31      Short green pillar
-32      Tall red pillar
-33      Short red pillar
-34      Candle
-35      Candelabra
-36      Pedestal w/heart
-37      Short red pillar with skull
-38      Red skullkey
-39      Yellow skullkey
-40      Blue skullkey
-41      Eye in symbol
-42      Flaming skull-rock
-43      Grey tree
-44      Tall blue firestick
-45      Tall green firestick
-46      Tall red firestick
-47      Small brown scrub
-48      Tall, techno column
-49      Swaying body
-50      Hung by ankle, arms out
-51      Hanging 1-legged human
-52      Hanging torso
-53      Severed Leg
-54      Large brown tree
-55      Short blue firestick
-56      Short green firestick
-57      Short red firestick
-58      SPECTRE (SARG)
-59      Hanging torso
-60      Severed leg
-61      Hanging 1-legged human
-62      Hung by ankle, arms out
-63      Swaying body
+Symbol  means
 
-2001    Shotgun
-2002    Chaingun
-2003    Rocket launcher
-2004    Plasma gun
-2005    Chainsaw
-2006    BFG9000
-2007    Ammo clip
-2008    4 shotgun shells
-2010    1 rocket
-2011    Stimpak
-2012    Medikit
-2013    Soulsphere = +100% health
-2014    Health bonus
-2015    Armor bonus
-2018    Green armor 100%
-2019    Blue armor 200%
-2022    Invlnerability
-2023    Berserk Strength
-2024    Invisibility
-2025    Radiation suit
-2026    Computer map
-2028    Floor lamp
-2035    Barrel
-2045    Lite goggles
-2046    Box of Rockets
-2047    Cell charge
-2048    Box of Ammo
-2049    Box of Shells
+CAPITAL It's a monster; counts towards KILL ratio at end of level.
+$       A regular item that you can get.
 
-3001    IMP (TROO)
-3002    DEMON (SARG)
-3003    GOAT BOSS (BOSS)
-3004    FORMER HUMAN (POSS)
-3005    CACODEMON (HEAD)
-3006    LOST SOUL (SKUL)
+!       An artifact item whose acquisition counts towards the ITEM ratio
+        at the end of a level
+*       An obstacle, something that players and monsters can't move through.
+2,3,4   Indicates number of different frames for animated things, except
+        monsters
 
-[3-3]: LINEDEFS
+Decimal Hex     Thing is:
+
+0       0000    (nothing?)
+1       0001    Player 1 start
+2       0002    Player 2 start for cooperative mode multiplayer games.
+3       0003    Player 3 start          "                "
+4       0004    Player 4 start          "                "
+5       0005 2$ Blue keycard
+6       0006 2$ Yellow keycard
+7       0007  * SPIDER DEMON: giant walking brain boss (SPID)
+8       0008 2$ Backpack
+9       0009  * FORMER HUMAN SERGEANT: black armor shotgunners (SPOS)
+10      000a    Bloody mess (an exploded player)
+11      000b    Deathmatch start positions. Must be at least 4 per level.
+12      000c    Bloody mess, exactly the same as 10
+13      000d 2$ Red Keycard
+14      000e    Marks the spot where a player (or enemy) lands when
+                they teleport to the SECTOR that contains this thing.
+15      000f    Dead player
+16      0010  * CYBER-DEMON: robo-boss, rocket launcher (CYBR)
+17      0011  $ Cell charge pack
+18      0012    Dead former human
+19      0013    Dead former sargeant
+20      0014    Dead imp
+21      0015    Dead demon
+22      0016    Dead cacodemon
+23      0017    Dead lost soul, invisible since they blow up when killed
+24      0018    Pool of blood
+25      0019  * Impaled human
+26      001a 2* Twitching impaled human
+27      001b  * Skull on a pole
+28      001c  * 5 skulls shishkebob
+29      001d 2* Pile of skulls and candles
+30      001e  * Tall green pillar
+31      001f  * Short green pillar
+32      0020  * Tall red pillar
+33      0021  * Short red pillar
+34      0022    Candle
+35      0023  * Candelabra
+36      0024 2* Short green pillar with beating heart
+37      0025  * Short red pillar with skull
+38      0026 2$ Red skullkey
+39      0027 2$ Yellow skullkey
+40      0028 2$ Blue skullkey
+41      0029 3* Eye in symbol
+42      002a 3* Flaming skull-rock
+43      002b  * Grey tree
+44      002c 4* Tall blue firestick
+45      002d 4* Tall green firestick
+46      002e 4* Tall red firestick
+47      002f  * Small brown scrub
+48      0030  * Tall, techno column
+49      0031 3* Hanging victim, swaying, legs gone
+50      0032  * Hanging victim, arms out
+51      0033  * Hanging victim, 1-legged
+52      0034  * Hanging victim, upside-down, upper body gone
+53      0035  * Hanging severed leg
+54      0036  * Large brown tree
+55      0037 4* Short blue firestick
+56      0038 4* Short green firestick
+57      0039 4* Short red firestick
+58      003a  * SPECTRE: invisible version of the DEMON (SARG)
+59      003b    Hanging victim, arms out
+60      003c    Hanging victim, upside-down, upper body gone
+61      003d    Hanging victim, 1-legged
+62      003e    Hanging severed leg
+63      003f 3  Hanging victim, swaying, legs gone
+
+2001    07d1  $ Shotgun
+2002    07d2  $ Chaingun, gatling gun, mini-gun, whatever
+2003    07d3  $ Rocket launcher
+2004    07d4  $ Plasma gun
+2005    07d5  $ Chainsaw
+
+2006    07d6  $ BFG9000
+2007    07d7  $ Ammo clip
+2008    07d8  $ 4 shotgun shells
+2010    07da  $ 1 rocket
+2011    07db  $ Stimpak
+2012    07dc  $ Medikit
+2013    07dd 4! Soulsphere, Supercharge, +100% health
+2014    07de 4! Health bonus
+2015    07df 4! Armor bonus
+2018    07e2 2$ Green armor 100%
+2019    07e3 2$ Blue armor 200%
+2022    07e6 4! Invulnerability
+2023    07e7  ! Berserk Strength
+2024    07e8 4! Invisibility
+2025    07e9  ! Radiation suit
+2026    07ea 4! Computer map
+2028    07ec  * Floor lamp
+2035    07f3 2* Barrel - if blown up, doesn't block way anymore.
+2045    07fd 2! Lite goggles
+2046    07fe  $ Box of Rockets
+2047    07ff  $ Cell charge
+2048    0800  $ Box of Ammo
+2049    0801  $ Box of Shells
+
+3001    0bb9  * IMP: brown fireball hurlers (TROO)
+3002    0bba  * DEMON: pink bull-like chewers (SARG)
+3003    0bbb  * BARON OF HELL: cloven hooved boss (BOSS)
+3004    0bbc  * FORMER HUMAN: regular pistol shooting slimy human (POSS)
+3005    0bbd  * CACODEMON: red one-eyed floating heads. Behold... (HEAD)
+3006    0bbe  * LOST SOUL: flying flaming skulls, like to bite (SKUL)
+
+[4-3]: LINEDEFS
 ===============
 
 Each linedef represents a line from one of the VERTEXES to another, and each
-has 7 (integer) fields:
+is 14 bytes, containing 7 (integer) fields:
 
-1. from the VERTEX with this number (the first vertex is 0)
-2. to the VERTEX with this number (31 is the 32nd vertex)
-3. attributes, see below
-4. types, see below
-5. is a "trigger" number which ties crossing this line to the SECTOR with
-this same number as its last field.
-6. SIDEDEF one (always present, since this line adjoins at least 1 SECTOR)
-7. SIDEDEF two, if this line adjoins 2 SECTORS
+(1) from the VERTEX with this number (the first vertex is 0).
+(2) to the VERTEX with this number (31 is the 32nd vertex).
+(3) attributes, see [3-3-1] below.
+(4) types, see [3-3-2] below.
+(5) is a "trigger" or "tag" number which ties this line's "effect" type to
+    all SECTORS that have the same "trigger" number in their last field.
+(6) "right" SIDEDEF, indexed number.
+(7) "left" SIDEDEF, if this line adjoins 2 SECTORS. Otherwise, it is equal
+    to -1 (FFFF hex).
 
-[3-3-1]: Linedef Attributes
+"right" and "left" are based on the direction of the linedef as indicated
+by the "from" and "to" VERTEXES. This attempt at a sketch should make it
+clear what I mean:
+
+        "left" side            "right" side
+ FROM -----------------> TO <----------------- FROM
+        "right" side           "left" side
+
+In the original episodes, a line with a single side ALWAYS has that side
+as the "right" side. So it would probably be best to follow the convention.
+
+[4-3-1]: Linedef Attributes
 ---------------------------
 
 The third field of each linedef is an integer which controls that line's
-attributes, as follows:
+attributes with bits, as follows:
 
-bit# = condition if it is set (=1)
+bit #   condition if it is set (=1)
 
-bit0 =  impassibile (by players). Only really matters for lines between 2
-        sectors, lines adjoining just one sector are impassible regardless.
-bit1 =  ?, has to do with the above/below.
-bit2 =  may shoot through; also, "transparent", meaning the "above" and
-        "below" wall textures are displayed as appropriate.
-bit3 =  ?, has to do with the above/below.
-bit4 =  enemies do not cross this line (I think)
-bit5 =  a secret. this is NOT what determines the SECRET ratio at the end of
-        a level, that is done by special sectors (#9). So this bit is only
-        really useful for mapping.
-bit6 =  ?, to do with being high up/overhang.
-bit7 =  the "above" part is transparent to the sky behind. this one is
-usually
-        used in the outside courtyard areas.
-bit8-15 unused.
+bit 0   Impassibile. Players and monsters cannot cross this line, and
+        projectiles explode or "end" if they hit this line. Note, however,
+        that if there is no sector on the other side, beings can't go through
+        this line anyway. Important: if bit 2 is also set, projectiles CAN go
+        through the line, and if there is no sector on the other side, they
+        can go "forever", usually causing a CRASH.
 
-[3-3-2]: Linedef Types
+bit 1   Monster-blocker. Monsters cannot cross this line.
+
+bit 2   Two-sided. If this bit is set, then the linedef's two sidedefs can
+        have "-" as a texture, which means "transparent". If this bit is not
+        set, the sidedefs can't be transparent: if "-" is viewed, it will
+        result in the same hyper-junk that you see when you use the walk-
+        thru-walls cheat to go outside into nowhere. However, the linedef CAN
+        have two non-transparent sidedefs, even if this bit is not set, if it
+        is between two sectors.
+
+        Another side effect of this bit is that if it is set, then
+        projectiles can go through it no matter what, and gunfire (pistol,
+        etc.) can go through it if there is a sector on the other side.
+
+bit 3   Upper texture is "unpegged". This is usually done at windows.
+        "Pegged" textures move up and down when the neighbor sector moves up
+        or down. For example, if a ceiling comes down, then a pegged texture
+        on its side will move down with it so that it looks right. If the
+        side isn't pegged, it just sits there, the new material is
+        spontaneously created. The best way to get an idea of this is to
+        change a linedef on an elevator or door, which are always pegged,
+        and observe the result.
+
+bit 4   Lower texture is unpegged.
+
+bit 5   Secret. The automap will draw this line like a normal solid line that
+        doesn't have anything on the other side, thus protecting the secret
+        until it is opened. This bit is NOT what determines the SECRET ratio
+        at the end of a level, that is done by special sectors (#9).
+
+bit 6   Blocks sound. Sound cannot cross a line that has this bit set.
+
+        Sound normally travels from sector to sector, so long as the floor
+        and ceiling heights allow it (e.g. sound wouldn't go from a sector
+        with 0/64 floor/ceiling height to one with 72/128, but sound WOULD
+        go from a sector with 0/64 to one with 56/128).
+
+bit 7   Not on map. The line is not shown on the regular automap, not even if
+        the computer all-map power up is gained. All lines show up on the
+        cheater's map, however (Booooo! I wish there were no cheat codes!)
+
+bit 8   Already on map. When the level is begun, this line is already on the
+        automap, even if it hasn't been "seen" yet.
+
+bits 9-15 are unused, EXCEPT for a large section of e2m7, where every wall
+        on the border of the section has bits 9-15 set, so they have values
+        like 1111111000000000 (-511) and 1111111000010000 (-495). This area
+        of e2m7 is also the only place in all 27 levels where there is a
+        linedef 4 value of -1. But the linedef isn't a switch. These unique
+        values either do nothing, or something that is as yet unknown. The
+        currently prevailing opinion is that they do nothing.
+
+[4-3-2]: Linedef Types
 ----------------------
 
-The integers in field 4 of a linedef control various special characteristics
-of that line, mostly to do with what happens to a "triggered" SECTOR when the
+The integers in field 4 of a linedef control various special characteristics,
+mostly to do with what happens to a "triggered" SECTOR when the line is
+crossed or activated by a player.
 
-line is crossed by a player.
+Except for "Doors", the end-level switches, and the special type 48 (hex 30),
+all these effects need "trigger" or "tag" numbers. Then any and all sectors
+whose last field contains the same trigger number are affected when the
+linedef's function is activated.
 
-The * means the linedef needs a trigger # (in field 5) to link it to the
-appropriate sector(s). $ and & mean the player activates the function by
-pressing spacebar: $ is for switches which operate once only, & is for doors
-which can be used over and over. And yes, some of the switches can be used
-over and over, which ones are they? @ means I'm not sure yet if it is
-one-time
-or repeatable.
+What the letters in the ACT column mean:
 
-Value = Effect
+W means the function happens when a player WALKS across the linedef. S means
+a player must push SPACEBAR near the linedef to activate it (doors and
+switches). G means a player must shoot the linedef (GUN).
 
--1
-0       Nothing special.
-1 &     Door. Sector ceiling rises.
-2 *     removes/raises sector permanently
-3
-5 *
-7 *$    staircase rises up from floor in appropriate sectors.
-8 *     stairs
-9 *@
-10
-11 $    End level. Go to next level.
-13
-14
-16 *
-18 *$   floor of sector rises to equal height of neighbor sector. The first
-        sector height it finds "on the way up", amongst its neighbors, is
-        where it stops.
-19
-20 *$   floor rises to equal neighbor, and the floor's texture changes to
-        match that neighbor also.
-21
-22
-23
-24
-26 &    Door. Need blue key to open.
-27 &    Door. Yellow key.
-28 &    Door. Red key.
-29
-30
-31
-32 $    Door. Blue key. Stays open.
-33 $    Door. Yellow key. Stays open.
-34 $    Door. Red key. Stays open.
-35 *    sector's brightness goes to 0.
-36 *    sector's floor drops to 8 above neighbor.
-37
-38
-39 *    teleport to sector
-40
-41
-42
-44
-46 *    Shoot this line, then sector ceiling rises to neighbor
-48      Animated, horizontal scrolling wall.
-51 $    End level. Go to secret level 9.
-52
-56
-58
-59
-61
-62
-63
-70 *@   sector floor drops to just above neighbor
-73
-74
-75
-76
-77 *    Crushing ceiling!
-82
-86
-87
-88 *    sector floor drops to match neighbor
-89
-90
-91
-97 *    Teleport to...
-98
-102
-103
-104
+1 means it works once only. R means it is a repeatable function. This is
+tentative, because some functions that appear to work only once might
+actually work again if the conditions were reset. E.g. a sector ceiling
+rises, opening a little room with baddies in it. Usually, that's it. But
+perhaps if some other linedef triggered that sector ceiling to come down
+again, then the original trigger could make it go up, etc...
 
-Obviously, I'm still working on this list. These are all the values that
-occur anywhere in the registered version, but I haven't tested many of them
-yet.
+Dec/Hex   ACT   EFFECT
 
-[3-4]: SIDEDEFS
+-1 ffff   ? ?   None? Only once in whole game, on e2m7, (960,768)-(928,768)
+0    00   - -   nothing
+1    01   S R   Door. Sector on the other "side" of this line has its
+                ceiling rise c. 96 in altitude, then comes back down
+                after c. 5 seconds.
+2    02   W 1   ceiling rises like door
+3    03   W 1   ceiling lowers
+5    05   W 1   floor rises to match neighbor sector floor height.
+7    07   S 1   staircase rises up from floor in appropriate sectors.
+8    08   W 1   stairs
+
+Note: The stairs function requires special handling. In the original
+episodes,
+an even number of steps get raised up; the first step and every other one
+thereafter are sectors which have the "trigger" number that the control
+linedef has, OR they (the sectors/steps) will have 999 or 99 as their
+trigger number. I can't figure out why the game uses the 999 thing, since
+just using the original trigger number works fine. Also, I don't know yet
+if all the steps must be the same size/shape, as they always are in real-map
+examples.
+
+9    09   S 1   floor lowers; neighbor sector's floor rises and changes
+                TEXTURE to match yet another neighbor, and sector special
+                type changes to 0.
+10   0a   W 1   floor lowers, wait 3 seconds, rises
+11   0b   S -   End level. Go to next level.
+13   0d   W 1   brightness goes to 255
+14   0e   S 1   floor rises to c. 64 above neighbor sector's floor
+16   10   W 1   ceiling closes, opens after c. 30 seconds.
+18   12   S 1   floor rises to equal first neighbor "on the way up"
+19   13   W 1   floor lowers to equal the highest of the neighboring
+                sector's floors
+20   14   S 1   floor rises, TEXTURE change also.
+21   15   S 1   floor lowers to equal, for c. 3 seconds, then rises back
+                up to stop 8 below neighbor's ceiling height
+22   16   W 1   floor rises, TEXTURE change also
+23   17   S 1   floor lowers to match LOWEST neighbor sector?
+26   1a   S R   Door. Need blue key to open. Closes after 5 seconds.
+27   1b   S R   Door. Yellow key.
+28   1c   S R   Door. Red key.
+29   1d   S 1   ceiling rises, closes after c. 6 seconds?
+30   1e   W 1   floor rises to c. 100-128 above neighbor's floor?
+31   1f   S 1   Door. Stays open.
+32   20   S 1   Door. Blue key. Stays open.
+33   21   S 1   Door. Yellow key. Stays open.
+34   22   S 1   Door. Red key. Stays open.
+35   23   W ?   brightness goes to 0.
+36   24   W ?   lower floor to 8 above neighbor.
+
+37   25   W 1   floor lowers, change floor to acid (special sector 7).
+38   26   W 1   floor lowers
+39   27   W 1   teleport to sector. make sure only one sector has the same
+                trigger number as a line with this effect!
+40   28   W 1   ceiling raises, like 2?
+41   29   S 1   ceiling lowers to floor
+42   2a   S R   ceiling closes like door
+44   2c   W 1?  ceiling lowers to 8 above floor
+46   2e   G 1   Shoot this line, then sector ceiling rises like a door
+48   30   - -   Animated, horizontally scrolling wall.
+51   33   S -   End level. Go to secret level 9.
+52   34   W -   End level. Go to next level
+56   38   W ?   crushing floor rises to 8 below ceiling
+58   3a   W 1   floor rises c. 24-48
+59   3b   W 1   floor rises 8, TEXTURE change to neighbor also
+61   3d   S R   ceiling rises like door
+62   3e   S R   floor lowers, rises after c. 3 seconds
+63   3f   S R?  ceiling rises, lowers after c. 3 seconds
+70   46   S R   sector floor drops quickly to 8 above neighbor
+73   49   W R   start crushing ceiling, slow crush but fast damage
+74   4a   W R   stops crushing ceiling
+75   4b   W R   ceiling closes, and ?
+76   4c   W ?   ceiling closes like door, opens after c. 10 seconds
+77   4d   W R   start crushing ceiling, fast crush but slow damage
+80   50   W 1?  brightness to 255
+82   52   W R   floor lowers to equal neighbor
+86   56   W R   ceiling rises, closes after c. 5 seconds
+87   57   W R?  floor rises and lowers every 5 seconds
+88   58   W R   floor lowers quickly, rises back up after c. 3 seconds
+89   59   W R?  stops the up/down syndrome started by #87
+90   5a   W R   ceiling rises, wait 5 seconds, comes down
+91   5b   W R   floor rises to (neighbor ceiling - 8)
+97   61   W R   teleport to sector. make sure only one sector has the same
+                trigger number as a line with this effect!
+98   62   W R   floor lowers to 8 above neighbor
+102  66   S ?   floor lowers to equal neighbor
+103  67   S 1?  ceiling rises like door, stays open
+104  68   S 1   light drops to lowest light level amongst neighbor sectors
+
+[4-4]: SIDEDEFS
 ===============
 
-A sidedef is a definition of what wall meta-textures to draw along the
-various LINEDEFS, and a group of sidedefs define a SECTOR.
+A sidedef is a definition of what wall meta-textures to draw along a LINEDEF,
+and a group of sidedefs define a SECTOR.
 
 There will be one sidedef for a line that borders only one sector, since it
 is not necessary to define what the doom player would see from the "other"
@@ -571,113 +751,141 @@ can only "go" where there is a sector (unless you use the no clipping cheat,
 which will cause the screen to freak out if you go "outside" to a non-sector
 area).
 
-Each SIDEDEF has 2 (integer) fields, then 3 (8-byte string) fields, then a
-final (integer) field:
+Each SIDEDEF is 30 bytes, comprising 2 (integer) fields, then 3 (8-byte
+string) fields, then a final (integer) field:
 
-1. X offset for pasting the appropriate wall texture onto the wall's "space":
+(1) X offset for pasting the appropriate wall texture onto the wall's
+    "space": positive offset moves "into" the texture, so the left portion
+    gets cut off (# of columns off left side = offset). Negative offset moves
+texture
+    farther right, in the wall's "space"
+(2) Y offset: analogous to the X, for vertical.
 
-   positive offset moves "into" the texture, so the left portion gets cut off
+(3) "upper" texture name: the part "above" the juncture with a lower ceiling
+    of an adjacent SECTOR.
+(4) "lower" texture name: the part "below" a juncture with a higher floored
+    adjacent SECTOR.
+(5) "full" texture name: the regular part of the wall
 
-   (# of columns off left side = offset). negative offset moves texture
-   farther right, in the wall's "space"
-2. Y offset: analogous to the X, for vertical.
-3. name of wall type 1 = the part "above" the juncture with a lower ceiling
-   of an adjacent SECTOR.
-4. name of wall type 2 = the part "below" a juncture with a higher floored
-   adjacent SECTOR
-5. name of wall type 3 = the regular part of the wall
-6. SECTOR that this sidedef "helps to surround"
+    The texture names are from the TEXTURE1/2 resources. The names of wall
+    patches in the DIRECTORY are not directly used, they are referenced
+    through PNAMES.
 
-The wall type fields will be "-" if nothing, thus the sidedef for looking IN
-a "window" is "-" "-" "-". A typical sidedef, with no above or below, is
-"-" "-" "WALLNAME".
+    Simple sidedefs have no upper or lower texture, and so they will have
+    "-" instead of a texture name. Also, two-sided lines can be transparent,
+    in which case "-" means transparent (no texture)
 
-00s fill the space after a wall name that is less than 8 characters.
+    00s fill the space after a wall name that is less than 8 characters.
 
-The wall names are from the TEXTURE1/2 objects. The names in the DIRECTORY
-are not directly used, they are referenced through PNAMES.
+(6) SECTOR that this sidedef "helps to surround" or "faces"
 
-[3-5]: VERTEXES
+[4-5]: VERTEXES
 ===============
 
-These are the beginnings and ends for LINEDEFS and SEGS, each has
+These are the beginnings and ends for LINEDEFS and SEGS, each is 4 bytes,
 2 (integer) fields:
 
-1. X coordinate
-2. Y coordinate
+(1) X coordinate
+(2) Y coordinate
 
-[3-6]: SEGS
+[4-6]: SEGS
 ===========
 
-Each SEG has 6 (integer) fields
+The SEGS are in a sequential order determined by the SSECTORS, which are
+part of the NODES recursive tree.
 
-1. from vertex #
-2. to vertex #
-3. angle: 0= east, 16384=north, -16384=south, -32768=west.
-   In hex, it's 0000=east, 4000=north, 8000=west, c000=south.
-4. linedef that this seg goes along
-5. 0 if it goes in the same direction as the linedef it is on. 1 if it goes
-   the opposite direction. "direction" is indicated by which vertex is first.
-6. Is the distance along the linedef that the seg begins. If the seg begins
-   at one of the two endpoints of the linedef, this will be 0. If the seg and
+Each SEG is 12 bytes, having 6 (integer) fields:
 
-   linedef are a "diagonal" line, the length will be according to the
-distance
-   in the coordinate plane of the vertexes, i.e.
+(1) from VERTEX with this number
+(2) to VERTEX
 
-   SQR((X2 - X1)^2 + (Y2 - Y1)^2).
+(3) angle: 0= east, 16384=north, -16384=south, -32768=west.
+    In hex, it's 0000=east, 4000=north, 8000=west, c000=south.
 
-   Actually, it seems to be off by 1 or 2 from what it should be, like they
-   are using ABS(X2 - X1) values that are 1 less than the "real" value
-   should be.
+(4) LINEDEF that this seg goes along
+(5) 0 = this seg is on the front "side" of the linedef.
+    1 = this seg is on the back "side" of the linedef.
 
-[3-7]: SSECTORS
+    This could also be thought of as direction: 0 if the seg goes the same
+    direction as the linedef it's on, 1 if it goes the opposite direction.
+
+(6) Is the distance along the linedef that the seg begins. If the seg begins
+    at one of the two endpoints of the linedef, this will be 0. If the seg
+    and linedef are a "diagonal" line, the length will be according to the
+    distance in the coordinate plane of the vertexes, i.e.
+
+    SQR((X2 - X1)^2 + (Y2 - Y1)^2).
+
+    Actually, it seems to be off by 1 or 2 from what it should be, like they
+    are using ABS(X2 - X1) values that are 1 less than the "real" value
+    should be.
+
+[4-7]: SSECTORS
 ===============
 
-each SSECTOR has 2 (integer) fields
+Each SSECTOR is 4 bytes, having 2 (integer) fields
 
-1. # of SEGS in this SSECTOR
-2. starting with this SEG #
+(1) This many SEGS are in this SSECTOR...
+(2) ...starting with this SEG number
 
-The segs that make up a ssector are the sides (or parts of the sides) of a
-polygon, SOMETIMES. Many of the ssectors are only 1 SEG.
+Ssector stands for sub-sector. These divide up all the SECTORS into
+non-convex polygons. They are then referenced through the NODES resources.
 
-[3-8]: NODES
+[4-8]: NODES
 ============
+
+This is what we need to figure out!
+
+The nodes are branches in a binary space partition that divides up the level
+and is used to determine which walls and floors are in front of others, thus
+"clipping" the walls behind from the virtual view. The nodes/ssectors/segs
+resources are used exclusively for these display purposes, and seem to be
+precalculated to ease the burden on the game engine.
 
 There are ((number of SSECTORS) - 1) NODES. Each NODE has 14 (integer)
 fields:
 
-1. X coordinate of nodeline's start
-2. Y coordinate of nodeline's start
-3. X offset to end of nodeline
-4. Y offset to end of nodeline
+(1)  X coordinate of partition line's start
+(2)  Y coordinate of partition line's start
+(3)  DX, change in X to end of partion line
+(4)  DY, change in Y to end of partion line
 
-thus 64, 128, -64, -64 would be a nodeline from (64,128) to (0,64)
+     thus 64, 128, -64, -64 would be a partition line from (64,128) to (0,64)
 
-5/6.    Y coordinates bounding the nodesq1 on the right side of the nodeline.
-7/8.    X coordinates bounding the nodesq1 on the right side of the nodeline.
-9/10.   Y coords bounding the nodesq2 on the left side of the nodeline.
-11/12.  X coords bounding the nodesq2 on the left side of the nodeline.
-13.     Is a NODE or SSECTOR number for nodesq1. If bit15 of this 2-byte
-        field is set, it means that the nodesq1 contains the SSECTOR whose
-        number is in the remaining bits. If the bit15 is not set, then
-        nodesq1 is a previously listed NODE.
-14.     As with field 13, for nodesq2 on the left.
+(5)  Y upper bound for the first bounding-box
+(6)  Y lower bound
+(7)  X upper bound
+(8)  X lower bound
 
-Each node is thus a "sum" of two other rectangular horizontal spaces, each
-of which contains either a NODE or a SSECTOR. So there is a heavy iterative
-aspect to this structure. The final NODE is always the size of the entire
-level. When a SSECTOR is being "contained", the X and Y coordinates of the
-nodesq are such that every SEG in that SSECTOR is completely within the
-nodesq. If a NODE is being "contained", then the coordinates will bound the
-furthest extent of that (recursed) NODE.
+(9)  Y upper bound for the second bounding box
+(10) Y lower bound
+(11) X upper bound
+(12) X lower bound
 
-So what are the nodes for? I don't know yet. Stopped working on it a while
-back. Will finish sooner or later. Also, need to create an algorithm to
-generate the segs, ssectors, and nodes, given the vertexes and linedefs.
+     Each node has two "children", each of which is either a node or a
+     ssector. The bounding box is just big enough to contain whatever is
+     in the "child", e.g. if the child is a ssector with 1 seg, then the
+     bounding box will be just big enough to contain the extents of the
+     seg (and thus a bounding "box" can have zero width, for a horizontal
+     or verical seg)
 
-[3-9]: SECTORS
+     If the child is a node, the bounding box will be just big enough to
+     hold both of its children.
+
+(13) a NODE or SSECTOR number for the first bounding box. If bit 15 is set,
+     then the rest of the number represents the child SSECTOR. If not, the
+     child is a recursed node.
+(14) a NODE or SSECTOR number for the second bounding box.
+
+So there is a heavy iterative aspect to this structure. The final NODE is
+always the size of the entire level.
+
+I am optimistic that a valid set of nodes/ssectors/segs can be generated
+from a set of vertices and lines by some automatic algorithm, but so far it
+isn't happening. Once this problem is solved, we will be able to create
+levels from scratch!
+
+[4-9]: SECTORS
 ==============
 
 A SECTOR is a horiontal (east-west and north-south) area of the map where a
@@ -685,50 +893,68 @@ floor height and ceiling height is defined, so a doom player may go there.
 Any change in floor or ceiling "altitude" or texture requires a new SECTOR
 (and therefore separating LINEDEF(s) and SIDEDEF(s)).
 
-Each is 2 (integer) fields, 2 (8-byte string) fields, then 3 (integer)
-fields:
+Each is 26 bytes, comprising 2 (integer) fields, then 2 (8-byte string)
+fields, then 3 (integer) fields:
 
-1. floor is at this "altitude" for this sector
-2. ceiling altitude
+(1) Floor is at this "altitude" for this sector
+(2) Ceiling altitude
 
-the altitudes range from -264 to 264. a difference of 28 between the floor
-heights of two adjacent sectors is passable (upwards), but a difference of
-32 is "too high". The player may fall any amount.
+    The altitudes can probably range from about -500 to 500. A difference
+    of 30 between the floor heights of two adjacent sectors is passable
+    (upwards), but a difference of 32 is "too high". The player may fall
+    any amount.
 
-3. name of floor texture, from the DIRECTORY
-4. name of ceiling texture, from DIRECTORY
+(3) name of floor texture, from the DIRECTORY
+(4) name of ceiling texture, from DIRECTORY
 
-(note: all the ones listed in the DIRECTORY work as either floors or
-ceilings)
+    All the "floor" pictures in the DIRECTORY work as either floors or
+    ceilings. F_SKY1 is used as a ceiling to indicate that it is transparent
+    to the sky above/behind.
 
-5. brightness of this sector: 0=total dark, 255=maximum bright
-6. special sector:
-        0 is normal
-        1 light level "blinks" randomly
-        2 light quickly pulsates
-        3 blinks: off for a while, then on quickly
-        4 pulsates AND take 10/20% health hit when stand here
-        5 -5/10% health (-5% at skill 1, -10% at higher skills)
-        6 UNKNOWN SPECIAL SECTOR, causes program to exit to DOS
-        7 -2/5%
-        8 ?, light pulsates usually, but not always.
-        9 SECRET (player must walk into this sector to get credit for
-          discovering this "secret")
-        10 ?
-        11 -10/20% health
-        12 blink
-        13 quick pulsate
-        14 ?
-        15 UNKNOWN SPECIAL SECTOR, useless
-        16 -10/20%
+(5) brightness of this sector: 0 = total dark, 255 (ff) = maximum light
 
-        17 and up are all UNKNOWN
+(6) special sector:
 
-7. is a "trigger" number corresponding to a certain LINEDEF with the same
-   "trigger" number. When that LINEDEF is crossed, something happens to this
-   SECTOR - it goes up or down, etc...
+0   00  is normal, no special characteristic.
+1   01  light level goes to 0 for a fraction of a second, at random times.
+2   02  light pulsates abruptly for 0.5 second
+3   03  light pulsates abruptly for 1.0 second
+4   04  -10/20% health AND lights on/off every 0.5 seconds
+5   05  -5/10% health (-5% at skill 1, -10% at higher skills)
+7   07  -2/5% health, this is the usual NUKAGE acid-floor.
+8   08  light oscillates from 255 (this sector's brightness) to whatever
+        light level is lowest amongst all the adjacent sectors.
+9   09  SECRET (a player must walk into this sector to get credit for
+        discovering this "secret")
+10  0a  Still undetermined: This is a strange one. 30 seconds after a level
+        is begun, the ceiling of any sector with this number will come down
+        to the floor. If it hits a player's head, it stops (without crushing).
+        Also the ceiling seems to be blocked by a barrel, but is not blocked
+        by many other objects. And sometimes the ceiling will take off UP,
+        never stopping. Definately a mystery, this one.
+11  0b  -10/20% health; when player's HEALTH <= 10%, then the level ends.
+        If it is a level 8, then the episode ends.
+12  0c  light smoothly oscillates between value in (5) and 0.
+13  0d  light on/off every 0.25 seconds
+14  0e  ?
+16  10  -10/20% health
 
-[3-10]: REJECT
+All other values cause an "UNKOWN SPECIAL SECTOR" error - exit to DOS.
+
+(7) is a "trigger" number corresponding to a certain LINEDEF with the same
+    "trigger" number. When that LINEDEF is crossed, something happens to this
+    SECTOR - it goes up or down, etc...
+
+    There are a few unusual trigger numbers. 99 and 999 can be used in
+    staircases, see [3-3-2] under linedef types 7 and 8. 666 is used on e1m8,
+    any sector with that trigger number has it's floor go all the way down
+    to equal the height of the lowest neighbor floor. This happens when
+    the last Baron of Hell on the level is killed. The function does not
+    work on any other level, including e2m8 and e3m8, and it only applies
+    to the Barons, not the other bosses. Are there any other special
+    trigger events?
+
+[4-10]: REJECT
 ==============
 
 Reject is an array of bits. It's size in bytes is
@@ -736,23 +962,29 @@ Reject is an array of bits. It's size in bytes is
 (number of SECTORS ^ 2) / 8, rounded up.
 
 "It is used for optimization and all the bits may be set to 0" -
-this is from John Carmack at id software.
+this is a quote from John Carmack at id software.
 
 In fact, the length of the object may be made 0 (same as making it all 0s),
-and the only thing different about the level is that sometimes enemies seem
-to "float" when they walk off a step or platform to a lower one.
+and I can't detect any difference.
 
-[3-11]: BLOCKMAP
+[4-11]: BLOCKMAP
 ================
+
+The BLOCKMAP is a pre-calculated structure that the game engine uses to
+simplify collision-detection between moving things and walls. It is possible
+to make an algorithm that generates the BLOCKMAP, given the locations of all
+the LINEDEFS. For reasons of space, and the fact that I haven't made one,
+the algorithm is not included here.
+
+If you don't have a BLOCKMAP, the level displays fine, but everybody walks
+through walls, and no one can hurt anyone else with their gunfire.
 
 All of BLOCKMAP's fields are integers.
 
-The whole level is cut into "blocks", each hex 80 wide (the grid lines in the
-
-automap correspond to these blocks).
+The whole level is cut into "blocks", each is a 128 (hex 80) wide square (the
+grid lines in the automap correspond to these blocks).
 
 The first two integers are XORIGIN and YORIGIN, which specify the coordinates
-
 of the bottom-left corner of the bottom-left (southwest) block.
 
 Then come XBLOCKS and YBLOCKS, which specify how many "blocks" there are in
@@ -777,16 +1009,29 @@ segments lies within the (hex 80 by 80) boundaries of that block.
 
 What about the block that has LINEDEF 0? It goes: 0 0 ... etc ... -1.
 
-If you don't have a BLOCKMAP, the level displays fine, but everybody walks
-through walls, and no one can hurt anyone else with their gunfire.
+Here's another way of describing BLOCKMAP as a list of the integers, in
+order:
+
+        Coordinate of block-grid X origin
+        Coordinate of block-grid Y origin
+        # of columns (blocks in X direction)
+        # of rows (blocks in Y direction)
+        Block 0 offset from start of BLOCKMAP, in integers
+          .
+          .
+        Block N-1 offset (N = number of columns * number of rows)
+        Block 0 list: 0, numbers of every LINEDEF in block 0, -1 (ffff)
+          .
+          .
+        Block N-1 list: 0, numbers of every LINEDEF in block N-1, -1 (ffff)
 
 -----------------------------
-CHAPTER [4]: Pictures' Format
+CHAPTER [5]: Pictures' Format
 -----------------------------
 
 The great majority of the entries if the directory reference resources that
 are in a special "picture" format. The same format is used for the pictures
-of items (like medikits), the frames that make up enemies (like demons), the
+of items (like medikits), the sprites for the enemies (like imps), the
 wall patches, and various miscellaneous pictures for the status bar, menu
 text, inter-level map, and etc. The floor and ceiling textures are NOT in
 this format, they are raw data; see chapter 5.
@@ -794,58 +1039,56 @@ this format, they are raw data; see chapter 5.
 Each picture has three sections, basically. First, a four-integer header.
 Then a number of long-integer pointers. Then the picture pixel color data.
 
-[4-1]: Header
+[5-1]: Header
 =============
 
 The header has four fields:
 
-1. The number of columns of picture data
-2. The number of rows
+(1) Width. The number of columns of picture data.
+(2) Height. The number of rows.
 
-this defines a rectangular "space" or limits for drawing a picture within
+    This defines a rectangular space or limits for drawing a picture within.
 
-3. leftwards x offset from the center to begin the first column. positive
-   value moves left.
-4. upwards y offset from the bottom to begin the first row. positive value
-   moves up.
+(3) Left offset. The number of pixels to the left of the center; where the
+    first column gets drawn.
+(4) Top offset. The number of pixels above the origin; where the top row is.
 
-To be "centered", #3 is usually about half of the total width. If the picture
+    To be "centered", (3) is usually about half of the total width. If the
+    picture had 30 columns, and (3) was 10, then it would be off-center to
+    the right, especially when the player is standing right in front of it,
+    looking at it. If a picture has 30 rows, and (4) is 60, it will appear
+    to "float" like a blue soul-sphere. If (4) equals the number of rows,
+    it will appear to rest on the ground. If (4) is less than that for an
+    object, the bottom part of the picture looks awkward.
 
-had 30 columns, and #3 was 0, then it would be off-center to the right,
-especially when the player is standing right in front of it, looking at it.
-If a picture has 30 rows, and #4 is 60, it will appear to "float" like a
-blue soul-sphere. If #4 equals the number of rows, it will appear to rest on
-the ground. If #4 is more than 5 less than #2, the bottom part of the picture
+    With walls patches, (3) is always (columns/2)-1, and (4) is always
+    (rows)-5. This is because the walls are drawn consistently within their
+    own space (There are two integers in each SIDEDEF which can offset the
+    beginning of a wall's texture).
 
-looks akward.
+    Finally, if (3) and (4) are NEGATIVE integers, then they are the absolute
+    coordinates from the top-left corner of the screen, to begin drawing the
+    picture, assuming the VIEW is FULL-SCREEN (the full 320x200). This is
+    only done with the picture of the doom player's current weapon - fist,
+    chainsaw, bfg9000, etc. The game engine scales the picture down
+    appropriately if the view is less than full-screen.
 
-With walls patches, #3 is always (columns/2)-1, and #4 is always (rows)-5.
-This is because the walls are drawn consistently within their own space.
-(There are two integers in each SIDEDEF which can offset the beginning of a
-wall)
-
-Finally, if #3 and #4 are NEGATIVE integers, then they are the absolute
-coordinates from the top-left corner of the screen, to begin drawing the
-picture, assuming the VIEW is FULL-SCREEN (the full 320x200). This is only
-done with the pictures of the weapons of the doom player - fist, chainsaw,
-bfg9000, etc. The game engine scales the picture down appropriately if the
-view is less than full-screen.
-
-[4-2]: Pointers
+[5-2]: Pointers
 ===============
 
 After the header, there are N = (# of columns) long integers (4 bytes each).
 These are pointers to the data for each COLUMN. The value of the pointer
-represents the offset from the first byte of that picture.
+represents the offset in bytes from the first byte of the picture resource.
 
-[4-3]: Pixel Data
+[5-3]: Pixel Data
 =================
 
 Each column is composed of some number of BYTES (NOT integers), arranged in
-sets:
+"posts":
 
-The first byte is the row to begin drawing this set at. 0 means whatever
-height the header#4 upwards-offset describes.
+The first byte is the row to begin drawing this post at. 0 means whatever
+height the header (4) upwards-offset describes, larger numbers move
+correspondingly down.
 
 The second byte is how many colored pixels (non-transparent) to draw, going
 downwards.
@@ -853,30 +1096,26 @@ downwards.
 Then follow (# of pixels) + 2 bytes, which define what color each pixel is,
 using the game palette. The first and last bytes AREN'T drawn, and I don't
 know why they are there. Probably just leftovers from the creation process on
-the NeXT machines. Only the middle (# of pixels in this set) are drawn,
-starting at the row specified in byte 1 of the set.
+the NExT machines. Only the middle (# of pixels in this post) are drawn,
+starting at the row specified in byte 1 of the post.
 
-After the last byte of a set, either the column ends, or there is another
-set,
-which will start as stated above.
+After the last byte of a post, either the column ends, or there is another
+post, which will start as stated above.
 
 255 (hex FF) ends the column, so a column that starts this way is a null
 column, all "transparent". Goes to the next column.
 
-Thus, transparent areas can be defined for either items or walls (but you
-should only use a wall with transparent parts on a SIDEDEF between two
-SECTORS):
+Thus, transparent areas can be defined for either items or walls.
 
-Note that all the item and enemy pictures names are in the DIRECTORY between
-the S_START and S_END entries, and all the wall patches are  between the
+Note that all the item and enemy sprites' names are in the DIRECTORY between
+the S_START and S_END entries, and all the wall patches are between the
 P_START and P_END entries.
 
 ---------------------------------------
-CHAPTER [5]: Floor and Ceiling Textures
+CHAPTER [6]: Floor and Ceiling Textures
 ---------------------------------------
 
 All the names for these textures are in the DIRECTORY between the F_START and
-
 F_END entries. There is no look-up or meta-structure as with the walls.
 
 Each texture is 4096 raw bytes, making a square 64 by 64 pixels, which is
@@ -888,78 +1127,81 @@ The data in F_SKY1 isn't even used since the game engine interprets that
 "special" ceiling as see-thru to the SKY texture beyond. So the F_SKY1 entry
 can have zero length.
 
+[6-1]: Animated floors
+----------------------
+
+See Chapter [8-4-1] for a discussion of how the animated floors and walls
+work.
+
 -----------------------------
-CHAPTER [6]: Sounds and Songs
+CHAPTER [7]: Sounds and Songs
 -----------------------------
 
-Not much detail necessary here, since I'm just guessing at the song format
-anyway.
+Not much detail here, and I'm just guessing at the song format anyway.
 
-[6-1]: D_[xxxxxx]
+[7-1]: D_[xxxxxx]
 =================
 
-Songs, probably in general MIDI format. It's obvious what each song is for,
-from their names.
+Songs.  What format are they? Somewhere I read that they are in the MUS
+format, which I have absolutely no knowledge of. But it's obvious what each
+song is for, from their names.
 
-[6-2]: DP[xxxxxx] and DS[xxxxxx]
+[7-2]: DP[xxxxxx] and DS[xxxxxx]
 ================================
 
 These are the sound effects. They come in pairs - DP for pc speaker sounds,
 DS for sound cards.
 
+
 The DS sounds are in RAW format: they have a four integer header, then the
-sound samples (each sample is 1 byte).
+sound samples (each is 1 byte since they are 8-bit samples).
 
 The headers' four integers are: 3, then 11025 (the sample rate), then the
 # of samples, then 0.
 
 ------------------------------------------------
-CHAPTER [7]: Miscellaneous Non-picture Resources
+CHAPTER [8]: Miscellaneous Non-picture Resources
 ------------------------------------------------
 
-[7-1]: PLAYPAL
+[8-1]: PLAYPAL
 ==============
 
 There are 14 palettes here, each is 768 bytes = 256 rgb triples. That is, the
-
 first three bytes of a palette are the red, green, and blue portions of
 color 0. And so on.
 
 Palette 0 is the one that is used for almost everything.
 
-Palette 10-12 are used (briefly) when an item is picked up, the more items
+Palettes 10-12 are used (briefly) when an item is picked up, the more items
 that are picked up in quick succession, the brighter it gets, palette 12
 being the brightest.
 
-Palette 13 is used while wearing a rad suit.
+Palette 13 is used while wearing a radiation suit.
 
-Palettes 3, then 2, are used after getting beserk strength.
+Palettes 3, then 2, then 1 again are used after getting beserk strength.
 
 If the player is hurt, then the palette shifts up to X, then comes "down" one
-
-every half second or so, to palette 2, then palette 0 (normal) again.
-What X is depends on how badly the player got hurt: Over 100% damage
-(add health loss and armor loss), X=8. 93%, X=7. 81%, X=6. 55%, X=5.
-35%, X=4. 16%, X=2.
+every half second or so, to palette 2, then palette 0 (normal) again. What X
+is depends on how badly the player got hurt: Over 100% damage (add health
+loss and armor loss), X=8. 93%, X=7. 81%, X=6. 55%, X=5. 35%, X=4. 16%, X=2.
 
 Palettes 1 and 9 contain the secret codes which allow you to play
 Commercial Doom eight months before it gets released. Just kidding!
+Maybe F_SKY1 has that data in it. Let's get outta here!
 
-[7-2]: COLORMAP
+[8-2]: COLORMAP
 ===============
 
 This resource contains 34 sets of 256 bytes, which "map" the colors "down" in
-
 brightness. (Brightness is controlled by the 5th field in the SECTORS, see
-chapter 3-9 above). E.g. at very low brightness, almost all the colors are
+Chapter 4-9 above). E.g. at very low brightness, almost all the colors are
 "mapped" to black, the darkest grey, green, blue, etc. In each set of 256
 bytes, byte 0 will have the number of the palette color to which original
 color 0 gets mapped. Etc. Which set of 34 corresponds to which exact
 brightness level is something I haven't bothered to figure out. Better things
-
 to do...like the maps.
 
-[7-3]: DEMOs
+[8-3]: DEMOs
 ==============
 
 These are the demos that will be shown if you start doom, but don't play an
@@ -969,60 +1211,152 @@ formats out, since demos can be created using the devparm parameter:
 DOOM -devparm -record DEMONAME
 
 The extension .LMP is automatically added to the DEMONAME. Other parameters
-may be used simultaneously, such as -skill [1-4], -warp [1-3] [1-9]. The
+may be used simultaneously, such as -skill [1-5], -warp [1-3] [1-9]. The
 demos in the WAD are in exactly the same format as these LMP files, so a LMP
 file may be simply pasted or assembled into a WAD, and if its length and
 pointer directory entries are correct, it will work.
 
-[7-4]: TEXTURE1 and TEXTURE2
+I've read that someone is collecting LMP files which show truly heroic feats,
+like slaughtering boss guys with just a pistol, killing a whole level of bad
+guys with just beserk punch, while at 1% health, etc. By the time you read
+this, it's probably too late to join in the fun (i.e. submit a good one), but
+who knows. At this moment, I don't know who to contact, please send me any
+information you have.
+
+I've also read that some are worried that if the .LMP formats are cracked,
+cheaters will make bogus demos and destroy the whole point of distributing
+.LMPs to prove how great a player one is. I think it would be a ridiculously
+difficult feat to make a fake demo, but out of deference to paranoia, I'll
+never even attempt to crack the structure, nor distribute info on it.
+
+[8-4]: TEXTURE1 and TEXTURE2
 ============================
 
 These resources contains a list of the wall names used in the various
-SIDEDEFS
-sections of the level data. Each wall name actually references a
+SIDEDEFS sections of the level data. Each wall name actually references a
 meta-structure, defined in this list. TEXTURE2 has all the walls that are
 only in the registered version.
 
-Each entry in this list begins with a 8-byte "name" field, but then each
-entry has variable length.
+First is a table of pointers to the start of the entries. There is a long
+integer (say, N) which is the number of entries in the TEXTURE resource.
 
-All the remaining fields of an entry are integers.
+Then follow N long integers which are the offsets in bytes from the beginning
+of the TEXTURE resource to the start of that texture's definition entry.
 
-The second and third fields are always 0 and 0. Purpose is unknown.
+Then follow N texture entries, which each consist of a 8-byte name field and
+then a variable number of 2-byte integer fields:
 
-The fourth and fifth fields define the width in columns and height in rows,
-for this entry, thus defining a "space" (usually 32 by 128 or 64 by 72
-or etc...) in which individual wall textures are "placed" to form the overall
+(1) The name of the texture, like STARTAN3, is the name that is used in a
+    SIDEDEFS resource.
+(2) always 0. Purpose unkown.
+(3) always 0. Purpose unkown.
 
+(4) total width of texture
+(5) total height of texture
+
+The fourth and fifth fields define a "space" (usually 32 by 128 or 64 by 72
+or etc...) in which individual wall patches are "placed" to form the overall
 picture. This is done because there are some wall patches that are used in
 several different walls, like computer screens, etc.
 
-The sixth and seventh fields are 0 and 0. Purpose unknown.
+(6) always 0. Purpose unkown.
+(7) always 0. Purpose unkown.
 
-The eigth field is the number of 5-integer "sets" that follow. Each "set"
-defines a wall texture for placement, and the integers within each set mean
-this:
+(8) Number of 5-field patches that follow. This is why each texture entry
+    has variable length. Many entries have just 1 patch, one has 64 patches!
 
-1. x offset from top-left corner of "space" (size defined in field 4/5) to
-   start placement of this "patch"
-2. y offset
-3. number, from 0 to 349, of the entry in the PNAMES object, which contains
-   the name from the DIRECTORY, of the wall patch to use...
-4. always 1
-5. always 0
+        1. x offset from top-left corner of texture space defined in field
+           4/5 to start placement of this patch
+        2. y offset
+        3. number, from 0 to whatever, of the entry in the PNAMES resource,
+           which contains the name from the DIRECTORY, of the wall patch to
+           use...
+        4. always 1, is for something called "stepdir"...
+        5. always 0, is for "colormap"...
 
-Some of the entries have 1 "patch", one has 64 "patches"!
+Note that patches can have transparent parts, since they are in the same
+picture format as everything else. Thus there can be (and are) transparent
+wall textures. These should only be used on a border between two sectors, to
+avoid the "displaying nothing" problems discussed earlier.
 
-[7-5]: PNAMES
+Here is how one can "add" walls, while still retaining all the original ones
+it came with: in a pwad, have replacement entries for PNAMES and TEXTURE2.
+These will be the same as the originals, but with more entries, for the wall
+patches and assembled textures that you're adding. Then have P_START,
+P2_START, ...,  P2_END, and P_END entries, with the ... representing however
+many entries are needed for the number of new wall patches you have.
+
+Note you must be careful with naming the entries. If the name duplicates an
+entry in the main DOOM.WAD, the one in the pwad will replace the original,
+and if they aren't the same size in pixel dimensions, problems could occur
+in the display (no crashes, probably, just ugly walls to look at because
+of the random junk).
+
+So names like "WALL66_6" or "W119_24" whatever are probably not a good idea,
+unless you are using some great program that indexes and keeps track of all
+the wall names in the universe (If you have such a program, please send it
+to me!). Names like "JS_W12_3" and "JOEWALL2" are better.
+
+[8-4-1]: Animated walls
+-----------------------
+
+It is possible to change the walls and floors that are animated, like the
+green blocks with a sewer-like grate that's spewing green slime (SLADRIPx).
+The game engine sets up as many as 8 animation cycles for walls and 5
+for floors based on the entries in the TEXTURE resources. The entries in
+"First" and "Last", and all the entries between them (in the order that they
+occur in a TEXTURE list), are linked. If one of them is called by a SIDEDEF,
+that SIDEDEF will change texture to the next in the cycle about 5 times a
+second (?), going back to "First" after "Last". Note that the entries between
+First and Last need not be the same in number as in the original, nor do they
+have to follow the same naming pattern, though that would probaly be wise.
+E.g. one could set up ROCKRED1, ROCKREDA, ROCKREDB, ROCKREDC, ROCKREDD,
+ROCKREDE, ROCKRED3 for a 7-frame animated wall!
+
+If "First" and "Last" aren't in either TEXTURE, no problem. Then that cycle
+isn't used. But if "First" is, and "Last" either isn't or is listed BEFORE
+"First", then an error occurs.
+
+First           Last            Normal # of frames
+
+BLODGR1         BLODGR4         4
+BLODRIP1        BLODRIP4        4
+FIREBLU1        FIREBLU2        2
+FIRELAV3        FIRELAVA        2
+FIREMAG1        FIREMAG3        3
+FIREWALA        FIREWALL        3
+GSTFONT1        GSTFONT3        3
+ROCKRED1        ROCKRED3        3
+SLADRIP1        SLADRIP3        3
+
+(floor/ceiling animations) -
+
+NUKAGE1         NUKAGE3         3
+FWATER1         FWATER3         3
+SWATER1         SWATER4         4?
+LAVA1           LAVA4           4
+BLOOD1          BLOOD3          3
+
+Note that the SWATER entries aren't in the regular DOOM.WAD, so there's your
+easy opportunity to put in a custom floor animation without taking away any
+originals...
+
+[8-5]: PNAMES
 =============
 
 This is a lookup table for the numbers in TEXTURE[1 or 2] to reference to an
 actual entry in the DIRECTORY which is a wall patch (in the picture format
 described in chapter 4).
 
-The middle integer of each 5-integer "set" of a TEXTURE1 entry is something
-from 0 to 349. Number 0 means the first entry in this PNAMES list, 1 is the
-second, etc...
+The first two bytes of the PNAMES resource is an integer P which is how
+many entries there are in the list.
 
-Every entry in this list is eight bytes, and exactly duplicates an entry in
-the DIRECTORY.
+Then come P 8-byte names, each of which duplicates an entry in the DIRECTORY.
+If a patch name can't be found in the directory (including the external
+pwad's directories), an error will occur. This naming of resources is
+apparently not case-sensitive, lowercase letters will match uppercase.
+
+The middle integer of each 5-integer "set" of a TEXTURE1 entry is something
+
+from 0 to whatever. Number 0 means the first entry in this PNAMES list, 1 is
+the second, etc...
