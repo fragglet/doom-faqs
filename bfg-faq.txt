@@ -9,11 +9,12 @@
                 _/      _/  _/           _/         _/
               _/_/_/_/    _/             _/_/_/_/_/           FAQ
 
-================ The BFG FAQ, Version 1.3, December 28, 1995 ================
+================ The BFG FAQ, Version 2.01, January 3, 1998 =================
 
                 Frequently Asked Questions About the BFG9000
 
                                By Tony Fabris
+                        http://www.oro.net/~tfabris
 
                     Contributors, in alphabetical order:
 
@@ -21,35 +22,36 @@
                 Tod Bouris ............ Content, Playtesting
                 Chris McAllen ......... Content, Playtesting
                 American McGee .............. Technical Data
+                Randy Pitchford ........ Quake 2 Information
                 Dean Stretton ..................... Proofing
 
 ================================= Disclaimer ================================
 
   This text is intended to give the public information about some elements
-  of the computer game Doom and its sequels, by id Software. This text was
-  not written by id Software, so bugging them about its contents is
-  probably a very bad idea.
+  of the computer games Doom, Quake, and their sequels, by id Software.
+  This text was not written by id Software, so bugging them about its
+  contents is probably a very bad idea.
 
-  Additionally, the computer game referenced in the text is of an adult
+  Additionally, the computer games referenced in the text are of an adult
   and graphic nature. In no way is this text intended to promote violence
   of any kind. Any references to violence in this text are meant in
   relation to the playing of the computer game, not real violence. The
   author is adamantly non-violent.
 
-  Additionally, this text is being presented in the form of a text-only
-  computer file. Any illegal or damaging activity related to the use or
-  transfer of this or any other computer file is not the responsibility of
-  the authors.
+  Additionally, this text is being presented in the form of a computer
+  file. ny illegal or damaging activity related to the use or transfer of
+  this or any other computer file is not the responsibility of the authors.
 
 =========================== Trademark Information ===========================
 
   All specific names included herein are trademarks and are so
-  acknowledged: id Software, DOOM, DOOM II, THE ULTIMATE DOOM, QUAKE. Any
-  trademarks not mentioned here are still hypothetically acknowledged.
+  acknowledged: id Software, DOOM, DOOM II, THE ULTIMATE DOOM, QUAKE,
+  QUAKE 2. Any trademarks not mentioned here are still hypothetically
+  acknowledged.
 
 ============================= Copyright Notice ==============================
 
-   This article is Copyright (c) 1995 by Tony Fabris. All rights reserved.
+   This article is Copyright (c) 1998 by Tony Fabris. All rights reserved.
 
   You may make and distribute copies of this work in original form, so long
   as the copies are exact and complete, the copies include the copyright
@@ -58,6 +60,8 @@
   in any form.
 
 =========================== Table of Contents ===============================
+
+    Preface
 
   Section 0 - Introduction
     0A. What is this FAQ about?
@@ -101,7 +105,40 @@
     5A. Common misconceptions
     5B. I think the FAQ is in error. How do I get it corrected?
 
+  Appendix A - Quake Mods
+    Quake 1 BFG Mods
+
+  Appendix B - Quake 2
+    The Quake 2 BFG10K
+
 =============================================================================
+
+-- Preface ------------------------------------------------------------------
+
+  Wow! Two years since the last BFG FAQ revision. It's Christmas 1997,
+  and, as promised, id Software publicly released the cleaned-up source
+  code for Doom. As I write this, there are already projects underway that
+  are taking advantage of the release.
+
+  In my personal opinion, this is one of the coolest things that I've
+  ever seen a software company do. I can't imagine any other company
+  releasing the full source code to their most well-known product. Not
+  only did id release the source code, but they are actively encouraging
+  the online community to modify and redistribute it. I guess they know
+  about the Christmas spirit more than most of us do.
+
+  The code release gave me the opportunity to look at the exact lines of
+  Doom code that controlled the BFG. Hopefully I'll now be able to remove
+  any ambiguity in this FAQ and present actual facts.
+
+  When we originally wrote this FAQ, all we wanted to do was learn how to
+  properly use/defend against the BFG in a deathmatch. Well, the FAQ
+  worked very well for that purpose, but it has evolved into something
+  more than that now. This version will even cover (albeit superficially)
+  Quake mods and Quake 2.
+
+  It's hard to believe the first-person-shooter has come so far in so
+  little time.
 
 -- Section 0 - Introduction -------------------------------------------------
 
@@ -129,33 +166,48 @@
   attitude toward the weapon. We want to transform it from "The weapon we
   love to hate" into "The thinking man's weapon".
 
+  With the 1997 release of both the Doom source code and the sources for
+  the Quake 2 game DLL, this FAQ will hopefully provide accurate
+  information for all versions of this unique weapon.
+
 0B. How was the information in this FAQ obtained?
 
-  The primary source of information was American McGee at id Software. He
-  patiently answered our questions while this FAQ was in its draft stages.
-  He corrected several serious errors in our descriptions of the way the
-  weapon calculates damage. He provided us with a great deal of detailed
-  information, and reviewed the file during its development. His help was
-  invaluable in putting this FAQ together.
+  Initially, the information came from playtesting Doom. We would simply
+  theorize about the weapon's behavior and then test the theory on the
+  network.
 
-  Most of the other information here is a result of careful testing during
-  game play. Testing was performed on Pentium computers running the MS-DOS
-  versions of Doom II and The Ultimate Doom. Tests were done both in single
-  player mode and in 4-player deathmatch mode. Testing was performed on the
+  Testing was performed on Pentium computers running the MS-DOS versions
+  of Doom II and The Ultimate Doom. Tests were done both in single player
+  mode and in 4-player deathmatch mode. Testing was performed on the
   regular levels as well as custom made levels. In some cases, a special
   .WAD file was created to test situations that would be difficult to
   reproduce with the regular levels.
+
+  At one point, we exchanged some emails, as well as a draft copy of the
+  FAQ with American McGee at id Software. He filled in some very important
+  details for us-- for example, until American told us about it, we didn't
+  know that the game used a set of damage traces to calculate blast area
+  damage. His help was invaluable in putting this FAQ together.
 
 0C. How accurate is this information?
 
   Fairly accurate. Accurate enough to base your playing strategies on.
   However, it has not been tested with every single version of Doom, and
-  there may be differences among platforms. In addition, at the time of
-  this writing, we were unable to verify every single item with American
-  McGee. Quake is the big project at id Software at the moment, and he
-  didn't have a lot of time to devote to us. As a result, some items in
-  this file are strictly conjecture, regardless of how carefully they were
-  tested. Please see section 5 if you suspect this FAQ contains erroneous
+  there may be differences among platforms.
+
+  Then there's the issue of the Doom public code release. I know that
+  the code was "cleaned up" by Bernd Kreimeier, but I don't know if it
+  was changed in the process. I just wrote him an email and asked that
+  very question. If I get a reply, I'll update this document.
+
+  Until I hear otherwise, I'm going to assume that the public code release
+  contains the same BFG behavior as the commercial releases. Everything
+  you see in this FAQ will be based on the old playtesting we did in 1995,
+  cross-referenced against the sources found in the 1997 public code
+  release.
+
+  Despite all of that, some items in this file may still be conjecture.
+  Please see section 5 if you suspect this FAQ contains erroneous
   information.
 
 0D. Where is the latest version of this and other FAQs?
@@ -183,55 +235,59 @@
   ftp://ftp.cdrom.com/pub/idgames/docs/rgcd-pips/
 
   The official location for the hypertext version of the BFG FAQ is
-  DoomGate on the World Wide Web. The hypertext version is highly cool.
-  Check it out here, along with some other good documents:
+  DoomGate on the World Wide Web. Check it out here, along with some
+  other good documents:
 
-  http://doomgate.cs.buffalo.edu/docs/
+  http://doomgate.gamers.org/docs/
+
 
 -- Section 1 - BFG Basics --------------------------------------------------
 
 1A. What is the BFG9000?
 
-  The BFG9000 (or BFG) is arguably the most powerful weapon in the
-  computer games Doom, Doom II, and The Ultimate Doom. It is also the
-  most difficult weapon to use well in a deathmatch (multi-player
-  competition), because it does not behave in a simple 'point and shoot'
-  fashion.
+  The BFG9000 (or BFG) is arguably the most powerful weapon in the computer
+  games Doom, Doom II, and The Ultimate Doom. It is also the most difficult
+  weapon to use well in a deathmatch (multi-player competition), because it
+  does not behave in a simple 'point and shoot' fashion.
 
-  When you have it in your arsenal, the BFG is selected by pressing the
-  7 key on your keyboard.
+  When you have it in your arsenal, the BFG is selected by pressing the 7
+  key on your keyboard.
 
   When you pull the trigger, there is an excruciatingly long pause as the
   weapon warms up. Then a large green ball of plasma is emitted from its
-  barrel. The plasma ball flies in the direction you fired it until it
-  hits a target or a wall. Like all weapons in Doom, it will fly straight
+  barrel. The plasma ball flies in the direction you fired it until it hits
+  a target or a wall. Like all weapons in Doom, it will fly straight
   through decorative objects like torches or trees.
 
-  When the green ball hits a solid object, it detonates and does two
-  types of damage: Direct Hit and Blast Area. Each damage type is
-  outlined in its own section, later in the FAQ.
+  When the green ball hits a solid object, it detonates and does two types
+  of damage: Direct Hit and Blast Area. Each damage type is outlined in
+  its own section, later in the FAQ.
 
 1B. What does 'BFG' mean?
 
   The general consensus is that BFG stands for Big Fragging Gun. Well,
-  that's the G-rated version at least. That's from Hank Leukart's
-  "Official" Doom FAQ.
+  that's the G-rated version at least. Hank Leukart's Official Doom FAQ
+  (the one that ships with the game) says so.
 
-  The term 'frag' is used in Doom to represent a confirmed kill in a
-  deathmatch game. This comes from the idea that in a deathmatch, you are
-  killing your fellow space marines. The definition of frag, according to
-  the dictionary, is:
+  So is "Fragging" a deliberate softening of another famous F-word? Maybe.
+  But the term 'frag' is an actual word, and it's used in Doom to
+  represent a confirmed kill in a deathmatch game. This comes from the
+  idea that in a deathmatch, you are killing your fellow space marines.
+  The definition of frag is:
 
     frag Slang. Verb, transitive
     fragged, fragging, frags
-      To wound or kill (a fellow soldier) by throwing a grenade or
-      similar explosive at the victim: "He got fragged. Blown away"
-      (Bobbie Ann Mason).
+       To wound or kill (a fellow soldier) by throwing
+       a grenade or similar explosive at the victim.
+
+  That's not to say that the the word Frag isn't often interchangeable
+  with the other word. And, of course, the Quake 2 manual calls the new
+  BFG10K the "Big, uh, freakin' gun."
 
   Other good name suggestions that have found their way to the authors
   are "Big Funny Gun" (Chris Somers) and the much more logical "Blast
-  Field Gun" (William D. Whitaker). As of this writing, we have not
-  confirmed any of these with id.
+  Field Gun" (William D. Whitaker). I'm sure there are thousands of names
+  you could invent for it...
 
 1C. Where can I find the BFG in the game?
 
@@ -270,10 +326,6 @@
   the BFG was redesigned with the invisible blast area that is used
   today.
 
-  This may explain why the behavior of the blast area is so unusual.
-  It seems that the trace calculations still use some of this old code.
-  See section 3A for more information.
-
   Note: Please don't bug the authors for copies of the Doom beta. We
   don't have one. The information in this section was obtained by
   reading a newsgroup thread.
@@ -282,17 +334,21 @@
 
 2A. What is a direct hit?
 
-  A direct hit happens when the BFG's green plasma ball directly hits a
-  target. The target can be a monster, an exploding barrel, or an opposing
-  player in a multi-player game.
+  A direct hit happens when the BFG's green plasma ball directly hits
+  a target. The target can be a monster, an exploding barrel, or an
+  opposing player in a multi-player game.
 
 2B. How much damage does a direct hit do?
 
-  A direct hit with the BFG will cause a random amount of damage between
-  100 and 800 points. Keep in mind that these are the base values as
-  stored in the game engine. The actual amount of damage taken by a
-  player is modified depending on skill level. How much is it modified?
-  We don't know.
+  According to our original information from American McGee, a direct
+  hit with the BFG should cause a random amount of damage between 100
+  and 800 points.
+
+  However, I can't seem to find the "random" part in the public code
+  release. The data structure that represents the BFG missile object
+  contains a damage value of 100, but I don't see the code to randomize
+  it. Perhaps I'm looking in the wrong place. If anyone can point me to
+  the answer to this question, please drop me a line.
 
   A note about skill levels: Testing seems to show that weapons always
   do the same amount of damage to monsters, but that the player objects
@@ -301,11 +357,23 @@
   shots at higher skill levels. This is why some players prefer to
   deathmatch at the higher skill levels: The frags are quicker that way.
 
+  The Doom public code release seems to support this theory. They
+  perform a right bitshift (a fast way to divide an integer by two) on
+  the damage value as follows:
+
+    player = target->player;
+    if (player && gameskill == sk_baby)
+        damage >>= 1;        // take half damage in trainer mode
+
+  And of course, armor is a factor as well. Depending on the type
+  and the amount of armor worn by a player, some armor will be
+  subtracted in lieu of health.
+
   If your target is lucky enough to survive a direct hit, he is still
   susceptible to damage from the blast area. This happens sometimes in a
-  deathmatch. Since there is a brief pause between the direct hit and the
-  blast area calculation, your victim may go through several stages of
-  fear and elation in the space of one second:
+  deathmatch. Since there seems to be a brief pause between the direct
+  hit and the blast area calculation, your victim may go through several
+  stages of fear and elation in the space of one second:
 
     1) Victim sees the BFG coming towards him (Uh-oh.)
     2) BFG scores a direct hit (D'oh!)
@@ -341,24 +409,24 @@
 
 3A. What is the blast area?
 
-  After the green plasma ball detonates, and after the damage is
-  calculated and deducted from the target that received the direct hit (if
-  any), the area effect of the BFG is calculated. Targets that fall within
-  a specially defined area will take varying amounts of damage.
+  After the green plasma ball detonates, and after the damage is calculated
+  and deducted from the target that received the direct hit (if any), the
+  area effect of the BFG is calculated. Targets that fall within a
+  specially defined area will take varying amounts of damage.
 
-  Simply put, the blast area is like an imaginary 'cone' or 'fan' of 20
-  damage traces that briefly extends outward from the attacking player.
-  The cone always points in the direction that the weapon was fired. For
-  instance, if you originally fired the weapon in the northwest direction,
-  the cone will always face northwest, regardless of which direction
-  you're facing at the moment of detonation.
+  Simply put, the blast area is like an imaginary 'cone' or 'fan' of damage
+  traces that briefly extends outward from the attacking player. The cone
+  always points in the direction that the weapon was fired. For instance,
+  if you originally fired the weapon in the northwest direction, the cone
+  will always face northwest, regardless of which direction you're facing at
+  the moment of detonation.
 
   Note that this does not mean that the attacker must continue to face in
   that direction. The attacker is free to turn away from his targets, as
   long as he moves to a position that keeps this imaginary cone pointed at
-  them. Common misconceptions are that you must be facing either the
-  targets, the detonation point, or the same direction as the weapon was
-  fired. None of those things are necessary in order to inflict damage.
+  them. Common misconceptions are that you must be facing either the targets,
+  the detonation point, or the same direction as the weapon was fired. None
+  of those things are necessary in order to inflict damage.
 
   Also note that this imaginary cone has no relation whatsoever to the
   detonation point. The location of the detonation point is only important
@@ -373,26 +441,35 @@
 
 3B. How much damage does the blast area do?
 
-  The 20 traces that make up the blast area's damage cone each do a
-  random amount of damage between 5 and 15 points. Again, these are only
-  the base values stored in the game engine, and may do different amounts
-  of real damage at different skill levels. See section 2B for more info.
+  Since the Doom public code release, I'm revising this section. I'm
+  basing this on what I see in the code. Originally we were told that
+  there were 20 traces, each doing a random amount of damage between 5
+  and 15 points. But now that I look at the public code release, I'm
+  pretty sure it's telling me a different story. This could be for many
+  reasons, the most likely of which is that I'm simply wrong about it.
+
+  You see, I'm unfamiliar with the Doom sources and all of the functions
+  within. I haven't spent the requisite number of hours poring over the
+  code to understand every function. So I might be making incorrect
+  assumptions here. But the code contained in the function "A_BFGSpray"
+  seems pretty simple, and I see it this way:
+
+  There are 40 traces, and each one does 1-8 random points of damage in
+  a 16-iteration loop. Meaning each trace will do between 16 and 128
+  points of damage. If anyone can show me specific code to the contrary,
+  please let me know.
 
   Because these traces radiate outward from the attacker in a fan shape,
-  a target will more likely be hit by a given trace if he is close to the
-  attacker. Therefore, targets closer to the attacker will generally take
-  more damage because they are hit by more traces.
+  a target will more likely be hit by a given trace if he is close to
+  the attacker. Therefore, targets closer to the attacker will generally
+  take more damage because they are hit by more traces.
 
   If a target is very close to the attacker (for instance, standing right
-  next to him), the target might be within the hit range of all 20 traces.
-  The amount of blast area damage in this situation would be between 100
-  and 300 points. However, all 20 traces would not necessarily be absorbed
-  by that target, and might move on to other targets. See section 3F,
-  below, for more information on this phenomenon.
-
-  This blast damage is calculated in addition to the direct hit damage (if
-  any), making the total possible damage points for the BFG a whopping
-  1100 points.
+  next to him), the target might be within the hit range of all the
+  traces. The amount of blast area damage in this situation would be
+  between 640 and 5120 points. However, all traces would not necessarily
+  be absorbed by that target, and might move on to other targets. See
+  section 3F, below, for more information on this phenomenon.
 
   A note about random numbers:
 
@@ -412,54 +489,111 @@
   use this to make certain random statistics more fair.
 
   This applies to the damage traces, as well, because they are
-  essentially a group of multiple random numbers. For instance, if you
-  hit your victim with all twenty traces, the possible damage should be
-  between 100 and 300 points. But the odds are that the total damage
-  will more likely be around 200 points, due to the bell curve. The odds
-  of doing 100 or 300 points damage in that situation would be extremely
-  rare.
+  essentially a group of multiple random numbers. For instance,
+  although the possible damage for a single trace is 16-128, the
+  odds are that the total damage will more likely be around 50-60
+  points, due to the bell curve. The odds of doing full or minimum
+  damage in that situation would be extremely rare.
+
+  Actually, if you look at the Doom code, you'll find that even the
+  random numbers aren't random. They're "pseudo-random", and for a very
+  good reason: So that all four computers in a multiplayer game can be
+  synchronized. They pull the random numbers from a table whose index
+  changes each time it's accessed. Looking at the table, it's obvious
+  that there are no "runs" of all low or high numbers, so it's not only
+  unlikely that full or minimum damage would be done, it's actually
+  impossible in the current code.
 
 3C. How long does the blast effect last?
 
-  Testing has shown that there is a brief time window in which a hapless
-  player can wander into the damage cone after detonation and still take
-  some blast damage.
+  Testing seems to indicate that there is a brief time window in which
+  a hapless player can wander into the damage cone after detonation and
+  still take blast damage.
 
-  There seems to be two factors at work here:
+  But from looking at the public code release, it appears as though all
+  of the damage traces are calculated at the same time, within one
+  "frame" of game play. So what's going on?
 
-  1) There is a brief pause between the moment of detonation and the
-     moment that the damage traces begin to work. This pause seems to
-     have been inserted deliberately by the designers. The exact
-     duration of this pause is not known. Some evidence suggests that
-     the pause is about four-tenths of a second long, but this is not
-     confirmed. It's not known exactly how it affects the trace
-     calculations, but it seems as though all calculations begin
-     -after- the pause.
+  1) There seems to be a brief pause between the moment of detonation
+     and the moment that the damage traces begin to work. This pause
+     seems to have been inserted deliberately by the designers. The
+     exact duration of this pause is not known. Some evidence suggests
+     that the pause is about four-tenths of a second long, but this is
+     not confirmed.
 
-  2) It seems as though the traces are not calculated instantly. If a
-     player moves into the damage cone during the trace calculations
-     (after the deliberate pause), he might still take some damage. At
-     the time of this writing, the exact duration of the calculations
-     has not been determined. It is possible that the trace calculations
-     work more slowly when there are many things happening in the game,
-     i.e., when there are a lot of monsters on the screen. However, this
-     has not been confirmed, and we might even be imagining the whole
-     thing. It's possible we're mistaking this for the deliberate pause
-     mentioned above. This question will hopefully be addressed in more
-     detail in a later version of this FAQ.
+     Note: If anyone can point me to the place in the Doom public
+     code release where the pause is actually performed, let me know.
+     I'm having trouble finding it and locating the exact duration of
+     the pause.
+
+  2) At first, it seemed to us as though the traces were not calculated
+     instantly. If a player moved into the damage cone during the trace
+     calculations (after the deliberate pause), we thought he might still
+     take damage.
+
+     But after looking at the public code release, I guess we were
+     imagining that part. I don't see anything in the code that
+     indicates the BFG allows anything else to happen during the trace
+     calculations. Once the trace calculations start, the computer
+     literally "freezes" while the loop completes. If anyone can tell
+     otherwise by looking at the source code, let me know.
 
 3D. How exactly does the blast area work?
 
-  The blast area is a spread of 20 invisible traces that radiate outward
+  The blast area is a spread of invisible traces that radiate outward
   from the attacking player. The damage for the traces is calculated
   shortly after the green ball detonates against a target or a wall.
 
-  The traces radiate outward in an imaginary cone that is roughly as wide
-  as the player's view, i.e., about 45 degrees to either side of the
-  centerline. The cone always points the same direction as the attacker
-  was facing when he fired the weapon. For instance, if you fire the
-  green ball in the southeast direction, your cone of traces will always
-  radiate towards the southeast.
+  Here's the code for the function in the public code release. I've
+  waited two years to see this:
+
+     void A_BFGSpray (mobj_t* mo)
+     {
+         int                 i;
+         int                 j;
+         int                 damage;
+         angle_t             an;
+
+         // offset angles from its attack angle
+         for (i=0 ; i<40 ; i++)
+         {
+             an = mo->angle - ANG90/2 + ANG90/40*i;
+
+             // mo->target is the originator (player)
+             //  of the missile
+             P_AimLineAttack (mo->target, an, 16*64*FRACUNIT);
+
+             if (!linetarget)
+                 continue;
+
+             P_SpawnMobj (linetarget->x,
+                          linetarget->y,
+                          linetarget->z + (linetarget->height>>2),
+                          MT_EXTRABFG);
+
+             damage = 0;
+             for (j=0;j<15;j++)
+                 damage += (P_Random()&7) + 1;
+
+             P_DamageMobj (linetarget, mo->target,mo->target, damage);
+         }
+     }
+
+
+  The traces radiate outward in an imaginary cone that is 90 degrees
+  wide. This is, coincidentally, about the same width as the player's
+  field of view.
+
+  Because the code uses "mo->angle" as the source for its angle, the
+  cone always points the same direction that the green ball flew. For
+  instance, if you fire the green ball in the southeast direction, your
+  cone of traces will always radiate towards the southeast.
+
+  However, because it uses the function "P_AimLineAttack" to do the
+  attacks, the traces radiate from where the player is standing, not
+  from the green ball.
+
+  So...
 
   Regardless of how much you run and turn between the time you fire and
   the time the green ball detonates, the traces will always radiate from
@@ -470,15 +604,13 @@
 
   From a technical point of view, the game engine does not actually keep
   track of the cone while you're running around. That's just the effect
-  it seems to have. Most likely, it simply stores the vector of the
-  direction of the green ball's flight in a variable. When the time comes
-  for the ball to detonate, the variable is retrieved to begin the
-  calculations for the traces.
+  it seems to have. It simply uses the green ball's vector as the source
+  angle for the traces, and the player's current position as the source
+  location.
 
-  Because of this, the cone's direction is based on the direction that
-  the green ball was actually fired, not where you were when you pulled
-  the trigger. As far as the game engine is concerned, you haven't fired
-  it until it actually leaves the barrel of the gun.
+  Note that the vector of the green ball's flight is based on what
+  direction you were facing when the ball leaves the barrel of the gun,
+  not when you pulled the trigger.
 
   Here's a diagram of how it works:
 
@@ -494,18 +626,20 @@
     fires BFG     runs east      is here at
     northward                    detonation
 
-  Note that this diagram is foreshortened. The detonation point would
-  have to be quite far away in order for the attacker to run that far.
-  But the principle is the same, regardless of how far the green ball
-  flies: The damage cone is calculated after the green ball detonates.
 
-  When the green ball detonates, the traces are calculated one at a time,
-  using the same criteria for calculation that the engine might use for a
-  bullet: If there is a solid object (a wall, etc.) between the target
-  and the attacker, the trace is harmlessly absorbed by the object. With
-  one exception: In order to hit a target with a bullet, you had to be
-  facing the target. You don't have to be facing your target in order to
-  do damage with one of the traces.
+  Note that this diagram is foreshortened. The detonation point would
+  have to be quite far away in order for the attacker to be able to run
+  that far. But the principle is the same, regardless of how far the
+  green ball flies: The damage cone is calculated after the green ball
+  detonates.
+
+  When the green ball detonates, the traces are calculated one at a
+  time, using the same criteria for calculation that the engine might
+  use for a bullet: If there is a solid object (a wall, etc.) between
+  the target and the attacker, the trace is harmlessly absorbed by the
+  object. With one exception: In order to hit a target with a bullet,
+  you had to be facing the target. You don't have to be facing your
+  target in order to do damage with one of the traces.
 
   Quick review:
 
@@ -525,92 +659,105 @@
 
 3E. What are the limitations of the blast area?
 
-  There is no range limit for the blast area, but the farther a target is
+  There is no range limit for the blast area, but the further a target is
   from the attacker, the less of a chance it will be hit by a given trace,
   therefore the less damage it takes.
 
-  Because of this, the effective range of the blast area ends up being in
-  the neighborhood of 1000 units. At the outer edges of this range, a
-  deathmatch opponent will only get hit by one trace, taking only 5-15
-  points of damage. Farther out from that range, it becomes increasingly
-  unlikely that a target will be hit by any traces at all. Of course,
-  larger targets such as spiderdemons have a wider radius, and therefore
-  the BFG's effective range is slightly farther against such targets.
+  I'm pretty sure the game engine will "auto-aim" each trace at any target
+  within its range, just like it auto-aims any other weapon. The relevant
+  code is:
 
-  Keep in mind that there is no part of the program that explicitly
-  prevents traces from hitting targets outside the 1000 unit range. It
-  can happen, and does in fact happen, it is simply less likely. For the
-  purposes of learning how to use the weapon in a deathmatch game, base
-  your strategies on the idea that its main effective range is about 1000
-  units, and you'll be OK.
+        P_AimLineAttack (mo->target, an, 16*64*FRACUNIT);
+
+  I think that what this means is auto-aim for the traces only works
+  within 1024 (16*64) game units.
+
+  Because of this, the effective range of the blast area ends up being in
+  the neighborhood of 1000 units. Further out from that range, it becomes
+  increasingly unlikely that a target will be hit by any traces at all.
+  Of course, larger targets such as spiderdemons have a wider radius, and
+  therefore the BFG's effective range is slightly further against
+  such targets.
+
+  I don't think the program explicitly prevents traces from hitting
+  targets outside the 1024 unit range. I'm pretty sure that the
+  P_AimLineAttack function will still cause damage if you're on the same
+  level and the trace is pointing right at the target. If anyone has
+  information to the contrary, please let me know.
+
+  But for the purposes of learning how to use the weapon in a deathmatch
+  game, base your strategies on the idea that its main effective range is
+  about 1000 units, and you'll be OK.
 
   If you are unfamiliar with the Doom engine's units, remember that a
   standard teleporter pad is 64 units across. Line up 16 of those and
-  you've got a basic idea of what 1000 units is.
+  you've got a basic idea of what 1024 units is.
 
-  The blast damage is also limited to targets that have an unblocked
-  line of sight to the attacking player. This does not mean the attacker
-  must see the target. It means that the attacker must be in a position
-  where his traces can see the target, i.e., he could see the target if
-  he were facing in that direction.
+  The blast damage is also limited to targets that have an unblocked line
+  of sight to the attacking player. This does not mean the attacker must
+  see the target. It means that the attacker must be in a position where
+  his traces can see the target, i.e., he could see the target if he were
+  facing in that direction.
 
 3F. How many targets can it hit?
 
   The blast area can only hit as many targets as its traces can touch.
-  Since one trace can damage more than one target, you can theoretically
-  kill more than 20 targets. In tests on an artificially created grid of
-  monsters, it is not uncommon for a single shot to kill 25 imps. But in
-  regular game play, rarely are that many targets standing in such a
-  perfectly aligned pattern. Usually, some individual targets will soak
-  up more than one trace, while other traces miss targets completely.
+
+  Originally, we stated that one trace can damage more than one target.
+  This was because we did tests where a single shot killed 25 imps. But
+  that was back when we thought there were only 20 traces. Now that we
+  know there's 40 traces, it seems as though the number of objects that
+  can possibly take damage is 40.
+
+  Of course, in regular game play, rarely are that many targets standing
+  in such a perfectly aligned pattern. Usually, some individual targets
+  will soak up more than one trace, while other traces miss targets
+  completely.
 
   The traces are calculated on a 'first come, first fragged' basis. For
-  each trace, the damage is calculated and subtracted from the target and
-  the trace. Where applicable, any target that dies from the trace is
-  removed from the map. Then the engine moves on to the next target in
-  the line of that trace. When the trace runs out of damage, the
-  calculation routine moves on to the next trace.
+  each trace, the damage is calculated and subtracted from the target,
+  and the target dies if there's enough damage. Then the engine moves
+  on to the next trace.
 
   Here is how it works:
 
   (Please note: In the discussion below, we refer to 'line of sight'
-  loosely. Remember that the attacker does not need to be looking at his
+  loosely. Remember that the attacker does not need to be facing his
   targets to inflict damage.)
- 
+
   In the following scenario, imagine that the attacker is standing in a
   direct line with several targets (imps, perhaps) lined up in front of
   him, and the green ball detonates on a wall somewhere:
 
+
   Attacker:  X->         X X X X X X X       Detonation point: X
                             (Imps)
 
-  The first couple of imps are close to the attacker. They crumble,
-  having soaked up some of the traces that are pointing ahead of the
-  attacker. The next few imps are a little farther away, and absorb some
-  more of the traces, but not as many. They absorb fewer traces for two
-  reasons:
+  The first couple of imps are close to the attacker. They crumble, having
+  soaked up some of the traces that are pointing ahead of the attacker.
+  The next few imps are a little further away, and absorb some more of the
+  traces, but not as many. They absorb fewer traces for two reasons:
     1) because the imps in front of them absorbed some of them
        already, and
     2) because they are farther away and the traces are more
        spread out.
-  But they still die. The next imp gets damaged, but does not die. He
-  has soaked up the last trace that was headed in that general direction.
-  The last imp is not damaged at all because there are no more traces
-  left in his direction.
+  But they still die. The next imp gets damaged, but does not die. He has
+  soaked up the last trace that was headed in that general direction. The
+  last imp is not damaged at all because there are no more traces left in
+  his direction.
 
   In order for the above scenario to work, the targets must be perfectly
-  aligned. For instance, in the following scenario, all of the targets
-  take full damage, because there's no one in front of them to soak up
-  traces.
+  aligned. For instance, in the following scenario, all of the targets take
+  full damage, because there's no one in front of them to soak up traces.
+
                               X
   Attacker:  X->            X                      Detonation point: X
                           X    Y
 
   The one target in the back (Y) is still susceptible because it is not
-  blocked by another target. The attacker can see him through the gap.
-  So, for example, an imp standing directly behind a cyberdemon is
-  fairly safe, but an imp standing next to a cyberdemon is a sitting
-  duck.
+  blocked by another target. The attacker can see him through the gap. So,
+  for example, an imp standing directly behind a cyberdemon is fairly safe,
+  but an imp standing next to a cyberdemon is a sitting duck.
 
   The moral to this story is: In deathmatch, do not depend upon other
   players or monsters to absorb the BFG blast unless they are exactly
@@ -661,7 +808,7 @@
   If you are hiding behind a decorative sprite (such as a tree or a
   technical column) you are fully exposed. All weapons in Doom always
   pass completely through decorative sprites.
-  
+
   If you are peeking over a podium, or partially obscured by a raising
   lift, or a closing door, and only half or one-tenth of you is showing,
   you still take the full amount of damage. The traces are calculated
@@ -669,12 +816,9 @@
   engine is concerned, all of the traces can still hit you.
 
   If you are hiding behind a vertical wall with your rear end peeking
-  out, you might take a little less damage because some of the traces
-  may hit the wall instead. But don't count on it. Tests seem to show
-  that your distance from the attacker is more important than how much
-  of you is exposed. This is an observed phenomenon, not necessarily
-  supported by hard facts. It is difficult to test due to the random
-  nature of the damage traces.
+  out, I'm pretty sure you still take full damage because the traces
+  auto-aim at you. Tests seem to show that your distance from the
+  attacker is more important than how much of you is exposed.
 
   Also remember that what counts as 'showing' may not be what you think.
   The Doom engine uses the radius of the player to determine visibility.
@@ -682,7 +826,7 @@
   seems as though your radius is slightly larger (in some cases) than
   the sprite (picture) that represents your player. In tests, it is
   possible to inflict damage upon a player that seems to be out of sight
-  (no visible pixels) but whose radius is large enough to count as 
+  (no visible pixels) but whose radius is large enough to count as
   'visible' to the BFG traces.
 
 3I. What happens if the attacker is fragged before detonation?
@@ -693,7 +837,7 @@
   detonated before you respawn.
 
   Here's why:
- 
+
   Even after being fragged, you can still see the action from your fixed
   point of view on the ground (your 'dead' state). The traces remain
   active and can still frag an opposing player (hopefully the one that
@@ -720,9 +864,9 @@
   goodbye.
 
   Of course, the same thing applies to projectile weapons like the
-  rockets and the green ball. It has long been known that those items
-  behaved in that way. But this information about the damage traces is,
-  to the authors' knowledge, new.
+  rockets and plasma. If you play enough deathmatch, you've probably
+  been fragged by your own rocket a few times. Don't be embarrassed,
+  it happens to the best of us...
 
   Please note: Any projectile kills made by a respawned player (whether
   by rockets, plasma, BFG traces, etc.) do not contribute to that
@@ -730,16 +874,17 @@
   your frag count, either. This appears to be because the game engine
   creates a new instance of the player-object at respawn-time, and
   therefore 'forgets' to award that frag. In any case, if you wait
-  before respawining, you will get credit for the frag as long as you're
+  before respawning, you will get credit for the frag as long as you're
   still dead. This is another reason to wait for detonation before
   respawning. Special thanks to John Castelli for pointing this one out.
 
 3J. What about multiple BFG shots?
 
-  Each BFG shot is tracked and calculated independently. Testing seems
-  to indicate that the game engine's code is object-oriented, and has no
-  trouble keeping track of multiple blast areas. Each damage cone's
-  direction is based on the direction of its corresponding green ball.
+  Each BFG shot is tracked and calculated independently. The game
+  engine's code is object-oriented, and has no trouble keeping track of
+  multiple blast areas. Each damage cone's direction is based on the
+  direction of its corresponding green ball.
+
   The origin point of the damage cone is based on the current location
   of the marine who fired it (even if that marine is just a dead body-
   see section 3I for more info).
@@ -751,8 +896,8 @@
   Many deathmatch players moan and groan when the BFG is used successfully
   against them. 'What a cheap frag, you craven coward!' they shout. Well,
   they usually use fewer words to express the idea, but that's what they
-  mean. This is usually due to a lack of understanding about how the
-  weapon works.
+  mean. This is usually due to a lack of understanding about how the weapon
+  works.
 
   The purpose of this FAQ is to educate players about how the BFG behaves.
   If you know how it works, you will know how to defend yourself against
@@ -783,7 +928,7 @@
 
   AVOID THE DIRECT HIT, AND GET OUT OF THE CONE OF DAMAGE.
 
-  (Duh.)
+  (OK, so it ain't Rocket Science.)
 
   This requires, of course, that you know where the cone of damage
   actually is. That, in turn, requires that you know where your attacker
@@ -806,16 +951,16 @@
 
   - Run past the attacking player so that you end up behind him. This
     assumes that he is still facing the same direction as his damage
-    cone. You will be completely safe if you're on the opposite side
-    of his cone. This can backfire if you're not careful. You could end
-    up three feet from him and inside his cone when the green ball
-    detonates, and soak up some rays. Twenty of them, to be exact. That
-    SPF 60 sun block won't help, either.
+    cone. You will be completely safe if you're on the opposite side of
+    his cone. This can backfire if you're not careful. You could end up
+    three feet from him and inside his cone when the green ball
+    detonates, and soak up some rays. That SPF 60 sun block won't help,
+    either.
 
-  - If you think you're about 1000 units away from the attacker, and
-    you don't think he's running towards you too fast, you can try
-    running away, and hope that the traces will be too thinned out to
-    damage you seriously.
+  - If you think you're about 1000 units away from the attacker, and you
+    don't think he's running towards you too fast, you can try running
+    away, and hope that the traces will be too thinned out to damage you
+    seriously.
 
   - You can duck behind a nearby wall or a solid column. If you can see
     your attacker, simply move so the column is between you and him.
@@ -851,19 +996,29 @@
     Grit your teeth and take the blast area hit, but keep on him. Just
     don't get too close.
 
+  - Stephen "Blue" Heaslip says this in his Doom Deathmatch Strategy
+    Guide (referring to an earlier release of this FAQ): "A point about
+    BFG defense not covered in the BFG FAQ is the preemptive strike.
+    The best BFG defense in an AltDeath game is to repeatedly pick up
+    the BFG so your opponent can't. The best BFG defense in a
+    deathmatch 1.0 game is to kill your opponent before he gets it."
+    Thanks, Blue. I never mentioned this one in earlier versions of the
+    FAQ because I thought it was obvious. But you're right, of course.
+    The best defense is a good offense.<P>
+
   - Anything else that takes advantage of the particular quirks of the
     weapon. Remember that you can use your knowledge of BFG attacking
-    techniques to your advantage, like the example above.
+    techniques to your advantage, like the examples above.
 
 4C. What is the best way to attack with the BFG in a deathmatch?
 
   KEEP YOUR TARGETS IN THE CONE OF DAMAGE.
 
-  (Sha, nice try.)
+  (You were expecting some deep revelation, or what?)
 
   This requires, of course, that you know where the cone of damage
-  actually is. So if you looked here first, go back and check out the
-  rest of this FAQ for details.
+  actually is. So if you looked here first, go back and check out
+  the rest of this FAQ for details.
 
   Anyway, here's some ideas. Not necessarily comprehensive:
 
@@ -871,8 +1026,8 @@
     column that is very close to you. In this situation, your cone of
     damage roughly equals the visible targets on the screen. This is
     because you don't have much time to move around before detonation.
-    Your targets don't have much time, either (You will notice that all
-    of the 'defense' tips in this FAQ assume having time to react).
+    Your targets don't have much time, either (You will notice that
+    all of the 'defense' tips in this FAQ assume having time to react).
     Because we already know two things:
        1) The direct hit is difficult to achieve,
        2) The location of the detonation does not matter,
@@ -902,10 +1057,10 @@
   - "Everything I need to know, I learned at Top Gun." Avoid turning
     fights. See the related item under the defense techniques, above.
 
-  - "Keep your friends close, but keep your enemies closer." Really. The
-    closer you are, the more traces will hit their faces. Don't even
-    bother firing if your opponents are more than 1000 units away: you
-    will either miss, or do very little damage.
+  - "Keep your friends close, but keep your enemies closer." Really.
+    The closer you are, the more traces will hit their faces. Don't
+    even bother firing if your opponents are more than 1000 units
+    away: you will either miss, or do very little damage.
 
   - Don't be afraid to use it in close quarters. You might think the BFG
     is designed for open-area use, but it actually works best when things
@@ -918,8 +1073,8 @@
     open a door.
 
   - Set up pre-timed shots that take advantage of its long warm-up time.
-    Like this: pull the trigger, *then* open the door. Or pull the
-    trigger, *then* drop off the ledge into the room with your target.
+    Like this: pull the trigger, -then- open the door. Or pull the
+    trigger, -then- drop off the ledge into the room with your target.
 
   - Shoot the green ball at a very distant wall (such as outdoors or
     down a long hallway), then run into the room where your target is.
@@ -928,7 +1083,7 @@
     detonates, your target will simply see himself crumble to the ground,
     realizing too late that you were standing still because you were
     keeping your traces on him. See section 4E for an example of this.
-  
+
   - Use 'combo' moves. Use the above 'distant wall' technique, but switch
     to a conventional weapon as you run into the room. Your traces still
     work, even if you have switched weapons. Blast 'em with both the BFG
@@ -958,12 +1113,16 @@
   Doom's sound code allows you to silence the firing sound of the BFG.
   Regardless of the 'Number of Sound FX to Mix' that you chose in Doom's
   setup program, your character can actually only utter one sound at a
-  time. This includes all weapons firing. If you cause your character
-  to grunt, i.e., you jump off of a ledge or press the space bar on a
-  blank wall, you have a brief period while the grunting sound is being
-  played in which you can pull the trigger and no sound will be emitted
-  from the weapon. Your grunt makes a little noise, but it's relatively
-  quiet and is sometimes ignored by your opponents.
+  time. This includes all weapons firing. If you cause your character to
+  grunt, i.e., you jump off of a ledge or press the space bar on a blank
+  wall, you have a brief period while the grunting sound is being played
+  in which you can pull the trigger and no sound will be emitted from the
+  weapon. Your grunt makes a little noise, but it's relatively quiet and
+  is sometimes ignored by your opponents.
+
+  I've seen other information that tells me I've got it backwards:
+  That you're supposed to fire first, -then- grunt. I don't know
+  which is correct. Try both and use whichever one works for you.
 
   While it works well in theory, in practice the trick is hard to
   perform. It also may be a little unfair. As with all secrets, it
@@ -989,13 +1148,13 @@
   Doug Bora first pointed this demo out to our particular group. Credit
   for the original version of this demo goes to John Ripley of the UK.
   The full deathmatch demo file PETALK2.ZIP is the first example of this
-  specific action. This file should be available at:
+  specific action. Since that time, this has been repeated by many folks
+  on the Doom newsgroups.
 
-    ftp://{INS site}/lmps/doom2/1.9/petalk2.zip
-    where {INS site} = any DOOM ftp site, eg. ftp.cdrom.com/pub/idgames
+  PETALK2.ZIP should be available at:
 
-  Since that time, this has been repeated by many folks on the Doom
-  newsgroups.
+  ftp://{INS site}/lmps/doom2/1.9/petalk2.zip
+  where {INS site} = any DOOM ftp site, eg. ftp.cdrom.com/pub/idgames
 
   How to do this:
 
@@ -1006,12 +1165,14 @@
     chainsaw, BFG, rocket launcher, and super shotgun. Tell him to move
     so that he is within view of that first entrance room, standing on
     the ledge where he can see down the brightly lit hallway from his
-    perch above the brown room. Tell him to sit tight right there. He is
-    frag bait for this demonstration.
+    perch above the brown room. He can either stand up on the starting
+    ledge, or hop down into that first brown room. Either way, it will
+    work. Tell him to sit tight right there. He is frag bait for this
+    demonstration.
 
-  - Player two (whoever) will stroll into the brown room and pick up the
-    BFG behind the column. Wave to the nice guinea pig waiting patiently
-    on the platform above. (Hi Phil. Hi Ralph.)
+  - Player two (whoever) will stroll into the brown room and pick up
+    the BFG behind the column. Wave to the nice guinea pig waiting
+    patiently for you. (Hi Phil. Hi Ralph.)
 
   - Player two strolls down the brightly lit hallway to the intersection
     where he can see the other dark room, way down the long hallway. You
@@ -1020,8 +1181,8 @@
   - While facing the plasma gun from the intersection in the bright
     hallway, fire the BFG. When the shot actually leaves the barrel of
     the gun and begins traveling toward the plasma gun, strafe quickly
-    back toward the intersection where you can see Greenie standing on
-    the ledge in the first brown room.
+    back toward the intersection where you can see Greenie standing
+    in the first brown room.
 
   - If you reached that hallway intersection in time (before the green
     ball detonated in the plasma gun room) you will be rewarded with
@@ -1033,6 +1194,7 @@
     intersection in time. You could be turned completely away from him,
     he will still be hit by the traces. You can prove this by running
     straight to the intersection rather than strafing to it.
+
 
   This demonstration proves the following:
 
@@ -1059,8 +1221,8 @@
   This is a list of the most common misunderstandings about the behavior
   of the BFG. Please review this list before submitting corrections.
 
-  1) You have to be looking at your target in order to inflict blast area
-     damage.
+  1) You have to be looking at your target in order to inflict blast
+     area damage.
 
      This is untrue. The target must be within an imaginary line-of-sight
      to you at detonation time, but you can be facing away from the
@@ -1090,11 +1252,11 @@
   4) The location you were standing when you fired, or the location of
      targets at firing time, is a factor.
 
-     Only the location where you are standing when the blast detonates is
-     important. The compass direction that you fired is important, but
-     not the location where you fired. The traces are only calculated at
-     detonation time. The game engine does not care where the targets are
-     until the traces are calculated.
+     Only the location where you are standing when the blast detonates
+     is important. The compass direction that you fired is important,
+     but not the location where you fired. The traces are only
+     calculated at detonation time. The game engine does not care where
+     the targets are until the traces are calculated.
 
      Again, see section 4E for proof of this.
 
@@ -1114,8 +1276,8 @@
      close enough to touch you.
 
      You can frag someone behind you if they fall anywhere within the
-     cone of traces. Sure they can be behind you, but they don't have to
-     be touching you. In order to frag someone behind you, you must
+     cone of traces. Sure they can be behind you, but they don't have
+     to be touching you. In order to frag someone behind you, you must
      rotate away from the direction you fired, then maneuver so that
      your targets are within the cone behind you.
 
@@ -1123,8 +1285,8 @@
      attacker, at 90 degrees perpendicular to the cone of damage, they
      will fall within the cone if they are in front of the attacker's
      centerline. But if they are truly behind the attacker's cone of
-     damage (behind the centerline of the attacker), they will walk away
-     unscathed.
+     damage (behind the centerline of the attacker), they will walk
+     away unscathed.
 
      This seems to be due to the fact that the player's 'hittable'
      radius is larger than the player's 'walk into' radius. When you
@@ -1159,17 +1321,93 @@
   3) If you think you have tested your theory thoroughly and are ready
      to submit the theory as proven, please prepare a short description
      statement that details how to reproduce the effect during game play.
-     Please make sure the description is short and precise.
+     Please make sure the description is precise.
 
-  4) When you have composed your description message (please make it as
-     short as possible), e-mail it to tfabris@oro.net and wait patiently
-     for a reply.
+  4) When you have composed your message, e-mail it to tfabris@oro.net.
 
   5) Note: Do not attempt to send us information for FAQ files other than
      this one. We do not maintain other FAQ files and we do not echo
      information amongst other FAQ authors.
 
-============================ End of BFG 9000 FAQ ============================
+
+-- Appendix A - Quake Mods -------------------------------------------------
+
+Quake 1 BFG Mods
+
+  The ability to make user-created code modifications to the Quake engine
+  was one of Quake's most important features. These modifications, called
+  "patches" or "mods" number perhaps in the thousands. Some of the patch
+  authors decided that Quake deserved a BFG, too. Here's a short list of
+  some of the Quake BFG patches I've run across in my travels.
+
+  Since Quake's code is totally different than Doom's code, these BFG
+  remakes can't be precisely like the original BFG. Most of them get
+  pretty close in terms of "feel", though. The biggest difference is that
+  they all have a "Z" direction for their damage cone, i.e., they can be
+  aimed upwards.
+
+  Note that this list is not comprehensive and isn't necessarily up to
+  date.
+
+  Deathmatch Plus
+  URL: http://www.demonic.demon.co.uk/dmplus.html
+  Author: William Harris
+  Comments: This patch includes other interesting weapons such as the
+  Cluster Bomb. This patch was specifically designed for deathmatch play.
+
+  The BFG 9500
+  URL: http://www.trailerpark.com/phase1/nelno/pseudopodia/pseudo.html
+  Author: Nelno the Amoeba
+  Comments: Designed for single player.
+
+  Doom 2 Total Conversion
+  URL: http://members.aol.com/imarvintpa/index.htm
+  Author: Andy Bay
+  Comments: A Total Conversion project for Quake, allowing you to play
+  Doom 2 with the Quake engine.
+
+  Your Path of Destruction
+  URL: http://www.planetquake.com/doom
+  Author: Curtis Moxley
+  Comments: A Doom Total Conversion project for Quake, including another
+  original piece of QuakeC code for the BFG.
+
+  DeathX
+  URL: http://omega.simplenet.com/omega/
+  Author: Luke Whiteside (WeAsL)
+  Comments: A set of QuakeC modifications for deathmatch play, with
+  several new weapons including a variation on the BFG.
+
+  Requiem
+  URL: http://www.planetquake.com/requiem
+  Author: Requiem
+  Comments: A Conversion for single player and multi player Quake, with
+  extra attention given to making a balanced set of weapons. Includes
+  the good-old BFG.
+
+-- Appendix B - Quake 2 ----------------------------------------------------
+
+The Quake 2 BFG10K
+
+  Pandora is out of the box again! They put a BFG in Quake 2!
+
+  It's different from the Doom BFG, and different from the Quake 1 BFG
+  mods. In this version of the BFG FAQ, I'm going to only cover the BFG10K
+  briefly. Hopefully I'll be able to expand this section as I get more
+  information (i.e., I've got time to look at the Quake 2 public code
+  sources more closely). Expect more information here in future releases
+  of the BFG FAQ.
+
+  I'm going to defer here to Randall Pitchford of Rebel Boat Rocker,
+  who got the jump on me and wrote up a Quake 2 Weapons FAQ. This document
+  can be found at http://www.rebelboatrocker.com/q2wfaq.htm.
+
+  Randy and I have corresponded, and we intend to collaborate in creating
+  a more detailed set of descriptions for the Quake 2 BFG. Until that
+  time, check out his Quake 2 weapons FAQ for the details about the BFG10K.
+
+================= THE END. Thanks for reading the BFG FAQ! =================
+
 
 
 
