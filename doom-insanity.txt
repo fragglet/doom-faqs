@@ -1,0 +1,568 @@
+-----------------------------------------------------------------------------
+                  *-D-*-*-O-*-*-O-*-*-M-*    I N S A N I T Y
+                       Release v5.5 - STANDARD Revision
+             Written by: Hank Leukart (ap641@cleveland.freenet.edu)
+           "DOOM: Where the sanest place... is behind a trigger."
+           "DOOM: Such mayhem the likes of which have never
+                  been witnessed in this particular dimension!"
+-----------------------------------------------------------------------------
+
+============
+INTRODUCTION
+============
+
+        DOOM iNsAnItY started as a small joke in the first "Official" DOOM
+FAQ v1.0.  It slowly grew, and by v5.0 of the FAQ, it was almost 20% of
+100k FAQ!  I finally decided to release it as a seperate file.  This will
+probably be the last release of DOOM iNsAnItY, so enjoy it while you can!
+
+=================
+TABLE OF CONTENTS
+=================
+
+[1] Comedy
+        [1-1] A word from Douglas J. Bottoms
+        [1-2] DOOM: The Real Thing
+        [1-3] Beta-Tester's Joystick Sliced Off While Sleeping
+              at Computer!
+        [1-4] The Night Before DOOM
+        [1-5] You know you have been playing DOOM too much when...
+[2] Top Ten Lists
+        [2-1] Top Ten Things To Do While Waiting for DOOM
+        [2-2] Top Ten Things To Do Until DOOM Arrives
+        [2-3] Top Ten Things Being Removed From DOOM During Delay
+        [2-4] Top Ten Reasons DOOM Was Delayed
+        [2-5] Top Twenty Comments Made After DOOM's Release
+[3] DOOM R.E.M.
+        [3-1] Pixelated Demons
+        [3-2] The Mythical Beta Releases
+        [3-3] You Don't Take MasterCard?!
+
+-------------------
+CHAPTER [1]: Comedy
+-------------------
+
+        This is the chapter of DOOM iNsAnItY where free-form comedy
+is written.
+
+[1-1]: A word from Douglas J. Bottoms
+=====================================
+        FOREWORD:  Here's the first addition to DOOM iNsAnItY!
+This was posted on comp.sys.ibm.pc.games.action on Thursday,
+October 21, 1993.  He speaks on a new game idea: id programmers
+as bad guys in DOOM.
+
+----------
+Subject: NEW GAME!  id programmers as bad guys in DOOM!
+From: Douglas J. Bottoms <DBottoms@Lilly.Com>
+Date: Thu Oct 21 10:00:02 1993
+
+That's it!!  I new twist on the game!!!  The DOOM good guys are idle
+gaming buffs who have finally cracked and can no longer wait for the
+release of the only game that will make ALL OTHER games seem like PONG!
+Blind Wolfenstein will no longer simmer the anger!  They go slap-happy and
+grab their multidimensional boots and gloves (with snazzy smooth shading)
+and go to the id programmers' dungeon/lair.  It will be a slaughter!
+Pixilated programmers, peeved project leaders, panting personnel...the
+works.  The big bosses could be just that, the big bosses, especially the
+one who just made a press release that DOOM would be delayed another few
+months (this is make believe, of course - (squint) you aren't going to
+delay the release (pant, pant);  look into my eyes  (o)(o) (imagine
+reversing sound) and repeat after me, "I must release DOOM soon.  I must
+program, eat, sleep day and night."  Mu who ha ha ha!).
+
+Excuse my sanity.  I get a bit zany when I get thinking about the soon to
+be released game that will resolve the U.S.' Deficit and save the rats
+from being beheaded on the space shuttle.  I see the sun raising...
+
+The thoughts expressed here are entirely my own and do not necessarily
+reflect the thoughts of any other individual or group affiliated with Eli
+Lilly and Company.
+----------
+
+[1-2]: DOOM: The Real Thing
+===========================
+        FOREWORD: This messages was posted from gills@qucdn.queensu.ca on
+Usenet in the group comp.sys.ibm.pc.games.action on Monday,
+November 15, 1993.  He has a new idea: playing DOOM in REAL LIFE!
+
+----------
+Howdy,
+
+        Yes, like all you DOOM fans I have been eagerly awaiting the release
+date for this landmark game.  Although I was very disappointed in the
+release date being bumped up from 3rd quarter '93 to Dec 10, I limited my
+anger and frustration to strangling my neighbour's cat (didn't like it much
+anyways....   ;)   ).
+
+        But, NOW I'm forced to read all the great stuff about the Beta
+release that some people have been lucky enough to get their hands on.
+....well, not FORCED to read it, but I can't help absorbing every bit of
+information I can possibly locate.   :)
+
+        I can't handle the fact that some people have tried the game now,
+and I haven't, so I thought I might pull out my brass knuckles and 12 gauge
+pump shotgun and start up a *REAL* DOOM game. I figured that I, and 3 other
+frustrated DOOM awaiters, could meet up at an abandoned warehouse or
+something and have a rip snortin' Death Match of our own.  We could throw
+some shotgun shells and ammo boxes randomly around the place, along with
+some first-aid kits (fine for light grazes from perhaps a .22 calibre round
+but not much good for a 12 gauge belly wound  :)  ) - then we go at it !!!
+
+        Granted, there won't be any monsters in this place, like there are
+in DOOM, but I do have a pretty ugly cousin I could trick into coming; and
+with a quick dunk in some gray paint I'm convinced he could bear a passable
+resemblance to a gargoyle <G>.
+
+So ....any takers?    Heh, heh, heh.
+
+Note: This a JOKE, only a joke....that's J-O-K-E..as in, I'm not serious.
+      If you are a certified nut-bar who would like to really try this out
+      don't bother calling me up....I get faint from tension just playing
+      Paintball   :)
+
+        But, seriously...I CAN wait until Dec 10 to play DOOM but it's
+getting pretty tense doing the waiting game.  I guess in the mean time I can
+go pick up some Depends (adult diapers) and some I.V. supplies so I'll be
+prepared on Dec 10 to stay on the computer playing DOOM steadily until I
+collapse from exhaustion.
+        Of course if a copy of Beta-DOOM *DID* happen to make it's way to
+me, I would still download the shareware version and register/pay for the
+full release.
+I swear I would....really...I promise....scout's honor...anyone?..anyone?
+
+OK, so sue me, I had to ask.       :)
+
+P.S.    If this game is good as it's suppose to be, I'm gonna name my first
+        born child "ID".... IDDY?...IDarina?...IDI-Sue?....
+----------
+
+[1-3]: Beta-Tester's Joystick Sliced Off While Sleeping at Computer!
+====================================================================
+        FOREWORD:  I received this piece of hilarious E-mail from
+John Romero.  This was written by Douglas Howell (one of the DOOM
+Beta-testers) when id decided to axe the entire Beta-tester list and start
+from scratch.  Douglas Howell will be reinstated as a Beta-tester, as
+soon as his "joystick" heals. :)  Let the Bobbitt saga continue!
+
+----------
+NEWSFLASH:  Beta tester's joystick sliced off while sleeping
+            at computer!
+
+At a news conference today, a beta tester of software said that he had
+fallen asleep while testing a game for id Software, developers of the
+best-seliing game Wolfenstein 3D.  Awaking in the middle of the night,
+he looked down and to his horror discovered that three-fourths of his
+joystick had been sliced cleanly off.  When questioned, id Software
+admitted to doing the deed and charged that the beta tester was a
+two-timer.  Id spokesman Shawn Green stated-- "What was done had to be
+done.  Id was definitely not satisfied by this guy's performance. All he
+cared about was taking software and sticking it into other people's hard
+drives!".
+
+The severed joystick was later found by police on a street corner.
+Apparently id had fled the scene with the sliced piece still in hand and
+tossed it out a car window.  Surgeons have since sewn the stick back on,
+but it seems to malfunction whenever playing id's beta software.
+Doctors predict that the joystick should perform normally again by
+December 10th.
+----------
+
+[1-4]: The Night Before DOOM
+============================
+
+----------------------------------------------------------------------------
+           T H E  N I G H T  B E F O R E   *-D-*-*-O-*-*-O-*-*-M-*
+            Written by: Hank Leukart (ap641@cleveland.freenet.edu)
+----------------------------------------------------------------------------
+
+                         `Twas the night before DOOM,
+                          and all through the house,
+                   I had set up my multi-playing networks,
+                              each with a mouse.
+                          The networks were strung,
+                           with extra special care
+                             in hopes that DOOM,
+                             soon would be there.
+              The children were nestled all snug in their beds,
+             while visions of demons danced through their heads.
+                 And my computer's processor it was so quick,
+                      boy was I glad I bought that 486.
+             When out on the Internet there was a Usenet posting,
+                I dialed right in to see what it was boasting.
+                 Off to the news reader I flew like a hound,
+                 "Oh no," I cried!  The news reader was down!
+                 Frustrated, bewildered, feeling really low,
+              I leaned back to see what I heard out the window.
+                When what to my wondering eyes should appear,
+                  but a group of 6 cars, driving 60 I fear!
+                With a big young driver, just look at him go!
+                 I knew in a moment, it must be John Romero!
+                 Over the speed limit, his band of cars came,
+            And he whistled, and shouted, and called them by name:
+                           "Now, Jay! Now, John!
+                            Now, Dave and Kevin!
+                           On, Adrian! On, Sandy!
+                           On, Shawn and Robert!"
+                         To the top of the driveway!
+                             Don't hit that wall!
+             Now stop your car, stop your car, stop your car all!
+                    Leaving the car, he entered the house,
+                Walking quietly, so as to not wake the spouse.
+           He was dressed in a T-shirt, and a a pair of jeans too,
+                   I was unsure of what he was going to do.
+                   Boxes of DOOM he had flung on his back,
+             and he looked like a peddler just opening his pack.
+         Those boxes - how they sparkled!  The shrink-wrap so tight!
+          The character was drawn on the front, just ready to fight!
+                The Chain Saw and Shotgun he held in his hand,
+              Where was the BFG9000?: The best gun in the land.
+                   And then I saw it, strapped to his back,
+                Along with a copy of the "Official" DOOM FAQ!
+                A wink of John's eye and a twist of his head,
+                 Soon gave me to know I had nothing to dread.
+             He spoke not a word, but went straight to his work,
+            Installed it on the network, then turned with a jerk.
+                      And placing a hand into his jeans,
+                   out came his keys - oh how they gleamed!
+             He sprang to his car, to the id team gave a whistle,
+         and away they all drove, like DOOM's launching of a missile.
+             But I heard him exclaim, ere he drove out of sight,
+                 "DEMONS TO ALL, AND TO ALL A HELLISH NIGHT!"
+
+[1-5]: You know you have been playing DOOM too much when...
+===========================================================
+
+        DOOM is a great game!  But don't let it take over your life! :)
+
+        You know you have been playing DOOM too long...
+
+...when going to sleep you open the bedroom's door and instead of turning
+   lights on you fire a missile into the room.
+
+...when you sleep with a chainsaw under your pillow,and justify it with 'you
+   never know what lurks in the dark'.
+
+...when going into a room or getting off an elevator, you run in and out
+   quickly to see what follows you out.
+
+...you don't worry so much about getting hurt, since you'll probably pick
+   up one of those blue spheres somewhere.
+
+...watching someone come out of an elevator makes your mouse finger twitch
+
+...when the dog growls and you dive over the couch while
+   reaching for a shotgun.
+
+...when you start side-stepping into rooms.
+
+...when you push on a wall as you walk down the hall looking for secret
+   entrances
+
+...when you rush for a neon-blue down vest in K-Mart
+
+...when you reach for your chainsaw when your wife's cold
+   gives her the sniffles
+
+...when you search for a radiation suit before going into
+   a swimming pool
+
+...when you instinctively target trash cans while walking
+   around campus/work
+
+...when you look for sniper spots above you when getting in an elevator.
+
+...when you can't stop squinting as you walk around your house
+
+...when you think you can actually walk through walls
+
+...when you start making chainsaw noises if you hear a strange noise.
+
+...when you wish you had a chainsaw, just in case.
+
+...when you buy a radiation suit and Infra-red goggles, just in case.
+
+--------------------------
+CHAPTER [2]: Top Ten Lists
+--------------------------
+
+        Here, humorous top ten lists regarding DOOM are written.
+Actually, this is a lie.  Some of the lists have more than ten things.
+However, for the sake of simplicity, I call them top ten lists.
+
+[2-1]: Top Ten Things to Do While Waiting for DOOM
+==================================================
+        FOREWORD:  This was posted on America Online, by someone
+using the name "Wolkonsky" on August 27, 1993.
+
+----------
+        Well, here we are waiting another 2-3 months [for DOOM].  What else
+can we do?
+
+1) Search the Internet for Beta Version.
+2) See if we can go through Wolfenstein 3-D with our eyes closed.
+3) Use MapEdit/WolfEdit to make Wolfenstein 3-D "look like" DOOM.
+4) Find out where the id "lab" is and "encourage" them.
+5) Watch the new 90210 episode!
+6) See if Blake Stone or Rampage will be any good.
+7) Upload the Lemmings Demo as "DOOM10.ZIP" and see what happens.
+8) Get girlfriends and drop them on 12/10/93, unless they like DOOM and
+   have a computer with a modem.
+9) Or lastly, look at DOOM slides and "pretend" we are playing.
+----------
+
+[2-2]: Top Ten Things To Do Until DOOM Arrives
+==============================================
+        FOREWORD:  This was posted on America Online, by someone
+using the name "ScottBro" on October 7, 1993.
+
+----------
+                          Top  10  Things  To Do
+                           Until  DOOM  arrives
+
+10.  Get a marker and change boxes of George Lucas's "LOOM" to "DOOM" to
+     confuse over-anxious gamers.
+9.   Issue bogus press release from the Bulletin of the Atomic Scientist,
+     saying the DOOMsday clock will strike midnight sometime before
+     September 30, 1993.
+8.   Get a date with someone from L7.
+7.   When feeling depressed due to the wait, chant the B.J. Blaskowitz mantra,
+     "This is my rifle, This is my gun,
+      This is for killing, this is for fun.
+6.   Memorize the July Computer Gaming World, pages 104-5, preview of DOOM.
+5.   Get network and sound card installed on all systems at the office.
+4.   Make DOOM acronyms, like
+     "Dantes Obsessive Outrageous Marauders"
+3.   Tell boss I'll need two weeks vacation on very short notice during the
+     third quarter, due to pending family crisis.
+2.   Figure a way to persuade Id to allow imports of faces on monsters, so
+     we can make creatures like the:
+     Sunnunu Bloated Beast, the Michael Bolton Shrieker, and the Ex-Wife
+     from Hell, where she belongs.
+1.   Try and make friends with the Big Blue guys from Wolfie;
+     We might need help this time.
+----------
+
+[2-3]: Top Ten Things Being Removed From DOOM During Delay
+==========================================================
+        FOREWORD:  This was posted on America Online, by someone
+using the name "Wolkonsky" on August 31, 1993.
+
+----------
+        The DOOM Delay of `93 might be worse than we first thought! Here is
+a list of things that I heard were being taken out of DOOM.
+
+1) Socks the Cat
+2) Cameo by the Mario Brothers (you thought the Pac-Man Ghosts were bad)
+3) The "Shawngreen" monster in level 3 (too scary, it went around screaming
+   "Its not done yet! Not yet!")
+4) Cindy Crawford workout in level 4
+5) Vanilla Ice-Amy Grant theme song
+6) "Fun with Barney" puzzle in level 2
+7) Pin Up GIF of Sally Struthers.
+8) "John 3:15" : various locations
+9) "Bulges" in monsters groin area
+        AND FINALLY,
+10) The Bathroom Scenes.
+----------
+
+[2-4]: Top Ten Reasons DOOM Was Delayed
+=======================================
+        FOREWORD:  This was posted by an unknown source at an unknown
+location, on September 21, 1993.  If you know who the writer is, please
+send me some E-mail so I can give appropriate credit.
+
+----------
+        The following is intended to be humorous, with no ill intent
+whatsoever. I hope everyone takes it in the spirit it is given. ;)
+
+DAVE: "I have in my hand here tonight's Top 10 List from the
+home office in Sioux City, Iowa. Actually, it's a Top 15."
+
+(show the special graphics)
+
+DAVE: "Them special effects is fantastic!" (grin) "Tonight's category is:
+Top 15 reasons DOOM's release was delayed to December 10th. Here we
+go..."
+
+15. Added near death sequence when player is shot full of holes.
+
+14. Added networking capability via spaghetti noodles.
+
+13. "If Origin can do it, so can we."
+
+12. They want to ensure it won't run under Windows.
+
+11. Currently using DOOM as negotiating tool to get Ukraine to give up nukes.
+
+10. Fighting lawsuit from Apogee claiming DOOM is their 'intellectual
+    property'. (for those Letterman fans)
+
+ 9. They want to increase fourth quarter earnings.
+
+ 8. The bosses wife wants to 'redecorate' the levels.
+
+ 7. They want to make a politically correct version.
+
+ 6. id aspires to be the next Microsoft.
+
+ 5. NASA lost the source code.
+
+ 4. Bill's waiting for Hillary's permission to release game. (oops,
+    sorry, that's the Health Care Reform Package)
+
+ 3. John's dog ate his computer.
+
+ 2. Ran out of bug spray.
+
+DAVE: "And the number one reason DOOM's release was delayed..."
+
+ 1. They want the game's release to be just in time for Christmas shopping.
+----------
+
+[2-3]: Top Twenty Comments Made After DOOM's Release
+====================================================
+        FOREWORD: This dream was posted by Michael Pemberton on Usenet in
+the group comp.sys.ibm.pc.games.action on Saturday, December 11, 1993.
+
+----------
+        For those of you who just don't have the time to read the voluminous
+number of postings which are destined to appear about DOOM over the next two
+weeks or so, I offer the following list which should summarize the gist of
+those postings.  Out of courtesy to others, I suggest that posters review
+this list, include the appropriate number in their subject headers, and allow
+others to select the postings they wish to read with some foreknowledge of
+their contents.
+
+Those who wish to add to this list may do so; if interest continues, I will
+post updated versions for the convenience of all.
+
+1)  DOOM is the greatest, bitchenest, most radical game of all time.  I
+loved it.  I've played it for forty hours non-stop, only stopping for
+periodic caffeine breaks, and I plan to play it for at least forty hours
+more before collapsing into a quivering mass of protoplasm.  Go DOOM!  Go
+DOOM!  Yaaaaaaaaaay!
+
+2)  DOOM sucks!  Heehh-heeeh.  Heehhh-heeeeh.  Heehh-heeh.
+
+3)  Hey, ID!  When you said that you were going to get DOOM out on the
+10th, everyone thought that meant it would show up on sites at 12:01 AM.
+If you knew there was going to be a delay, why didn't you have the courtesy
+to tell us?
+
+4)  When is DOOM II coming out?
+
+5)  What's DOOM?
+
+6)  Everyone's talking about this DOOM thing, but I can't find it on my
+site anywhere.  I even tried the 127.0.0.1 site that someone recommended,
+but it's not there either.  What gives?
+
+7)  When I tried running DOOM on my IBM XT, it wouldn't play.  Is this a
+bug?
+
+8)  DOOM's not so hot because [choose one]: (a) The graphics are too dark,
+(b) it's too slow on my AT, (c) it's too fast on my Pentium/66, (d) it's
+too bloody and violent, (e) it's not bloody and violent enough, (f) it's
+too hard to set up, (g) it takes too much memory to run, (h) there should
+be a lot more weapons available early in the game, (i) Duke Nukem II is a
+lot more fun.
+
+9)  Compared to DOOM, Blake Stone is a wimpy piece of crap.
+
+10)  Compared to Blake Stone; DOOM is a wimpy piece of crap.
+
+11)  Anyone wonder how much money ID is going to make off this game?
+
+12)  What's the big deal?  DOOM is just a rehash of Wolfenstein, and I got
+tired of playing that weeks ago.
+
+13)  Hey, I played DOOM for about 80 hours over the last couple of weeks
+and I'm giving copies of it to all my relatives for Christmas, but I'm not
+going to BUY it from ID because [choose one]: (a) ID's making too much
+money anyway, (b) forty dollars is way out of line for a game like this,
+(c) I couldn't figure out how to get into that area with the blue face, and
+I don't think games should be this hard, (d) what good is a game you can
+only play for a few hundred hours?, (e) I can get it from that computer
+geek down the hall for free anyway.
+
+14) Would someone post a map showing all the secret areas in DOOM?
+
+15)  Would someone uuencode DOOM and post it here?
+
+16)  Where are the rockets, chainguns, armor enhancers, medkits, ammo
+boxes, [you name it] in the [name an area]?
+
+17) What are the cheat keys for the shareware version of DOOM?
+
+18) What do you mean there are no cheat keys for the shareware version of
+DOOM?  I think that ID shows a real lack of respect for its potential
+customers by taking out the shareware cheat keys.
+
+19)  DOOM was way overhyped.
+
+20)  DOOM lived up to its publicity and our expectations.
+
+21)  There I was, playing DOOM, and suddenly I was dropped out of the game
+with an "Out of hunk" error.  What sloppy programming!
+
+22)  Shame on ID for releasing a game that is still so full of bugs (even
+though I haven't found any yet)!  They're as bad as Origin!
+
+23)  A hearty thanks to Hank Leukart, Jay Wilbur, and everyone else at ID
+for being so supportive and tolerant of sometimes-whiney, sometimes-
+impatient, but almost always appreciative gameplayers (like me) who love to
+see excellent games like this one succeed.
+----------
+
+------------------------
+CHAPTER [3]: DOOM R.E.M.
+------------------------
+
+        David Reeve Sward suggested that I add a section in the FAQ
+for people who have been dreaming about DOOM while sleeping.  I told him
+it was crazy until three people posted messages about having "DOOM Dreams."
+Here they are, pixelated and all!
+
+[3-1]: Pixelated Demons
+=======================
+        FOREWORD: This dream was posted by David Reeve Sward on Usenet in
+the group comp.sys.ibm.pc.games.action on Tuesday, November 2, 1993.
+
+----------
+A few days ago I awoke in the middle of a dream about DOOM...!  I was
+firing the shotgun at a pixelated (yes, my dream was pixelated) demon
+when my alarm clock went off (well, it turned the radio on :).  Haven't
+seen any alpha or beta version, only the screen shots.  Time to schedule
+an appointment with a local shrink...
+
+I can't imagine what shape I'll be in once the game is actually released :).
+----------
+
+[3-2]: The Mythical Beta Releases
+=================================
+        FOREWORD: This dream was posted by Christopher Johnson on Usenet in
+the group comp.sys.ibm.pc.games.action on Tuesday, November 2, 1993.
+
+----------
+Strange enough, I had a dream about DOOM last evening, too.  I dreamt that I
+had found the mythical beta release version lying around on a FTP site,
+downloaded it, and actually got to play it before anyone else.  Now, I know
+I could just do this anyways, but I have too many morals.
+What are you doing to us, Jay, now we're DREAMING about getting
+DOOM... SIGH..
+---------
+
+[3-3]: You Don't Take Mastercard?!
+==================================
+        FOREWORD: This dream was posted from szwells@hamlet.ucdavis.edu
+on Usenet in the group comp.sys.ibm.pc.games.action on Tuesday,
+November 2, 1993.
+
+----------
+        While you all were dreaming, I was having some serious nightmares.
+DOOM was released early and I went down to buy it ASAP.  When I opened my
+wallet, it was empty.  And they wouldn't accept credit or personal checks...
+I spent the rest of the night trying to scrounge up the cash to buy it.
+It was not a pretty sight!
+----------
