@@ -1,53 +1,55 @@
+
  --------------------------------------------------------------------
-  DESIGN10.FAQ -- Frequently Asked Questions about DOOM Level Design
+  DESIGN11.FAQ -- Frequently Asked Questions about DOOM Level Design
  --------------------------------------------------------------------
-  Version 1.0, 8 June 1994.       Editor: Tom Neff <tneff@panix.com> 
- 
+  Version 1.1, 13 June 1994.      Editor: Tom Neff <tneff@panix.com>
+
+
 INTRODUCTION
 ------------
- 
+
   This is a FAQ for DOOM level design in general, not how to use a
 particular editor.  If you want to know about playing DOOM rather than
 designing new levels for it, read the DOOM FAQ (see Appendix B).
- 
+
   Designers should also get the Unofficial DOOM Specs (see Appendix B).
- 
+
   Contributions to this document are welcome (see Appendix C).
- 
+
   The sections below are: EDITORS, WALLS, SECTORS/ROOMS/FLOORS/CEILINGS,
 DOORS, TAGS/TRIGGERS/EFFECTS, MONSTERS/THINGS, LEVEL MAPS,
 GRAPHICS/SOUNDS, and OTHER ERRORS.  The Appendices are: THE 10 MOST
 COMMON DESIGN ERRORS, GETTING ESSENTIAL FILES, CONTRIBUTING TO THIS
-DOCUMENT, SOUNDS BY NUMBER, and SOME CURRENT LEVEL EDITORS. Questions
-and paragraphs are numbered for reference.
- 
- 
+DOCUMENT, and LEVEL DESIGN SOFTWARE LIST. Questions and paragraphs are
+numbered for reference.
+
+
 1. EDITORS
 ----------
- 
+
   [1-1] What's the best level editor?  Where can I get Editor X?
- 
-  A. Try them out and decide for yourself.  See Appendix E for a list of
+
+  A. Try them out and decide for yourself.  See Appendix D for a list of
 the current popular editors.  They are all found on the primary DOOM FTP
 sites, which are listed in Appendix B.
- 
- 
+
+
 2. WALLS
 --------
- 
-  [2-1] I flagged a two-sided wall Impassible, but monsters and players
+
+  [2-1] I flagged a two-sided wall Impassable, but monsters and players
 can still shoot through it.  What's wrong?
- 
+
   A. Two-sided walls don't stop bullets/fireballs, no matter what flag
 bits you set.  To stop shots, you need either one-sided lines (void
 space) or a floor-ceiling mismatch high enough to block the line of
-sight.  "Impassible" only refers to motion by monsters or players.
- 
+sight.  "Impassable" only refers to motion by monsters or players.
+
 -----
- 
+
   [2-2] I set "Blocks Sound" on the lines surrounding a room, but monsters
 still seem to hear me.  What's wrong?
- 
+
   A. A sound you make will activate non-deaf monsters if they can hear it.
 Your sound fills your sector completely (even if it has non-contiguous
 "extents" - a potentially useful effect), then travels to sectors that
@@ -57,33 +59,33 @@ closed doors or other floor/ceiling cutoffs, and it will be "diminished"
 at two sided lines which have the "blocks sound" bit set.  It takes TWO
 (2) lines with "blocks sound" to stop the sound.  (This is confirmed by
 the comments in ID's released DOOMBSP code.)
- 
+
   So - place a thin "buffer sector" next to your room, with both lines
 flagged "Blocks Sound," and monsters on the other side of the buffer
 sector won't hear you.
- 
+
              -- with material from Richard Krehbiel <richk@netcom.com>
- 
+
 -----
- 
+
   [2-3] OK, I understand how sound blocking works and my monsters work
-properly, but why can *I* can still hear everything (monsters, shots, 
+properly, but why can *I* can still hear everything (monsters, shots,
 lifts, etc), even across "Blocks Sound" lines?
- 
+
   A. Sound blocking only affects monsters.  Human players can hear
 everything possible (if there is a physical sound path) without regard
 to line flags.  Sound does attenuate with distance, e.g., a distant lift
 will sound faint to you, a near one loud.  (Monsters hear perfectly at
 any distance.)
- 
+
 -----
- 
+
   [2-4] I wanted to make a doorway that LOOKS like a wall, by taking a
 passable two-sided line and giving it a Normal texture on one or both
 sides.  Then you could walk/shoot through it, hide behind it, etc.  But
 when I loaded my level and walked up to the secret wall, it looked like
 weird colored strings, and my PC slowed to a crawl.  What's wrong?
- 
+
   A. We call this the Medusa Effect - it looks like snakes and you turn
 to stone. :-)  It happens because you used a *multi-patch* texture on
 the Normal of your passwall.  A fuller explanation of patches and
@@ -96,102 +98,168 @@ ASHWALL.  Examples of multi-patch textures that won't work are STARTAN3,
 COMPBLUE, and WOODSKUL.  A complete list (TEXPATCH) of textures and the
 patches that make them up is available on major DOOM archive sites (see
 Appendix B).
- 
+
 -----
- 
+
   [2-5] I got some strange colored dots and lines on some of my walls, but
 I wasn't trying to make anything secret or strange.  My PC seems to run at
 full speed and the walls function normally, but they look funny.  What
 did I do?
- 
+
   A. We call this Tutti Frutti effect (TFE).  It happens for one of two
 reasons: either you used a short texture (less than 128 high) on a
 taller wall, or you used a transparent texture (like MIDGRATE) on an
 Upper or Lower surface, instead of the Normal surface.
- 
+
   The "short texture TFE" happens because textures are only *vertically*
 tiled on 128 pixel boundaries.  If your wall is taller than your texture
 and the texture is less than 128 high, DOOM fills in the extra pixels
 with quasi-random garbage, hence the colored tutti frutti.  You often
 see this when designers put "STEPx" on 20-24 high steps.
- 
+
   The "upper/lower holes TFE" happens because Upper and Lower surfaces
 actually have *nothing* behind them, so DOOM has nothing to show through
 the holes; hence random garbage or tutti frutti.
- 
+
 -----
- 
+
   [2-6] A wall in my level looks strange - it seems to flash rapidly
 with lots of overlapping textures and pictures from elsewhere in my
 viewscreen.  What did I do wrong?
- 
-  A. This is the infamous Hall Of Mirrors (HOM) effect.  You omitted
-a necessary texture: either the Normal of a one-sided line, or the
-Upper/Lower of a side whose upper/lower surface is exposed to air.  Many
-editors will catch this error nowadays, but you can still run into it in
-the case where a lift or floor/ceiling movement exposes a surface that
-was "originally" covered in the editor.  Note that there are two other
-ways to get a limited HOM effect: see [8-1].  Those are DOOM engine
-bugs, but missing-texture HOM is all your fault.
- 
+
+  A. This is the infamous Hall Of Mirrors (HOM) effect.  You probably
+omitted a necessary texture: either the Normal of a one-sided line, or
+the Upper/Lower of a side whose upper/lower surface is exposed to air.
+Many editors will catch this nowadays, but you can still run into it
+when a lift or floor/ceiling movement exposes a surface that was
+"originally" covered in the editor.
+  Note that there is another way to get Hall Of Mirrors, from too many
+lines in view: see [9-1].
+
 -----
- 
+
   [2-7] There is a place in my level where the whole screen flashes for
-a moment, usually black but sometimes in a pattern.  If you keep
-walking, it vanishes.  What's wrong?
- 
-  A. That's the Flash Of Black (FOB) or "moire" error.  It's another
-DOOM engine limit, triggered by going from one sector to another where
-the ceiling (or floor) height difference is greater than about 1024.
-It's harmless but disturbing.  There is no real workaround, except not
-making such a huge transition in floor/ceiling heights if you can avoid
-it.  (You could insert a couple of thin "doorway" sectors with ceilings
-stepped up 512 at a time...) This is supposedly fixed in DOOM 1.4.
- 
-                        -- with material from Geoff Allan (DoomEd author)
- 
- 
-3. SECTORS/ROOMS/FLOORS/CEILINGS
---------------------------------
- 
+a moment, usually in random hash but sometimes in a pattern.  If you
+keep walking, it goes away.  Am I hallucinating?
+
+  A. That's the "Moire'" or "Flash Of Black" error.  It's another
+DOOM bug/limit, triggered by getting close to a wall in a very tall
+room.  The effect first kicks in at about 559 units high, and gets worse
+(you see it farther from the wall, and stay in it longer) as the room
+gets taller.  (The "pattern" you see is actually your old room's ceiling
+texture, repeated forever at a great distance above and below you, as
+though you were floating in some vast Stargate.  Cosmic, man!)
+
+  If you don't really NEED the tall room, get it below 559 high.  (Some
+people make F_SKY1-ceiling exteriors very tall, for example, because
+they figure "why not?"  Answer: moire' error is "why not.")  If you must
+have it, accept the (harmless) error, or else work your way down to
+below 559 high with steps up (constant ceiling) before exiting the room.
+
+  This is supposedly fixed in 1.4.
+
+-----
+
+  [2-8] Some of my level's walls behave strangely.  If you stand on the
+edge, or in the corner, of this *big* room I built, you can SEE the wall
+sort of "jump" and slide around.  If you shoot from there, the bullets
+sometimes stop right in front of your face!  What did I do?
+
+  A.  This is the Long Wall Error (LWE).  Your wall is thousands of units
+long, right?  That gives the DOOM engine fits with round-off error
+when it tries to compute and display the wall's position relative to
+you.  The blocked shots are from the "real" wall right in front of your
+face!  The solution is simple: break up long lines.  Keep them under
+1024.  If you choose 768 or 512 unit long "segments," you will never
+have a problem with X offsets in the texture tiling.
+
+
+3. SECTORS/ROOMS/FLOORS/CEILINGS/STAIRS
+---------------------------------------
+
+
   [3-1] Is it possible to make a two-story area, where you could walk
-over or under a platform?
- 
-  A. Not really - that's a limit of the DOOM engine.  Only one sector can 
+over or under another player?
+
+  A. Not really - that's a limit of the DOOM engine.  Only one sector can
 occupy a given spot on the (2-D) map.
- 
+
   You can do some fairly convincing imitations, though.  Two- or
 three-"story" buildings have been done, with transporters placed in the
-middle of the "up"/"down" staircases.  Criss-crossing mazes on two or
-three levels (see OCTAGON) have been done, where you jump over
+middle of the "up"/"down" staircases or lifts.  Criss-crossing mazes on
+two or three levels (see OCTAGON) have been done, where you jump over
 "trenches" while running the upper levels.
- 
+
   You can also make things that LOOK like floating platforms, even
 though you can't go both over and under them.  Judicious use of F_SKY1,
 uppers and lowers does the trick.
- 
+
 -----
- 
+
   [3-2] I set a sector's type to Light Pulsates Smoothly, but it doesn't.
- 
+
   A. First, some versions of some editors got the pulsating sector type
 wrong.  It is type 8.  Second, the smooth pulsing goes from the initial
 brightness level *DOWN TO* the lowest adjacent brightness, and then back
-up.  If the type-8 sector is at or below the brightness of adjacent
+up.  If the type-8 sector is at or below the brightness of all adjacent
 sectors, nothing will happen.
- 
- 
+
+-----
+
+  [3-3] I made a Teleporter, but I can't get the "pentagram" floor
+texture to line up properly with the teleporter pad.  Aren't there X and
+Y offsets for floor textures?
+
+  A.  No, floors and ceilings are tiled on a fixed 64x64 grid throughout
+the level, regardless of where you draw your lines.  In order to make
+the various patterns align properly, you need to build your ceilings,
+telepads, etc, *on* the 64x64 grid or some multiple thereof.  Most
+editors have some kind of grid overlay that can make this easier.
+
+-----
+
+  [3-4]  How do I make stairs?
+
+  A.  Consult your editor's documentation: some have canned procedures
+for this, and some do not.  In general, stairs must be shallow enough to
+climb and wide and tall enough to fit through.  Remember that the HIGHER
+step riser's floor must be at least 56 units below the LOWER adjacent
+ceiling, or you won't fit.  You can only climb up 24 units at a time.
+
+
 4. DOORS
 --------
- 
-  [4-1] I built a door in a high-walled room, and now the door texture
+
+  [4-1] How do I make a door?
+
+  A. Your editor's documentation probably covers this, including whatever
+specific keys, buttons, menu selections (and so on) that you need to use
+to do it.  But in general, for the simplest, "classic" Door you need to
+have a sector lying between two other sectors.  The Door sector itself
+should have its Ceiling set down to equal its Floor.  The two "door
+face" lines should be two-sided, with their right (first) sides facing
+outward; those right sides should have no Normal texture, but an Upper
+texture of something "doorish" like BIGDOOR2.  The Door face lines
+should have a "Door" Type number like 1, and Tag of 0.
+  The other two ("door jamb") lines should be one-sided (void space
+behind them), with a Normal texture like DOORTRAK and the "Unpeg
+Upper" flag set.  (This holds the DOORTRAK still while the door goes up
+and down.)  The lowest of the adjacent sectors' ceilings must be at
+least 64 higher than the highest adjacent floor, or you will not be able
+to walk through the door.  (The rising door stops 8 below the lowest
+adjacent ceiling, and you are 56 high.) There are many more complicated
+kinds of door and door-like features, but this is the simplest.
+
+-----
+
+  [4-2] I built a door in a high-walled room, and now the door texture
 "repeats" all the way to the ceiling.  It's very ugly.  How do I get
 rid of it?
- 
+
   A. Recess the door.  Add a mini-"hall" leading from your main room,
 with a lower ceiling height to match the texture height of your door, and
 place the door in that.
- 
+
         |
         +-+-+-------
         : |d|
@@ -200,37 +268,37 @@ place the door in that.
         : |r|
         +-+-+-------
         |
- 
+
 -----
- 
-  [4-2] I added a door but when I play the level, the door is already open,
+
+  [4-3] I added a door but when I play the level, the door is already open,
 and it makes an opening noise but it won't close.  What gives?
- 
+
   A. It's hard to get this to happen.  You may have a Tag number set to
 something inappropriate: for most Door types, it should be zero.  Make
 sure the activating lines face "outward" (right side facing the player).
 Most doors start out closed (floor = ceiling), but they don't have to.
- 
+
   Note: Even if a door starts out partly open, it will still close all
 the way (floor=ceiling).
- 
+
 -----
- 
-  [4-3] How can I keep monsters from opening a door?
- 
+
+  [4-4] How can I keep monsters from opening a door?
+
   A. One way is by requiring one of the Keys (red/blue/yellow) to open
-the door.  Monsters don't have keys.  Another way is by putting a thin
-high step in front the door.  Monsters hate that.  Of course you could
-mark it "monsters don't cross" but then they won't go through either way
-even if it's open, which might not be the effect you want.
- 
- 
+the door.  Monsters don't have keys.  This is the only simple way to
+keep monsters out or let them in under *your* control.  If you want to
+keep them out of a door, period, you could put a thin high step in front 
+the door, or mark one of the door lines with the BLOCKMONSTERS flag.
+
+
 5. TAGS/TRIGGERS/EFFECTS
 ------------------------
- 
+
   [5-1] I can't get my Tags to work right.  I put the sector number I
 wanted into the Linedef...
- 
+
   A. Hold it right there!  :-)  Tags are perhaps the most misunderstood
 DOOM feature.   Tags are NOT sector numbers and they are NOT line
 numbers!  They are *arbitrary* numbers, 1 to 32767, that are *shared* by
@@ -248,11 +316,11 @@ and the affected sector (or sectors).  Then later, when you walk over
 that line, DOOM says oh, that had Tag #7, now where are all the Tag #7
 sectors?  and when it finds them, whatever their actual sector numbers,
 it turns out their lights.
- 
+
 -----
- 
+
   [5-2] Then what's a Platform?
- 
+
   A. Nothing -- as far as DOOM is concerned, that is.  This isn't an
 editor-specific document, but one package added somewhat to the Tag
 confusion by (mis-)renaming them "Platforms" (which sounds like a raised
@@ -261,90 +329,179 @@ Lift" were all you needed to know.  But Tags can be used in complex and
 interesting ways: several groups of lines can perform different effects
 on the same group of Tagged sectors, for example.  If your editor limits
 how you can use the powerful Tags facility, ask the author to change it.
- 
- 
+
+-----
+
+  [5-3] I set a line to turn the lights out on a sector, but when I walk
+across it, almost ALL the lights go out in my level!  What in the world
+have I done now?
+
+  A. You forgot to set the Linedef Tag number (and the affected Sectors)
+to something NONZERO. If DOOM sees a Tag of zero (0) on a trigger
+line, it will find all the sectors with the SAME (0) Tag (i.e., most of
+the sectors on your level) and do the action on all of them.
+
+  There is some confusion about when and how Tags should be used.  There
+are only TWO kinds of trigger lines that don't require a Tag: "true"
+Doors (types 1, 26, 31, etc - see the Unofficial Specs) and the End Level
+group.  Every other kind of special linetype WILL use the Tag stored in
+its Linedef.
+
+-----
+
+  [5-4]  I have a lift in front of a door, and sometimes I can't get the
+door to open.  What's wrong?
+
+  A. When two trigger lines are in front of you, DOOM always chooses
+the closer of the two.  What's probably happening is that your lift is
+so narrow that its trigger line blocks the door's.  Try setting the lift
+well back from the door, or using a separate wall switch for the door.
+
+  Of course, this can be an advantage too: to keep people from pressing
+the "back" of a switch (in a cooperative exit, for instance), surround
+it with innocuous special linetypes that do something like open a door
+or turn the already-bright lights up.
+
+  [5-5]  How do I make a teleporter?
+
+  A. This is covered in a lot of tutorials and editor manuals, but
+briefly: You need at least one departure Line, one arrival Sector and
+one destination Thing.  The line can be anywhere, must be two-sided, and
+must have its linetype set to 39.  Its Tag number should be set to match
+the Tag of the arrival sector.  The sector can be anywhere, should be
+tall enough to accomodate a player, must share the same Tag number and
+must be the only Sector with that Tag (although there can be as many
+Lines as you like).  Inside the arrival Sector must be exactly one Thing
+of type 14 (Teleport exit).
+  With those pieces in place, you're set: a player or monster walking
+from Right to Left (1st side to 2nd side) across the line will be
+teleported onto the Thing in the destination Sector.  The Direction of
+the destination Thing will be the direction you face on arrival.
+
+-----
+
+  [5-6] I wanted to make a sector that moves and changes texture, using
+one of those exotic linetypes my editor tells me about.  But when I hit
+the switch, the sector gets the wrong texture!  How do I fix that?
+
+  A. Most "change texture" triggers modify the tagged (target) sector
+floors to match the texture on *side 1 of the line where the switch is*.
+Put the texture you want on that side, and the tagged sector will follow
+suit.
+
+
 6. MONSTERS/THINGS
 ------------------
- 
+
   [6-1] I built a hallway/room that my monsters refuse to enter.  They
 stamp around at the entrance but that's it.
- 
+
   A. Make sure your hall is wide and tall enough!  The Unofficial
-Specs [4-2-1] has a list of monster heights and widths.  What's more, if
+Specs [4-2-1] have a list of monster heights and widths.  What's more, if
 a hall is *just* wide enough for a monster, it's less likely to enter
 than if it's *plenty* wide enough.
- 
+
   Also be careful about step-downs and step-ups.  Monsters will not step
 up/down too far onto narrow steps.  If you want a monster to go up or
 down more than 16, make sure there's plenty of room on both sides of the
 riser line.
- 
+
+  And of course, make sure you didn't accidentally mark the entrance
+with BLOCKMONSTERS or something, by accident in the editor.
+
 -----
- 
-  [6-2] I put some demons in a room but they don't move, they just stand
+
+  [6-2]  I put some demons in a room but they don't move, they just stand
 there and twitch, although they scream when I shoot them.  How did that
 happen?
- 
+
   A. You probably placed them too close together when you laid out your
 level.  Monsters have to be separated from each other (AND from nearby
 walls) by at least their own width, or they freeze in place.  (If you
 kill all of a monster's too-close neighbors, it will usually free the
 monster to attack you.)
- 
+
   The other possibility is that your ceiling is too low.  See the
 Unofficial DOOM Specs (Appendix B) for monster widths and heights.
- 
- 
+
+-----
+
+  [6-3]  There's this great "zoo room" I built with a hundred demons in
+it!  What a blast to mow your way through so much alien flesh.  But it's
+weird, like some of the monsters "flicker" in and out of view.  Should
+that be happening?
+
+  A. DOOM can only keep track of 64 sprites in your view at once.  If
+you have more than that, some will fail to display in each frame,
+effectively at random.  (This includes things like torches and barrels.)
+The more sprite overload, the greater the chance that any given sprite
+will be "invisible" at a given moment.  Put 200 imps in a room and each
+one will be "gone" 2/3 of the time.
+
+  The workaround is, quite simply, to design your level in a way that avoids
+sprite overload.  Instead of 100 troopers in a room, use 50 and keep the
+hanging corpses to a minimum in that area... etc.
+
+                                    -- with material from Vesselin Bontchev
+
+
 7. LEVEL MAPS
 -------------
- 
+
   [7-1] When I play my level and switch to Map mode, it only shows me a
 little bit of the local area I'm in, even when I hit "-" a lot or "0" to
 Zoom Out.  The Id levels seem to work OK and some of the levels I've
 downloaded do too.  What am I doing wrong?
- 
+
   A. The culprit is the resource called BLOCKMAP.  It is described in
 the Unofficial Specs [4-11].  Some editors don't build a good one.  You
 can usually overcome this by creating a few dummy "sectorlets" or just
 linedefs out at the "corners" outside of your real level map area.
 Otherwise, you'll have turn Follow off and scroll around the map.
- 
+
 -----
- 
-  [7-2] I designed a level that's about as complicated as one of the 
-original ID levels - roughly the same number of rooms, monsters, etc.  
+
+  [7-2] I designed a level that's about as complicated as one of the
+original ID levels - roughly the same number of rooms, monsters, etc.
 But mine plays much *slower* than the originals!  What's wrong?
- 
-  A. There is a resource called REJECT that quickly tells DOOM whether
-sectors can "see" each other, allowing many expensive line-of-sight
-checks to be skipped.  Without REJECT, DOOM must constantly check each
-monster to see whether it has a line of sight to your location.  On a
-level with a lot of monsters, this can be time consuming.
- 
+
+  A. Remember that DOOM only loads PWADs when it needs them, so there
+will be some inevitable disk overhead when your level first starts,
+and occasionally thereafter if DOOM needs to refer to other entries in
+your WAD file.  (If you have enough memory, DOOM actually improves with
+about 1 Megabyte of disk cache, something that's not widely known.)
+
+  More importantly, there is a resource called REJECT that quickly tells
+DOOM whether sectors can "see" each other, allowing many expensive
+line-of-sight checks to be skipped.  Without REJECT, DOOM must
+constantly check each monster to see whether it has a line of sight to
+your location.  On a level with a lot of monsters, this can be time
+consuming.
+
   As of this writing, no DOOM level editor generates a real REJECT
 resource, although two standalone programs (IDBSP and REJECT10) will
-attempt to build one for your level.  See Appendix E.
- 
- 
+attempt to build one for your level.  See Appendix D.
+
+
 8. GRAPHICS/SOUNDS
 ------------------
- 
+
   [8-1] Some of these DOOM levels I download have custom graphics.  How
 can I do that?
- 
+
   A. If you can create or find a GIF file of the right size, there is a
-utility called DMGRAPH (see Appendix E) that will insert it into your
+utility called DMGRAPH (see Appendix D) that will insert it into your
 WAD file.  You are on your own as far as picking a Windows or DOS based
 graphics editor -- there are a lot of them, preferences vary widely, and
 if you've never made a picture before, you're probably not ready to use
 them in your DOOM levels.  Once you have a picture, the DMGRAPH
 documentation tells you more about how to use it.
- 
+
 -----
- 
+
   [8-2] I wanted to change STARTAN3, but when I ran the DMGRAPH utility,
 it said "entry not found."  What's wrong?
- 
+
   A. As described in the Unofficial Specs (see Appendix B), textures are
 built out of graphic "patches."  DMGRAPH 1.1 (the latest version at this
 writing) only deals with patches, which have their own names.  STARTAN3
@@ -352,12 +509,12 @@ is a texture name.  A few textures are composed of exactly one "patch,"
 allowing you to do a full substitution, but others are built of three or
 five or more "patches."  A future version of DMGRAPH may (or may not)
 address this situation.
- 
+
 -----
- 
+
   [8-3] I can change the wall graphics just fine, but when I try to
 change a floor or ceiling, DOOM crashes.  What am I doing wrong?
- 
+
   A. Not much, unfortunately.  As the DMGRAPH documentation points out,
 only some kinds of graphic patches can be supplied in PWAD files.
 Floors, ceilings and sprites (Imp, Torches etc) cannot.  The only thing
@@ -365,95 +522,91 @@ you can do is patch them in the *original* DOOM.WAD file.  You could
 supply the GIFs, a copy of DMGRAPH and a batch file along with your
 custom level, so that the user can insert the graphics him/herself, but
 many users don't like patching their main WAD file.
- 
+
 -----
- 
+
   [8-4] I got a utility (DMAUD) that replaces DOOM sounds, but I don't
 know what numbers go with what sounds, and the Unofficial Specs don't
 say.  What are the various sound names?
- 
-  A. This should be added to the Unofficial Specs but hasn't yet.  Nor
-it there a dedicated separate file uploaded to FTP sites, that I've
-seen.  So I've included the table as Appendix D.  The source (I don't
-know if also the author) was Bob Craycroft.
- 
- 
+
+  A. Ask DMAUD: just type "dmaud -l" at the command prompt, and you'll
+see a list of them.
+
+
 9. OTHER ERRORS
 ---------------
- 
+
   [9-1] I have a level that passes all my editor's consistency checks, and
 looks clean to me, but when I play it, I get strange flashing effects on
 a few of the walls, what I think they call "Hall of Mirrors."  What's
 wrong?
- 
+
   A. First, make sure you built a good node tree with the BSP utility.
 (See Appendix B for where to get it.) If you used BSP and it still
 happens, and you're *sure* you didn't omit any required textures, you
 may have hit a DOOM engine limit.
- 
-  The first limit is how many two-sided lines you can look across.  (Not
-how many are in a room overall, but how many you can actually shoot an
-arrow across in a given direction.)  If you gaze across more than about
-16 (sixteen) two-sided lines, you will probably see the Hall of Mirrors
-(HOM) effect somewhere in the room.  It might not be in the direction of
-the 2S lines, but somewhere on the edge of the picture.  If you hit this
-limit, find a way to simplify your room's layout or interpose some void
-space (one-sided lines) so you can't look across so many 2S's.
- 
-  The second limit has to do with looking at superlong lines.  If you
-have a line that's longer than about 1024 units, break it up by
-inserting vertexes in the middle.  Id's own E1M8 (outside the "star" in
-the courtyard) demonstrates this limit.
- 
- 
+
+  The limit has to do with how many lines DOOM can show you at a time.
+If you have too many lines in sight at once (128 in DOOM 1.2, to be
+increased to 192 in DOOM 1.4) the extra sides will not be drawn, and you
+will tend to see the Hall of Mirrors (HOM) effect somewhere in the room.
+It will probably be somewhere in the distance.  If you hit this limit,
+find a way to simplify your room's layout or interpose some void space
+(one-sided lines) so you can't see so many lines at once.
+
+  [9-2] Some of my level's walls seem to "jump around"...
+
+  A.  It might be Long Wall Error.  See [2-8].
+
+
 APPENDIX A.  THE 10 MOST COMMON DESIGN ERRORS
 ---------------------------------------------
- 
+
 Some of these are show-stoppers, i.e., DOOM will crash if you try to run
 the level; others will let you run DOOM but game play is screwed up;
 others are just ugly; and a few are common stylistic complaints.  All
 are encountered often in user-written levels, or asked about in
 discussion forums, or both.  There is no particular order.
- 
+
   [A-1] Bad Wall Effects.  This includes HOM (Hall Of Mirrors), caused
 by missing textures (see [1-7]); Medusa Effect, caused by incorrect
-Normal textures on 2-sided walls (see [1-5]); Tutti Frutti, caused
-by short Normal or transparent Upper/Lower textures (see [1-6]); and
-FOB (Flash of Black) or "moire", caused by huge changes in ceiling
-height (see [1-8]).
- 
+Normal textures on 2-sided walls (see [1-5]); Tutti Frutti, caused by
+short Normal or transparent Upper/Lower textures (see [1-6]); Long Wall
+Error, from superlong lines; and Moire Error, caused by ceiling changes
+near tall rooms (see [1-8]).
+
   [A-2] Wall Pegging.  Wall faces exposed by rising/lowering ceilings or
 floors (including door side tracks) should usually have the Unpegged
 Lower/Upper bits set in their Linedef.  This keeps the side textures
 from "following" the adjacent rising/lowering sector.  Many, many user
 level designers forget to unpeg their door tracks.  Just cosmetic, but
 contributes to the sense of realism or lack thereof.
- 
+
   [A-3] Lines/Vertexes that Cross or Coincide.  A show-stopper.  If two
 or more vertexes occupy the same position, or if two or more lines
 cross or lie "on top of" one another, DOOM's engine will crash trying to
 work out the sector math.  Several editors are capable of checking for
 this; if you get crashes, use one.
- 
+
   [A-4] Slowdown from Monster/Two-Sided Line Glut.  Not a crash but a
 playability issue.  See [6-2].  Designers should try their levels on
 less powerful PC's and/or at full screen resolution to see whether some
 rooms are unacceptably slow.
- 
+
   [A-5] Unaligned Textures, both X and Y.  Just cosmetic, but important
 for realism.  If your X textures are properly aligned and you split a
 line or drag vertexes around, you will probably need to re-align.  A
 tedious job, but some editors help automate it for you.  (But note: It's
 considered polite to offset secret door textures a little bit -- say 2
 pixels -- just enough so that an attentive player might notice it.)
- 
+
   [A-6] Missing Player Starts, Insufficient Sectors.  Another
 show-stopper.  Every level must have a minimum of two (2) sectors.  It
 must also have a Player 1 Start if you are going to play non-Deathmatch;
 Players 2-4 Start if you will be playing Cooperative multiplayer; and
 four (4) Deathmatch starts if you will be playing Deathmatch.  Otherwise
 DOOM will crash.
- 
+
   [A-7] Floor/Ceiling Mismatch.  Usually caused by raising/lowering a
 floor but forgetting the associated ceiling, or vice versa.  Sometimes
 caused by accidentally "including" an unintended sector in a
@@ -463,199 +616,139 @@ floor, you either can't enter or (if you are already there, via
 teleport, floor/ceiling movement or start of play) you will be stuck.
 This is sometimes an issue on stairs: the LOWER ceiling must be at least
 56 higher than the HIGHER floor, or you cannot pass between two sectors.
- 
+
   [A-8] Missing/Wrong Tag Numbers.  When tagged operations like Lights
 Out or Raise Floor get the tag number wrong (in the activating Linedef),
 the results are usually awful.  The whole level "rises" or crushes or
 something else you don't want.  This can be tough to spot at first in
 gameplay.  Ideally, editors should check for this.
- 
+
   [A-9] Monsters Too Close To Each Other or to Walls.  See [5-2].   You
 must also be careful to place Deathmatch and multi-player Start points
 far enough from walls, or arriving players will be immobilized.
- 
-  [A-10] Dead End Pits.  Perhaps a stylistic argument, but at least be
+
+  [A-10] Dead Ends.  Designers sometimes leave out an EXIT switch, which
+makes it hard to play a level in Deathmatch or as part of a larger
+episode.  Also, perhaps this is a stylistic argument, but at least be
 AWARE of which places (if any) on your level have "no escape" for the
 unwary user who enters.  ID's original levels do have a couple of these,
 but many users don't like them.
- 
- 
+
+
 APPENDIX B.  GETTING ESSENTIAL FILES
 ------------------------------------
- 
+
   The most essential document for level designers is the Unofficial DOOM
 Specs (currently 1.3, to be updated to 1.4 after DOOM 1.4 is released),
 written by Matt Fell (matt.burnett@acebbs.com) and distributed by Hank
 Leukart (ap641@cleveland.freenet.edu).  The next most important is the
 DOOM FAQ itself, also from Hank Leukart, and currently at 5.6.
- 
+
   Both documents are widely distributed on the various DOOM BBS's,
 Usenet newsgroups, game boards of online services, and anonymous FTP
 sites supporting DOOM players.  The Unofficial Specs are usually stored
 as DMSPEC13.ZIP and the DOOM FAQ is DMFAQ56.ZIP.  Some services may use
 slightly different names.
- 
+
   Other useful documents include TEXPATCH.ZIP, a list of texture names
 and the graphic patches that make them up.
- 
-  A list of WAD editors and utilities appears in Appendix E.
- 
+
+  A list of WAD editors and utilities appears in Appendix D.
+
   Where to get this stuff?  Try one of the following FTP sites:
- 
+
+    infant2.sphs.indiana.edu  /pub/doom/wad_edit
+    wuarchive.wustl.edu       /pub/msdos_uploads/games/doomstuff
     ftp.uwp.edu               /pub/incoming/id
                               /pub/msdos/games/id/home-brew/doom
-    wuarchive.wustl.edu       /pub/msdos_uploads/games/doomstuff
-    infant2.sphs.indiana.edu  /pub/doom/wad_edit
- 
- 
+
+
 APPENDIX C.  CONTRIBUTING TO THIS DOCUMENT
 ------------------------------------------
- 
+
   If you have a correction, contribution or suggestion, please mail it
 to me, the editor, at one of these addresses:
- 
+
     tneff@panix.com           (Internet)
     uunet!panix!tneff             (UUCP)
     >INET:tneff@panix.com   (CompuServe)
- 
+
 or any other Internet mail gateway you can reach.  I will
 read all submissions and (if I use them) credit the author.
- 
-  Remember, this is a level design FAQ for things that users really ask.
-It is not for product advertisements, jumbo ASCII graphics, opera
-librettos, or other noise.  If you have discovered something new and
-interesting about DOOM, mail it to Matt Fell for the next Specs.  I only
-want material that answers frequent design questions.
- 
- 
-APPENDIX D.  SOUNDS BY NUMBER
------------------------------
-From: bob.craycroft@aquila.com (Bob Craycroft)
-Date: Fri, 29 Apr 94 08:12:00 -0600
- 
-Sound number  1: Pistol fire
-Sound number  2: Shotgun fire (with cock)
-Sound number  3: Shotgun cock
-Sound number  4: Chainsaw Start
-Sound number  5: Chainsaw Idle
-Sound number  6: Chainsaw with trigger pulled
-Sound number  7: Chainsaw hitting monster
-Sound number  8: Rocket Launcher firing
-Sound number  9: BFG900 Round exploding
-Sound number 10: Rocket / Fireball passing by
-Sound number 11: Rocket / Fireball hitting object
-Sound number 12: Lift activated
-Sound number 13: Lift stopping
-Sound number 14: Mechanical Door opening
-Sound number 15: Mechanical Door closing
-Sound number 16: Stairs rising
-Sound number 17: Switch closing
-Sound number 18: Switch
-Sound number 19: Player injured
-Sound number 20: Demon Soldier injured
-Sound number 21: Demon Soldier injured
-Sound number 22: Slop (What the name says)
-Sound number 23: Item pickup
-Sound number 24: Weapon pickup
-Sound number 25: Player hitting ground
-Sound number 26: Player / Monster teleport
-Sound number 27: Demon Soldier spotting Player
-Sound number 28: Demon Soldier spotting Player
-Sound number 29: Demon Soldier Spotting Player
-Sound number 30: Imp spotting Player
-Sound number 31: Imp spotting Player
-Sound number 32: Demon / Spectre spotting Player
-Sound number 33: Demon Lord spotting Player
-Sound number 34: Demon / Spectre clawing at Player
-Sound number 35: Demon / Spectre hitting Player
-Sound number 36: Player dying
-Sound number 37: Demon Soldier dying
-Sound number 38: Demon Soldier dying
-Sound number 39: Demon Soldier dying
-Sound number 40: Imp dying
-Sound number 41: Imp dying
-Sound number 42: Demon / Spectre dying
-Sound number 43: Demon Lord dying
-Sound number 44: Demon Soldiers nearby
-Sound number 45: Imps nearby
-Sound number 46: Demon / Spectre nearby
-Sound number 47: Player push on wall
-Sound number 48: End level explosion
-Sound number 49: Player punching
-Sound number 50: * Plasma Gun firing
-Sound number 51: * BFG9000 firing
-Sound number 52: * Cacodemon nearby
-Sound number 53: * Cyber Demon nearby
-Sound number 54: * Demon Spider nearby
-Sound number 55: * Evil Skull nearby
-Sound number 56: * Cacodemon dying
-Sound number 57: * Player Push on wall
-Sound number 58: * Cyber Demon dying
-Sound number 59: * Demon Spider dying
-Sound number 60: * Cyber Demon walking
-Sound number 61: * Demon Spider walking
-                 * registered DOOM only
- 
- 
-APPENDIX E: LEVEL EDITORS AND PROCESSING PROGRAMS
--------------------------------------------------
- 
-These are in alphabetical order.
- 
-  [E-1] BSP11TC.ZIP/BSP11W.ZIP/BSP11X.ZIP -- BSP 1.1 by Colin Reed.
-Takes level (.WAD) files and builds a NODES structure to make the level
-playable with DOOM.  Needed after many editors for best playability.
-Different versions with/without math coprocessor.
- 
+
+  Remember, this is a level design FAQ for things that users really ask
+about.  It is not for product advertisements, jumbo ASCII graphics,
+opera librettos, or other noise.  If you have discovered something new
+and interesting about DOOM, mail it to Matt Fell for the next Specs.  I
+only want material that answers frequent design questions.
+
+  I am grateful for the numerous contributions this document has already
+received from generous readers.  Where their material led directly to an
+entry or enhanced one, I have mentioned them by name.  I would also like
+to thank the "Doom Design Elders" for your patience and support.
+
+
+APPENDIX D: LEVEL DESIGN SOFTWARE LIST
+--------------------------------------
+
+These are in alphabetical order.  No endorsement of any particular
+product over its competitors is intended.
+
+  [E-1] BSP11.ZIP/BSP11W.ZIP/BSP11X.ZIP -- BSP 1.1 by Colin Reed.  Takes
+WAD files and builds a NODES structure to make the level playable with
+DOOM. Needed after many editors for best playability.  BSP11W is the
+Windows version, and BSP11X is a GCC+DOS-based version that uses a DOS
+extender to process huge WAD files fast.
+
   [E-2] DEU521.ZIP/DEU521GCC.ZIP -- Doom Edit Utility 5.21 by Raphael
 Quinet and Brendon Wyber.  A DOS-based level editor.  The GCC version
 edits bigger levels but doesn't run under Windows or OS/2.
- 
+
   [E-3] DE_260B4.ZIP -- DoomEd 2.60 Beta 4, by Geoff Allan.  A
-Windows-based level editor.
- 
+Windows-based level editor.  (Apparently 3.0 is nearing release.)
+
   [E-4] DMAPED30.ZIP -- DMapEdit 3.0 by Jason Hoffoss.  A DOS-based
 level editor.
- 
+
   [E-5] DMAUD11.ZIP -- DOOM Audio Editor 1.1 by Bill Neisius.  Extracts,
 replaces, and adds sound effect samples.
- 
+
   [E-6] DMDUMP09.ZIP -- DOOM Dump 0.9 by Steve Simpson.  Dumps levels
 out to text.
- 
+
   [E-7] DMGRAP11.ZIP -- DOOM Graphic Editor 1.1 by Bill Neisius.
 Extracts, replaces and adds graphic images.
- 
+
   [E-8] DMMUS10A.ZIP -- DOOM Music Editor 1.0a by Bill Neisius.
 Extracts, replaces and adds MIDI songs.
- 
+
   [E-9] DOOMBSP.ZIP -- Source for ID's own BSP Nodes builder.  Useful
 for seeing how they think.
- 
+
   [E-10] DOOMVB42.ZIP -- DOOMCAD 4.2 by Matt Tagliaferri.  A Windows
 based level editor.
- 
+
   [E-11] EWT.ZIP -- WAD Extended Tools by VeLS.  Views resources.
- 
+
   [E-12] MDE90B1.ZIP -- My DOOM Editor 0.90 by Patrick Steele.  A
 DOS-based level editor.
- 
+
   [E-13] MOVELEV2.ZIP -- Move Level 2.0 by Steve Simpson.  Displays and/or
 changes the episode and level of one or more WAD files.
- 
+
   [E-14] VNB1050.ZIP -- a node builder by Robert Fenske.
- 
+
   [E-15] WADED117.ZIP -- WadEd 1.17 by Matthew Ayres.  A DOS-based level
 editor.
- 
+
   [E-16] WADHAK.ZIP -- Wad Hacker by Roger Hayes.  A Windows-based
 resource viewer.
- 
+
   [E-17] WADSUP11.ZIP -- Wads_Up 1.1 by Gary Whitehead.  A Windows-based
 level editor.
- 
+
   [E-18] WT100.ZIP -- WAD Tools 1.0 by Jeff Miller.  A DOS-based WAD
 resource viewer/export/import utility.
- 
- 
+
+
                        * * * END OF FAQ * * *
