@@ -1,16 +1,236 @@
 
+                        DOOM Modem Help Version 2
+
+
+-------------------
+GENERAL INIT STRING
+-------------------
+
+
 Having problems with DOOM 1.2 serial?  I tried several modems and
-configurations.  The below string seemed to provide the most 
-consistent results across the widest number of modems.
+configurations.  The below init string seemed to provide the most 
+consistent results across the widest number of modems.  DOOM requires
+a 9600 bps connect speed.  A 2400 baud modem won't work.  There are
+some utilities which claim to allow 14.4 connect speeds, but I have
+not been able to get the modems to respond properly after using them.
+(I prefer to wait for an official patch from ID).
 
 AT &F S46=0 &K0 &Q0 &D2 &W
 AT Z H0
 
 
-Line 1 is the initialization string, which does the following:
+
+--------------------------------
+SPECIFIC MODEM BRAND INIT STRING
+--------------------------------
+
+
+Here is the much requested specific modem list.  If you have PROVEN
+connection methods and init strings, please send them to me so I can
+expand the list.
+
+
+Modem:                   Init:
+---------------------------------------
+
+Infotel 14.4             &F0 \N1 &D2 S37=F8
+
+Nuvotel IFX 14.4         &F \N1 &D2 
+
+UDS V.3223               &F \N1 \Q &D2
+
+UDS Fastalk 32BX         &F0 \N1 &D2
+
+Microcom AX              &F \N1 \Q0 &D2
+
+
+
+I will add to this list as soon as I get ABSOLUTE verification on other 
+modems.  Keep in mind, sometimes even these settings have to be tweaked 
+in order to work with different modems (see specific settings below).
+We have had some modems provide incredible smooth play when "tweaked" 
+properly.  If you have one you are confident with, please send me the
+modem vendor, version, and init string.
+
+
+------------------
+CONNECTION METHODS
+------------------
+
+Bascially, there are four effective ways to connect and play DOOM dialup:
+
+1.  Connect via the DOOM SETUP program.
+2.  Connect via command line options with the DOOM SERSETUP program.
+3.  Connect via a communication program and then with SERSETUP
+4.  Connect with redirected DOS commands and then with SERSETUP. 
+
+
+-----------------
+DOOM SETUP METHOD
+-----------------
+
+a.  Edit your MODEM.CFG file.  Change the first line (MUST be the first
+    line) to provide the proper init string for your modem.
+
+b.  Run the program SETUP in your DOOM directory.  Choose "Play network/
+    modem/serial..."
+
+c.  Choose Modem.
+
+d.  Tab to fields and set as desired.  The most important fields are
+    your COM port number.
+    
+e.  Finally, one side must "CALL" (supply phone #) and the other player 
+    must "Wait for Call".  
+    
+f.  After pressing F10, Your screen should clear.  Both sides should see 
+    the init string sent to there modem AND an exact match response.  If
+    you lock up no modem response or ERROR, you need to check your 
+    connection and modem init string.
+
+g.  Next, one side will dial the number.  The receiving (waiting) player
+    should see "Waiting for Call..." displayed.
+
+h.  Upon ring, the receiving modem should issue an ATA and the modems 
+    connect.
+
+i.  This is the most common lock up point.  The modems connect, but the
+    game never detects the other player.  Did both sides connect at a 
+    true CONNECT 9600?  Did you see the connect message from your modem?
+    (Look at modem command X4).  Are both modems in direct mode? (Look at
+    modem command \N1 or &Q0).  Is there a flow control or break option
+    causing a problem?  (Look at modem commands &K, \Q, \G, \K, &R).  The 
+    modem commands are described in more detail in a later section.  Also
+    check the IRQ settings for your COM port.  Is everything reporting 
+    correctly?  You can run the utility MSD (comes with Windows) to get
+    precise information on your COM ports and their IRQs).
+
+j.  After each side detects and connects, the screen will clear and the
+    blue ribbon will display across the top.  The normal DOOM startup and
+    initialization will take place.
+
+k.  Finally, each side display a message indicating it is SENDING or
+    LISTENING for the other player.  The same troubleshooting points above
+    apply here.  This is the next point of common lock up.
+
+l.  The last point where a lock up is encountered is right after the game
+    "starts".  Each player is frozen.  Look here for not enough flow 
+    control options set.
+
+m.  Occasionally, I have run into CONSISTENCY FAILURES and 
+    NETTICS > BACKUPTICS.  I currently have no solution for consisitency
+    failures -- although it does seem to be more prevelant with specific 
+    modem combinations.  The NETTICS > BACKUPTICS seems to be due to
+    over-zealous modem tweaking.  Put some flow control back in and let
+    the program and/or modem throttle the data.
+
+
+----------------------------
+COMMAND LINE SERSETUP METHOD
+----------------------------
+
+a.  This assumes you have read the standard connection information and
+    edited your MODEM.CFG file, etc.
+
+
+b.  The caller should start SERSETUP.  For example:
+
+    SERSETUP -com1 -dial 555-1212
+
+c.  The receiver should start SERSETUP.  For example:
+
+    SERSETUP -com1 -answer
+
+d.  Of course, you would specifiy YOUR COM port and the correct number to
+    dial.  Additional options can be specified, but just stick with the
+    basics when troubleshooting.  See the DOOM README info for more on 
+    command line options.
+
+
+----------------------------
+COMMUNICATION PROGRAM METHOD
+----------------------------
+
+a.  This assumes you have read the standard connection information and
+    edited your MODEM.CFG file, etc.
+
+b.  Each side should start a communication program like Qmodem or Procomm.
+    Each side should manually issue the AT commands to set the modem.  For
+    example:
+
+    AT &F \N1 &D2
+   
+c.  The caller should dial the receiver.  For example:
+
+    ATDT 555-1212
+
+d.  When the phone rings, the receiver should issue the AT answer command.
+    For example:
+
+    ATA
+
+e.  After the modems connect, exit the program (try to leave the connection
+    up or leave DTR high.  You may have to alter the &D2 to a different
+    value to cause the modem to stay connected).
+
+f.  Each side should start the SERSETUP.  For example:
+
+    CD \DOOM
+    SERSETUP -com1
+
+g.  Of course, you would specifiy YOUR COM port and the correct number to
+    dial.  Additional options can be specified, but just stick with the
+    basics when troubleshooting.  See the DOOM README info for more on 
+    command line options.
+
+
+-----------------------------
+REDIRECTED DOS COMMAND METHOD
+-----------------------------
+
+a.  This jewel came from Cris Williams (75300,2704) on Compuserve.  It
+    does indeed work when other methods fail.
+
+
+b.  This assumes you have read the standard connection information and
+    edited your MODEM.CFG file, etc.
+
+
+c.  These examples assume COM port 1 and a phone number of 555-1212.  Alter
+    according to your setup and real phone numbers.
+
+d.  Both sides issue the MODE command to the modem from the DOS (i.e. C:)
+    prompt:
+
+    MODE COM1:9600,N,8,1,P
+
+e.  Both sides issue a redirected ECHO command to set the modems to place in
+    direct mode and disable compression, etc...  For example:
+
+    ECHO AT&F &Q0 &D2 > COM1
+
+f.  The caller should issue the dial sequence.  For example:
+
+    ECHO ATDT555-1212 > COM1
+
+g.  When the phone rings, the receiver should issue the command:
+
+    ECHO ATA > COM1
+
+h.  Both sides should start SERSETUP.  For example:
+
+    SERSETUP -com1
+
+
+----------------------
+COMMAND MODEM COMMANDS
+----------------------
+
+Here are the most common settings and what they do:
 
 &F    - This fetches the factory default in most modems.  Always a
-        good starting point.
+        good starting point.  Modems with multiple factory settings
+        may require a qualifier (i.e. &F0)
 
 S46=0 - This register setting disables compression on many v.32 and v.42
         modems.  You might also try S46=136 or %C0.
@@ -20,11 +240,13 @@ S46=0 - This register setting disables compression on many v.32 and v.42
         at flow control options more closely if you connect and just hang
         WITHOUT the screen clearing and displaying the blue banner.  Check
         your modem documentation carefully.  The command(s) to manipulate
-        flow control varies quite a bit on various modems.
+        flow control varies quite a bit on various modems.  The commands
+        \G and \G0 were also quite common.
 
 &Q0   - Places the modem in DIRECT mode.  This is by far the best method
         for pumping data down those wires!  Stay away from the error
-        correcting and speed buffering configurations.
+        correcting and speed buffering configurations.  The command \N1 
+        is the next most common command to set the modem in direct mode. 
 
 &D2   - DTR handling.  DTR is the signal (voltage) on the serial connector
         on your PC that says "I'm here".  This control helps with initially
@@ -43,31 +265,10 @@ S46=0 - This register setting disables compression on many v.32 and v.42
                     configure your modem for those other programs again.
 
 
-An alternate configuration:
-
-Another common problem I found on the 14.4 flavor modems was the tendency
-for some of these to report a 14.4 CONNECT on one side, and a 9600 on the
-other.  Every modem has a method for forcing a connect speed.  The most
-common I found is on register S37.  The following init string usually fixed
-the problem:
-
-AT &F S46=0 &K0 &Q0 &D2 S37=F8 &W
-AT Z H0
-
-Which does the following:
-
-&F      - as described above.
-
-S46=0   - as described above.
-
-&K0     - as described above.
-
-&Q0     - as described above.
-
-&D2     - as described above.
-
-S37=F8  - Forces the modem to 9600 bps.  F8 is hexadecimal notation.  Your  
-          modem documentation may describe the settings in decimal or 
+S37=F8  - Another very common problem is when 14.4 modems report a connect
+          of CONNECT 14400.  Doom requires 9600.  Try to force the modem 
+          to 9600 bps.  F8 is hexadecimal notation.  Your modem 
+          documentation may describe the settings in decimal or 
           in binary notation.  For example:
 
           F8        - hexadecimal
@@ -87,23 +288,49 @@ S37=F8  - Forces the modem to 9600 bps.  F8 is hexadecimal notation.  Your
           and describe what you need.  They will be able to give you the
           proper code.
 
-I also tried the following init strings with varying degrees of success
-depending on the modem: 
+          Another common speed setting is %B.  Some modems take a value, 
+          i.e. %B4 while others take the speed i.e. %B9600
 
-AT&Fs46=0&Q0&D2&W
-AT&F%C0&D2&W
-AT&F&Q0%C0&D2&W
-AT &F S46=0 S48=0 S23=187 &Q0 &D2 \J0 &W
-AT&F S46=0 &Q0 &D2 S37=F8 %C0 &W
-AT&F S46=0 S48=0 &Q0 &D2 S37=F8 %C0 &W
-AT&FE0V1X0S46=0&Q0&D2&W
 
+Other areas which helped depending on the modem (or modem connected to)
+was with flow control and slave speed.  Your modem may or may not respond
+or allow some of these settings.  (Some modems simply locked up).
+
+\J0     -   Slave the DTE (PC) to DCE (modem) speed.  \J is sometimes used
+            (no 0 qualifier required or used).
+
+&R1     -   Force Ready-To-Send and/or Clear-To-Send high.  On a couple of
+            if your modem is using EIA leads for flow control, this leaves
+            the pipe wide open.
+
+\K5     -   Break control.  Haven't determined how effective this is and what
+            effect the break and buffer flush has on DOOM.  It's worth 
+            experimenting with.
+
+
+
+   
+-----------------------------------------------------------------------------
 
 I hope this helps you frustrated serial players out there.
 
 Finally, thanks to ID for the most awesome games I've played.  Wolf3D,
 SPEAR, and DOOM have provided the best value for my money.  I urge you
 to register your software to help support them!
+
+
+Please note I have been SWAMPED with responses and requests for help.  
+Please be patient for a response if you write.  If you do write, try to 
+give as much exact information as possible:  Modem vendor, modem model, 
+modem revision (use the ATI and AT&F or AT\S command).  Also include the 
+EXACT init strings you've used and EXACTLY where you locked up.  Write
+down ALL of the last 5 lines displayed on the screen before locking up.
+If I can, I'll try to help.  Unfortunately, I am receiving so many requests,
+I may have to stop responding...  Hopefully, things will slow down...
+
+If you have found a working connect method or init string, please send it
+to me with the modem type and model number.  (What was used on BOTH sides
+would be even better!).
 
 
 Keith Turbyfill
