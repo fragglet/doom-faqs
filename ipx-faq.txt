@@ -1,0 +1,675 @@
+*****************************************************************************
+*                           IPX NETWORK FAQ                                 *
+*                                 v1.2                                      *
+*****************************************************************************
+* DATE:   6/10/94                                                           * *
+* AUTHOR: Joshua Jackson          (jsoftware@delphi.com                     *
+*         Jackson Software                                                  *
+*         10506 Bayard Rd                                                   *
+*         Minerva, OH  44657                                                *
+*         (216) 868-1169                                                    *
+*****************************************************************************
+
+------------
+!!!NOTICE!!!
+------------
+
+   Anyone who has been sending EMAIL to my former EMAIL address:
+
+          joshjackson@delphi.com
+
+should re-address it to jsoftware@delphi.com.   My previous account is no
+longer online.
+
+---------
+A REQUEST
+---------
+
+   I would be most greatful if someone out there that is good at ASCII art,
+PLEASE send me a header for this FAQ.  I had originally used the one from the
+DOOM.FAQ.  Only to find out that that header has a copyright on it.  For now,
+the header on this FAQ is a tad generic.  Anyone willing to design a good
+header will be credited for it.
+                                  
+                                  Josh
+
+----------------
+ACKNOWLEDGEMENTS
+----------------
+
+   Thanks Id for such a KICK ASS game!!  DOOM is a registered trademark of Id 
+   Software.
+   Hank Leukart for the "OFFICIAL" DOOM FAQ.
+   Matt Fell for the Unofficial DOOM Specs v1.3
+   
+References are made to the following programs, here is a list of the authors:
+
+   DEU 5.21         : Raphael Quintet,
+                      Brendon J Wyber
+   DUE 5.21 GCC port: Per Allansson,
+                      Per Kofod
+   IDBSP10          : Ron Rossbach
+   BSP11X, BSP11TC  : Collin Reed
+   BSP11W           : Collin Reed, Alex Korobka
+   VNB1050          : Robert Fenske, Jr.
+   DOOM, IPXSETUP   : The Mighty Wizards of ID
+
+--------
+CONTENTS
+--------
+
+=SECTION ONE=  Introduction
+      [1-1] What is an IPX NETWORK?
+      [1-2] Distribution of this FAQ
+      [1-3] Disclaimer
+
+=SECTION TWO=  Setting up an IPX NETWORK for DOOM
+      [2-1] Required Hardware
+            [2-1-1] The LAN cards
+            [2-1-2] The interconnecting cables/T's/Terminators
+      [2-2] Required Software
+      [2-3] Purchasing your equipment
+      [2-4] Connecting the computers
+
+=SECTION THREE= Playing the game
+      [3-1] Trouble Shooting
+      [3-2] Speeding up your game play (Notes for level builders)
+      [3-3] Recommended add on software
+            [3-3-1] IPXFER
+            [3-3-2] DFE
+            [3-3-3] IPXSETUP 1.1
+
+=SECTION FOUR= Technical Information
+      [4-1] DOOM's IPX communications
+
+------------------------------------------------------------------------------
+SECTION *1*:  Introduction
+------------------------------------------------------------------------------
+
+[1-1]: What is an IPX NETWORK?
+
+   The term IPX (Internetwork Packet Exchange protocol) simply represents
+an industry standard, developed by XEROX, for communicating between computers
+in a Local Area Network (LAN), Mainframe, or the two computers that you have 
+sitting around your house.
+
+   In order to implement this you will need all of the required hardware 
+(detailed later), software, and the know how.  Hopefully this FAQ will detail
+most of this information so that you can be up and running in 2, 3, or 4 
+player games soon.
+
+[1-2]: Distribution of the FAQ
+
+   This FAQ is intended for anyone and everyone that wants more information
+or is having trouble setting up an IPX based network for DOOM.  I would 
+appreciate it if no modified copies of the FAQ other those I release in the
+future be distributed in any form.
+
+NOTE: If you feel any of the information in this FAQ to be incorrect please
+send me EMAIL or contact me in person to let me know.  I will make a prompt
+adjustment and re-release it.
+
+[1-3]: DISCLAIMER
+
+   The author accepts no responsibility for any damage whether it be hardware,
+software, or mental caused by the use of the information contained in this
+FAQ.  All the information presented here is, to the best of my knowledge,
+technically correct.
+
+NOTE:  I am not a certified network technician.  All of the information in
+       this FAQ was obtained through personal experience.  I have been working
+       with IPX based networks (mostly Novell) for the last five years and
+       have become quite familiar with both their inner and outer workings.
+       Therefor I do not claim that all of the information contained in this
+       document to be free of error, but it is working for me, so I hope it
+       works for you!
+
+------------------------------------------------------------------------------
+SECTION *2*:  Setting up an IPX Network for DOOM
+------------------------------------------------------------------------------
+
+[2-1] Required Hardware
+
+   Contrary to popular belief, you do NOT need a full blown LAN to operate
+IPX network DOOM.  Since you simply need the LAN cards and your IPX drivers,
+you can set up a network for DOOM for around $10,000 less than a server 
+based local area network.
+
+   [2-1-1] The LAN cards
+
+      The first piece of equipment you will need to set up your DOOM network
+   is a set of LAN cards.  Whether they be Ethernet, ARCNET, or some other
+   off the wall type, they just need to be able to talk to one another.  My
+   personal system is set up on a series of NE2000 compatible Ethernet cards.
+   Most all of my discussion will be based around NE2000 compatibles, since I
+   have had no trouble whatsoever with these cards. (Plus they are very fast
+   and inexpensive). When purchasing your LAN cards, it is recommended that 
+   you purchase cards that support CO-AX cable hookups.  CO-AX is cheaper, 
+   easier to obtain and a better medium for network communications than 
+   twisted pair.
+
+   [2-1-2] The interconnecting cables/T's/Terminators
+
+      Next is your cable hookups.  The cable that I am using is standard
+      RG-58 CO-AX cable.  This cable is inexpensive and VERY easy to obtain.
+      In order to hook your cables to the LAN cards, you will NEED a set of
+      BNC style T connectors. 
+
+      >>>NOTICE<<<
+         YOU CAN NOT HOOK TWO CARDS DIRECTLY TOGETHER WITH THE CABLES AND
+         HAVE IT WORK!!!  YOU WILL NEED A SET OF Ts AND TERMINATORS.  THE
+         TERMINATORS ARE EXPLAINED IN THE NEXT PARAGRAPH.
+
+      Finally, you will need a set of 50ohm terminators.  These terminators
+      are crucial to your network's operation.  If you are not sure what I
+      mean by terminators, I will include a description of them and how to
+      build your own in the next section.  Whether you are connecting 2, 3,
+      or 4 computers, you will need exactly 2 terminators.
+
+[2-2] Purchasing your equipment
+
+   Purchasing all of this equipment is not as tricky or as expensive as you
+might think.  The LAN cards can be obtained either through me, the Computer
+Shopper, or at most Computer shows.  The rest of the equipment is available
+at your local Radio Shack store.
+
+   If you would like to order LAN cards, you may do so through me (Jackson
+   Software) by contacting me at the following:
+
+      internet: jsoftware@delphi.com
+      Snail   : Joshua Jackson
+                Jackson Software
+                10506 Bayard Rd.
+                Minerva, OH  44657
+      Phone   : (216) 868-1169
+
+   For those of you wishing to setup a DOOM network, I am currently offering
+   you a deal that you won't find anywhere else:  I am selling NE2000 compat.
+   Ethernet cards to anyone who wants them at my cost (wholesale) plus
+   shipping charges.  Both software and hardware configured cards are
+   available starting at around $40.
+
+   The cabling and all of its accessories can be obtained pre-made through
+   me, or if you are a do-it-yourselfer, at you local Radio Shack.
+
+   If your cards do not already come with a BNC T connector on the back, the
+   Radio Shack Part# and current price is:
+
+      278-112  BNC T-Adapter   $3.19 ea
+      (You will need one per network card)
+
+   Next is the terminators.  The parts to make one of these from Radio Shack
+   are the following:
+
+      278-251  BNC male to F female   $1.99 ea
+      (One per terminator - you will need two of them)
+      (BTW: F style is the same as used for cable TV connectors)      
+
+      271-1311 5pack of 100ohm Resistors $.49 ea
+      (You will need two resistors per terminator and two terminators per
+       network)
+
+   Building the Terminator:
+
+      Take two 100 ohm resistors and twist the end leads together so that
+      the resistors are in parallel (this will give you 50ohms)
+
+      here is a poor rendition of a text diagram
+
+           -----------[100]------------
+   leads    `twist,         `twist,        leads
+           -----------[100]------------
+
+      once you have your 50 ohm resistor, you will need to insert one of the
+      twisted ends into the small hole on the F style end of the BNC to F
+      style adapter.  The other end you will simply wrap around the threaded
+      outer casing of the adapter.  To secure the resistors in place, you can
+      use tape, but I recommend either heat shrink tubing (Radio Shack Part
+      Number: 278-1627) or better yet Liquid Plastic (available at most
+      hardware stores).
+
+      Your terminator is now complete, on to the cables.  As mentioned
+      earlier, the cable you will need is standard RG-58 cable.  The Radio
+      Shack part number and price is:
+
+         278-1314  RG-58 Co-AX   $.20 per foot.
+
+      The ends for the cables are:
+
+         278-103  $2.99 ea.
+         (You will need two per cable)
+
+      Building your cables:
+
+         First, I recommend that you either get some practice stripping CO-AX
+         or you buy yourself a set of CO-AX strippers.  This is not the 
+         easiest thing in the world to do!
+
+         1. Cut the cables to the desired length (Plus a couple of inches if
+            you have never attempted to strip CO-AX before)
+         2. Strip the CO-AX to the below specifications:
+
+             _________
+             _________}}}=------
+                 |     | |  |
+                 |     | |  `---> Inner solid copper wire  9/16"
+                 |     | `------> Dielectric (White plastic) 1/32"
+                 |     `--------> Shielding (Braided wire) 1/8" - 3/16"
+                 `--------------> Outer casing
+
+         3. Twist the BNC end onto the stripped cable, making sure that the
+            inner wire fits into the VERY small hole up inside the center
+            of the connector.
+
+         4. Get excited, you are almost there!  On to the next section.
+
+[2-3] Required Software
+
+   The required software that will be needed to play your game as far as your
+LAN card is concerned will come as three files:
+                                              
+         LSL.COM
+         <A vendor specific driver>  (Mine is NE2000.COM)
+         IPXODI.COM
+
+   Please do note:  I have received several calls regarding an file called
+IPX.COM that comes with a lot of the LAN cards out there.  From my experience,
+DOOM does NOT like these drivers unless you are attached to a fully server
+based LAN.  This file IPX.COM, integrates all of the three above drivers
+into one itsy bitsy little file.  If anyone out there has gotten DOOM to
+run with MORE than 2 player while using this file and you are NOT on a full
+Local Area Network, please write or call and let me know exactly what you
+did you make this configuration functional.
+
+This is purely speculation, but I believe that the IPX.COM file is geared
+toward a server based network and is not designed for peer to peer
+communication with the lack of some form of packet routing service available
+(such as a hub or router in a LAN).
+
+=================
+***NEW to v1.1***
+=================
+
+It was brought to my attention that v1.0 of this FAQ did not mention anything
+about the required NET.CFG that must accompany the above mentioned drivers.
+When setting up your <vendor specific driver> and linking it (in memory) to
+the DOSODI driver, you will need to either modify an existing NET.CFG or
+create your own.  This file tells the drivers what port address/IRQ your card
+in on as well as what protocol frame to use.  The following is my NET.CFG 
+file:
+
+Link driver NE2000
+        Int     10
+        Port    300
+        Frame   Ethernet_802.3
+        protocol ipx 0 Ethernet_802.3
+
+The values for Int and Port are assumes to be in hexidecimal format.  These
+values MUST be modified to reflect the settings of your card.  The first line
+should contain the name of your vendor specific driver.
+
+NOTE FOR CD-ROM DRIVE OWNERS:  Port address 0x300 is the factory default for
+most CD-ROMs.  If you have a CD-ROM and you are using it proprietary card,
+make sure that your LAN card and CD-ROM aren't in conflict.
+
+I also would reccomend creating a set of files that load your network drivers
+and also unload them from memory.  a followinf is a copy of my batch files
+for doing so:
+
+C:\NETWORK>type startnet.bat
+
+@echo off
+lsl
+ne2000
+ipxodi
+
+C:\NETWORK>type stopnet.bat
+
+@echo off
+ipxodi -u
+ne2000 -u
+lsl -u
+echo.
+echo Network drivers have been unloaded.
+
+=================
+
+The final piece of required software is of course IPXSETUP.EXE.  This file
+is supplied with DOOM v1.2 or above.  To get a two player game going with
+no special options simply type:
+
+   IPXSETUP  
+
+on both computers.  If you wish for more than two players in a network game,
+you will have to specify the -NODES parameter when starting IPXSETUP.
+
+   eg:    IPXSETUP -NODES 3
+
+would start a three player game.  A maximum of four players can be specified
+for a network game of DOOM.
+
+[2-4] Connecting the computers
+
+   Now the the grand finale- Putting it all together.
+
+   1. Install the LAN cards in an available slot in your computer.  Refer to
+      the instruction manual provided with the card if you are unsure as how
+      to go about doing this.  If you still have trouble, call your 8 year
+      old son/daughter into the room and have them do it! :)
+
+   2. Connect the BNC T connectors to the back of all the cards.
+
+   3. The two end computers (or both in a two player network) should have
+      one of their BNC T ends capped off with the BNC terminators that we
+      made earlier >> AGAIN I STRESS- THIS IS CRITICAL FOR PROPER NETWORK
+      OPERATION!!! <<
+
+   4. Connect the remaining BNC T ends with the cables that we made earlier.
+
+
+   Another poorly designed diagram:
+
+      < or >   indicates a terminator
+      T        indicates a BNC T
+      ===      indicates the cabling
+
+
+     <T===============T==============T===============T>
+   -----------     -----------    -----------      -----------
+   Computer #1     Computer #2    Computer #3      Computer #4
+
+
+   5. GO FOR IT!!!!
+
+------------------------------------------------------------------------------
+SECTION *3*:  Playing the game
+------------------------------------------------------------------------------
+
+[3-1] Trouble Shooting
+
+   The following section is a Questions and Answers section of commonly asked
+questions (hence the name FAQ I guess)
+
+   Q) Why can I only get two players working?
+   A) #1 Make sure that you are specifying the -NODES parameter for IPXSETUP.
+      #2 Make sure that all of the LAN cards that you are using speak the
+         same language (Ethernet 802.3, etc)
+      #3 Make sure all of your cabling is properly connected and there are no
+         shorts in it. (Some LAN cards WILL use a shorted cable as a terminator
+         hence causing you a lot of grief trying to figure out why the third
+         computer is not being recognized)
+      #4 This one is somewhat a mystery, but it does happen:
+            I have received several calls regarding an file called
+            IPX.COM that comes with a lot of the LAN cards out there.  From my 
+            experience, DOOM does NOT like these drivers unless you are 
+            attached to a fully server based LAN.  This file IPX.COM, 
+            integrates all of the three above drivers mentioned in section 2-3 
+            into one file.  If anyone out there has gotten DOOM to run with 
+            MORE than 2 player while using this file and you are NOT on a full 
+            Local Area Network, please write or call and let me know exactly 
+            what you did you make this configuration functional.
+
+    Q) Why can't I get any of the computers to talk to one another?
+    A) #1 Make sure that all of the LAN cards that you are using speak the
+          same language (Ethernet 802.3, etc)
+       #2 Make sure that the end computers have the Terminators attached to
+          the open ends of the BNC Ts!
+       #3 Check your cables for a dead cable.
+
+    Q) What is IPX NOT DETECTED?
+    A) ummm, go figure!  (Load your drivers!)
+          
+    Q) Why does IPXSETUP give me an "OPEN SOCKET 0xFF" after I abort an
+       IPXSETUP session?
+    A) The original IPXSETUP.EXE has a bug in it.  It does not close the
+       communication channel that it opens if you abort it.  The error 0xFF
+       if generated by the IPX driver if you try to open an already open
+       IPX socket (communications channel).
+
+    Q) What can I do about "OPEN SOCKET 0xFF" short of rebooting the all of
+       the computers?
+    A) #1 Write a program that closes the open socket (yeah, right! :)
+       #2 Obtain a copy of the IPXSETUP.EXE that I have modified and
+          placed on Software Creations and the ftp site: infant2.sphs.indiana.
+          edu  called IPXSTP11.ZIP  (located in the /pub/doom/multi_doom/net
+          directory)  I have corrected the bug in the program so that it will
+          close the open socket before terminating.  Other than this bug fix,
+          IPXSETUP 1.1 is identical to the original IPXSETUP by ID  (I used
+          their source and simply recompiled it)
+
+     Q) Why is my network game play so slow?
+     A) #1 The speed of your network is limited to the following:
+           -The speed of the SLOWEST computer
+           -The speed of you network cards
+           -The number of active images on the level being played
+        #2 You are using a PWAD file that was either poorly created or
+           the PWAD file you are using was run through a poor NODES builder.
+        #3 Your cables are too long, the maximum length for a cable should be
+           580 ft.  (That's one heck of a long cable!)
+
+     Q) Why won't my network drivers load?
+     A) #1 Check to make sure that you card is properly seated in its
+           expansion slot.
+        #2 Make sure that your NET.CFG reflects the actual settings of your
+           LAN card.
+        #3 If you own a CD-ROM, the factory default for a CD-ROM card is 
+           usually 0x300, it is the same for LAN cards.  Make sure you don't
+           have both of these devices on the same port address.
+
+[3-2] Speeding up your game play (Notes for level builders)
+
+   The speed of your network game play is based on several things.  The
+most limiting factor in network game play is the speed of the slowest
+computer.  For instance even if you have 3 Pentium/90s and only one 386sx/33
+running on a network, game play will be reduced to a crawl!
+
+Second is the speed of the LAN cards that you are using.  I do not recommend
+that you use cheap 8bit cards, such as many of the ARCNET cards that you can
+pick up at a local computer show for half the price of a good 16bit card!
+
+Next, make sure that all of the cables and most importantly, the terminators
+are properly connected and of the right values.  Excessive packet collisions
+can result, hence slowing down you game play.
+
+Finally, a note for level builders:
+
+The following is from my personal experience.  If certain NODE builders are
+used to compile the necessary BSP information in a PWAD file, it can very
+seriously reduce the speed at which the game engine can generate images.
+
+The following is my personal review as well as ratings and problems that I
+encountered while developing my own PWAD levels:
+
+NODE builders  (Best - Worst)
+
+Name          Description/Problems
+-------------------------------------------------------------------------
+IDBSP10.EXE   A port of John Carmack's source for Id's NODE compiler.
+              Absolutely AWESOME!  This is by far the best node builder
+              that I have run across.  No problems to mention.
+              This program was written for GCC therefor is 32bit DOS extended
+              and does not have any memory problems
+
+BSP11X,       An excellent series of NODE builders! Before the above
+BSP11TC,      mentioned program can into existence, this was my node builder
+BSP11W.EXE    of choice.  Problems:  does not calculate REJECT data therefor
+              some games can be slowed down, especially if there are a lot of
+              monsters lurking about.  Also, BSP11X and BSP11TC will run out
+              of memory on large PWADs.  BSP11W works in both Windows and DOS,
+              if you use it in DOS, you are limited to 640k, and for you 
+              speed freaks out there like myself, you probably don't want to
+              start up Windows just to compile your PWAD (unless you use a
+              Windows WAD editor,  yech!)
+
+VNB1050.EXE   Builds a glitch free set of nodes, but does so in such a fashion
+              that they are not optimized for use with the DOOM game engine.
+              This will seriously slow down game play.  If you have a faster
+              computer, you may never notice this, but on a 386, you will most
+              likely find that the games are a bit choppy when looking out 
+              across large areas.
+
+DEU's         Well, I LOVE the editor, but their node builder still needs a
+              little bit of work.  In some complex areas, it will give you
+              the Hall Of Mirrors effect.
+
+
+Here is my personal setup for creating PWADs:
+
+   DEU521GCC  The 32 bit extended port of DEU 5.21
+   IDBSP10    For recompiling the NODES and other related BSP information
+
+
+[3-3] Recommended add on software
+      
+      [3-3-1] IPXFER
+
+         file: IPXFER10.ZIP
+
+         I wrote this package of software for sending files back and forth
+         across an IPX network.  I hate to brag, but I have received SEVERAL
+         email messages about how useful this program is and have even had
+         a few people wanting to register it (it's freeware, but if you want
+         to send money for a registration fee, I'll gladly repay the favor in 
+         DOOM related software that I have collected from MANY sources, free 
+         of charge)
+
+         IPXFER is currently at version 1.00 and is available on Software
+         Creations BBS and at the ftp site: infant2.sphs.indiana.edu   If the
+         copy you have is less than 1.00 you should upgrade as soon as 
+         possible.  I did release a v.99beta that is still floating around
+         out there.  The beta release works ok, but is VERY limited as
+         compared to v1.00.   NOTE- if the version your have doesn't display
+         a blue status window while sending files, it's version .99.
+
+         It is designed to eliminate the headache of flipping floppies when
+         you are swapping PWADS (wow, what a tongue twister).  It will 
+         transmit data at rates between 50k - 250k per sec, depending on the
+         speed of the slowest computer and the speed at which your computer
+         writes to the harddrive (a cache helps) It is also capable of 
+         multiple file transfers (you can tell it to send *.*).
+
+      [3-3-2] DFE
+
+         file: DFE133.ZIP
+
+         DFE stands for DOOM Front End.  If you have a copy that is below
+         version 1.33, you should upgrade as soon a possible!  The lesser
+         versions of this program were rather bug infested, sorry about that
+         :(
+
+         This program is basically like a menu system that allows you to
+         choose what Episode/Level you want to play, Load an external PWAD,
+         Select Number of player, and whether you want there to be No 
+         Monsters.  It supports Single Player, Modem, Serial, and IPX network
+         games.  It also has a built in Map/Sprite Viewer that will allow you
+         to locate all of the Weapons/Monsters/Goodies on a level and view
+         them.  The Map viewer can load external PWAD files and display their
+         maps as well.
+
+         This file is available at the same locations as IPXFER10.ZIP
+
+      [3-3-3] IPXSETUP 1.1
+
+         file: IPXSTP11.ZIP
+
+         This program is a modified version of Id's IPXSETUP.EXE.  It has
+         been modified to eliminate that annoying little tick "OPEN SOCKET
+         0xFF" after you abort a Network game start up session (IPXSETUP).
+
+         This program is 100% identical to Id's IPXSETUP other than the fact
+         the this bug has been fixed.
+
+         NOTE: If you download a copy of either IPXFER10.ZIP or DFE133.ZIP,
+         the IPXSETUP 1.1 is included.
+
+         This file is available at the same locations as IPXFER10.ZIP
+
+
+      Software Creations BBS 14.4k Lines:
+
+         (508) 368-7036
+         (508) 368-4137
+
+------------------------------------------------------------------------------
+SECTION *4*:  Technical Information
+------------------------------------------------------------------------------
+
+   This section is not very large at the moment, in future releases I plan
+to expand on this section.  This section is designed to aid those of you who
+are attempting to write their own software that deals with the IPX
+communications of DOOM.  This section is geared toward those of you who
+already have a background in IPX communcations programming.
+
+[4-1] DOOM's IPX communications
+
+   The Official DOOM socket # 0x869C
+
+   If during your fumbling about with the DOOM IPX communications, you should
+leave the socket open, the following little program will close it for you.
+
+   mov bx, 1
+   mov dx, 9C86h  ;Socket #'s are in hi-lo format
+   int 7Ah
+                                 
+NOTE: IPXSETUP.EXE allows you to change the default socket for communications.                                 
+      This is accomplished by specifying the -PORT parameter, followed by the
+      socket ID you wish for DOOM to use.  IF you are in a server based
+      network, BE CAREFUL when you do this!!!  The followinf sockets are
+      defined are reserved by XEROX:
+
+         1        Routing Information Packet
+         2        Echo protocol packet
+         3        Error Handler Packet
+         20h-3Fh  Experimental
+         40h-BB8h Are registered as in use by XEROX
+         
+      The following are used by Novell Netware:
+
+         451h     File Service Packet
+         452h     Service Advertising Packet
+         453h     Routing Information Packet
+         455h     NetBIOS Packet
+         456h     Diagnostic Packet
+
+Finally, the communications packets that are send by DOOM have the following
+format:
+
+   During Setup, the following packet structure - Less the ECB, and IPX headers
+
+      typedef struct
+      {
+         short gameid;
+         short drone;
+         short nodesfound;
+         short nodeswanted;
+      } setupdata_t;
+
+   And during game play, it switches to the following structure (Including
+   headers)
+
+      typedef struct
+      {
+         char private[512];
+      } doomdata_t;
+
+      typedef struct
+      {
+         ECB         ecb;
+         IPXPacket   ipx;
+         long        time;
+         doomdata_t  data;
+      } packet_t;
+
+If anyone has information about the actual data being passed between the
+computers in the doomdata_t structure, PLEASE send me some info!!  I have
+been looking far and wide for someone who has this information, but it seems
+to be a rather well kept secret.
+
+If you are interested in IPX programming, there are MANY good books out there
+on the topic.
+
+
+                                 Happy Hunting!
+
+                                 Josh
+                                 jsoftware@delphi.com
