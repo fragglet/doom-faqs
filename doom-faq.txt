@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------
          T H E  " O F F I C I A L "  *-D-*-*-O-*-*-O-*-*-M-*   F A Q
-                       Pre-Release v2.0 - MAJOR revision
+                       Pre-Release v2.5 - STANDARD revision
                  Written by: Hank Leukart (ap641@cleveland.freenet.edu)
             "The first EVER FAQ release BEFORE the game release!"
             "DOOM: Where the sanest place... is behind a trigger."
@@ -8,9 +8,9 @@
                         been witnessed in this particular dimension!"
 ----------------------------------------------------------------------------
 
-------------------------
-DISCLAIMER AND COPYRIGHT:
--------------------------
+----------
+DISCLAIMER
+----------
         
         This FAQ is to aid in informing the public about the upcoming
 game: DOOM, by id Software.  In no way should this promote your killing
@@ -20,27 +20,32 @@ concerning this FAQ, or indirectly related to this FAQ.  The
 information contained in this FAQ only reflects id Software indirectly,
 and questioning id Software regarding any information in this FAQ is
 not recommended.
+        
+---------------------
+TRADEMARK INFORMATION
+---------------------
+
         All specific names included herein are trademarks and are so
-acknowledged: id Software, DOOM, Apogee, Wolfenstein 3-D, SoundBlaster,
-Gravis, Gravis UltraSound (GUS), Forte, Roland, Roland Sound Canvas,
-Pro Audio Spectrum, IBM, Microsoft, MS-DOS.  Any trademarks not mentioned 
-here are still hypothetically acknowledged.
+acknowledged: id Software, DOOM, Apogee, Wolfenstein 3-D, Creative
+Labs, Waveblaster, SoundBlaster, Gravis, Gravis UltraSound (GUS), 
+Gravis Gamepad, Forte, Roland, Roland Sound Canvas, Pro Audio Spectrum, 
+IBM, Microsoft, MS-DOS, Logitech, Cyberman, Atari, and Jaguar.  Any 
+trademarks not mentioned here are still hypothetically acknowledged.
+        
+----------------        
+COPYRIGHT NOTICE
+----------------
+
         I, Hank Leukart, the author of the "Official" DOOM FAQ, hereby 
 state that anyone wishing to reproduce the "Official" DOOM FAQ in part
 or in full in any electronic or written form, must receive explicit 
 permission from the author via E-mail (ap641@cleveland.freenet.edu) and 
-acknowledge the author in the reproduction.  Only the NEWEST "Official"
-DOOM FAQ may be reproduced.
-
-------------------
-ADDING TO THE FAQ:
-------------------
-        
-        If you want something added to the FAQ, please send E-mail to 
-"ap641@cleveland.freenet.edu" (no quotes), explaining what your addition is.  It 
-will be reviewed, and if accepted, added to the next FAQ version, 
-giving minor credit to you.  In the E-mail, please supply your name 
-and E-mail address.
+acknowledge the author in the reproduction.  This DOES NOT include
+free distribution among online services (commercial or non-commercial).
+This DOES include reproduction in magazines, electronic magazines,
+computer software, manuals, and catalogs.  If there is any question
+about where it can and cannot be reproduced, seek explicit permission.
+Only the NEWEST "Official" DOOM FAQ may be reproduced.
 
 ---------
 CONTENTS:
@@ -49,8 +54,9 @@ CONTENTS:
 [1] Introduction
         [1-1] About the "Official" DOOM FAQ
         [1-2] Getting the "Official" DOOM FAQ
-        [1-3] Acknowledgments
-        [1-4] Accurate Information
+        [1-3] Adding to the FAQ
+        [1-4] Acknowledgments
+        [1-5] Accurate Information
 [2] What is DOOM?
 [3] Who is creating DOOM?
 [4] When is the release date of DOOM?
@@ -63,6 +69,11 @@ CONTENTS:
         [6-1] How will DOOM be marketed?
         [6-2] How much will DOOM cost?
 [7] What will I need to run DOOM?
+        [7-1] What is REQUIRED to run DOOM?
+        [7-2] What soundcards will DOOM support?
+                [7-2-1] Will DOOM support the Gravis UltraSound?
+        [7-3] What game controllers will DOOM support?
+                [7-3-1] Will DOOM support the Logitech Cyberman?
 [8] What makes DOOM different from Wolfenstein 3-D?
         [8-1] Texture-Mapped Environment
         [8-2] Non-Orthogonal Walls
@@ -75,16 +86,33 @@ CONTENTS:
         [8-9] Monster Artificial Intelligence
         [8-10] Weapons
 [9] How will 2-4 player action work in DOOM?
-[10] How can I contact id Software?
-[11] DOOM iNsAnItY
-        [11-1] A word from Douglas J. Bottoms
-        [11-2] Top Ten Things To Do While Waiting for DOOM
-        [11-3] Top Ten Things Being Removed From DOOM During Delay
-        [11-4] Top Ten Reasons DOOM Was Delayed
-[12] Conclusion
-[13] Revision History
-        [13-1] Pre-Game-Release FAQs 
-        [13-2] Post-Game-Release FAQs
+        [9-1] What will the multi-player gameplay be like?
+                [9-1-1] How will players communicate?
+                [9-1-2] Can players exchange supplies?
+                [9-1-3] What happens when a player dies?
+        [9-2] What exactly is "DeathMatch" mode?
+        [9-3] How will DOOM work with networks?
+        [9-4] How will DOOM work with modems?
+        [9-5] Can I play DOOM over the Internet?
+[10] What will DOOM's music be like?
+[11] How can I contact id Software?
+[12] DOOM iNsAnItY
+        [12-1] Comedy
+                [12-1-1] A word from Douglas J. Bottoms        
+        [12-2] Top Ten Lists        
+                [12-2-1] Top Ten Things To Do While Waiting for DOOM
+                [12-2-2] Top Ten Things To Do Until DOOM Arrives
+                [12-2-3] Top Ten Things Being Removed From DOOM During Delay
+                [12-2-4] Top Ten Reasons DOOM Was Delayed
+        [12-3] DOOM R.E.M.
+                [12-3-1] Pixelated Demons
+                [12-3-2] The Mythical Beta Releases
+                [12-3-3] You Don't Take Mastercard?!
+[13] Conclusion
+        [13-1] John Says...
+[14] Revision History
+        [14-1] Pre-Game-Release FAQs 
+        [14-2] Post-Game-Release FAQs
 
 -----------------------
 CHAPTER 1: Introduction
@@ -92,15 +120,27 @@ CHAPTER 1: Introduction
 
 [1-1]: About the "Official" DOOM FAQ
 ====================================        
-        Well, here it is, pre-release v2.0 of the "Official" DOOM FAQ.
-What does that mean? Pre-release is before the game is released, version 2.0
-is a major revision written after 1.0, "Official" means absolutely
+        Well, here it is, pre-release v2.5 of the "Official" DOOM FAQ.
+What does that mean? Pre-release is before the game is released, version 2.5
+is a standard revision written after 2.0, "Official" means absolutely
 nothing, DOOM is the name of the game, and FAQs are [F]requently 
 [A]sked [Q]uestions.
-        Version 2.0 of the FAQ adds a lot of updated information.  This
-is because FAQ v1.0 was only created from the DOOM press release and
+        Here's how revision classification works.  If a new version of        
+the FAQ only has a small amount of information changed or added, the
+version number is increased by 0.1.  This is called a "minor
+revision."  If a new version of the FAQ has a substantial amount
+of new information changed or added, the version number is increased
+by 0.5.  This is called a "standard revision."  If a new version of the 
+FAQ has a huge amount of added or changed information, major parts of the 
+FAQ are rearranged, or major parts of the FAQ are rewritten, then the 
+version number is increased by 1.0.  This is called a "major revision."
+        Version 2.5 of the FAQ adds some new information about what
+DOOM will and will not support, some information about multi-player
+mode, some information about DOOM's music, some information
+on related software to DOOM, and some new additions to DOOM iNsAnItY.  The
+"Official" DOOM FAQ v1.0 was only created from the DOOM press release and
 Usenet "hearsay."  After v1.0 was released, id contacted me, and
-offered to help with new releases.  So, here it is.  This may or may not
+offered to help with new releases.  So, here's another.  This may or may not
 be the last "Official" DOOM FAQ before the game is released, I'm not sure.  
 I guess it just depends on how quickly new information arrives.
         Well, I hope you enjoy this, it's supposed to hold you over
@@ -111,8 +151,11 @@ until the actual game release. :)
         If you'd like, you can contact me via E-mail to get on the
 "Official" DOOM FAQ mailing list.  After contacting me, you
 will then be automatically sent the "Official" DOOM FAQ at every new
-release via E-mail.  My InterNet E-mail address is "ap641@cleveland.freenet.edu."
-Please make the subject of your E-mail "DOOM mailing list."        
+release via E-mail.  My Internet E-mail address is 
+"ap641@cleveland.freenet.edu."  Please make the subject of your E-mail 
+"DOOM mailing list."        
+        You may also just send E-mail requesting the FAQ.  Please
+make the subject of the E-mail "DOOM FAQ Request."
 
         The "Official" DOOM FAQ is posted every two weeks (or earlier 
 if a new version is released) on the following Usenet groups.
@@ -134,9 +177,17 @@ where "??.??" is the version number of the FAQ.
         The file name of the upload will be "doom??.faq" where "??" is the
 version number of the FAQ.
 
-[1-3]: Acknowledgments
+[1-3]: Adding to the FAQ
+========================
+        If you want something added to the FAQ, please send E-mail to 
+"ap641@cleveland.freenet.edu" (no quotes), explaining what your addition is.  
+It will be reviewed, and if accepted, added to the next FAQ version, 
+giving minor credit to you.  In the E-mail, please supply your name 
+and E-mail address.
+
+[1-4]: Acknowledgments
 ======================
-        I'd like to thank id software for becoming involved with their
+        I'd like to thank id Software for becoming involved with their
 on-line users and with me and this FAQ.  They have been a big help,
 and without their game, this FAQ could not exist!
         I'd like to thank all the on-line users featured in "DOOM iNsAnItY"
@@ -146,7 +197,7 @@ look-a-likes, for helping us wait it out. :)
         Finally, I'd like to thank everyone who reads this FAQ, you 
 are what the FAQ is for!
 
-[1-4]: Accurate Information
+[1-5]: Accurate Information
 ===========================
         An attempt has been made to make the information in this FAQ as
 accurate as possible.  Unfortunately, due to the fact that the game
@@ -203,14 +254,18 @@ CHAPTER 5: Where can I get DOOM and related software?
 
 [5-1]: Where can I get DOOM?
 ============================
-
         DOOM will be available via anonymous FTP on id's official
 FTP site, "ftp.uwp.edu", in the /pub/msdos/games/id directory. 
+        DOOM will also be available on 25 other FTP sites to be
+distributed by the FTP operator of "ftp.uwp.edu".  When DOOM is
+released, please choose the nearest FTP site to you and receive
+DOOM from that site.  The list of the 25 FTP sites has not been
+released yet, but will be released in the near future.
         DOOM will be available via the Software Creations BBS.
 The phone number of Software Creations is (508)-368-7036.
-        Lastly, the shareware version of DOOM will be available
-from id Software for a minimal shipping and handling charge.
-id Software's phone number is (800)-ID-GAMES in the USA, 24 hours a day,
+        Lastly, the shareware AND mail-order version of DOOM will be 
+available from id Software for a minimal shipping and handling charge.
+Id Software's phone number is (800)-ID-GAMES in the USA, 24 hours a day,
 7 days a week.  Next-Day-Air is available, as are other shipping methods,
 so as to "shorten the delay of the demise of numerous demons."
         Customers not in the USA will be directed to call licensed id
@@ -225,27 +280,38 @@ will be available, price to be announced.
 
 [5-3]: Where can I get DOOM screen shots?
 =========================================
-
         DOOM screen shots are available at the same FTP site (ftp.uwp.edu)
 and directory (/pub/msdos/games/id).  The screen shot file names are 
 as follows:
 
-        (1) doom01.zip
-        (2) doom02.zip
-        (3) doom03.zip
-        (4) doom04.zip
-        (5) doomscn5.zip
+        (1) doompix1.exe (a self-extracting archive)
+        (2) doom01.zip
+        (3) doom02.zip
+        (4) doom03.zip
+        (5) doom04.zip
+        (6) doomscn5.zip
+
+        Additionally, there is a Windows demonstration of DOOM created
+by Doug Marien.  This demo incorporates many of the best DOOM screen 
+shots, a humorous sound sample, and the "Official" DOOM FAQ.  At the time 
+of the release of this version of the FAQ, the newest version of this demo 
+is v1.4, and it corporates v2.0 of the "Official" DOOM FAQ.  This demo is 
+available under the name "dmslug14.zip" via FTP in the "/pub/incoming/id" 
+directory on "ftp.uwp.edu".  If the demo is not in that directory, it was 
+probably moved to the "pub/msdos/games/id" directory.
 
 [5-4]: Where can I get a working demo of DOOM?
 ==============================================
-
         Currently, there is NO working demo of DOOM.  However, there are
-screen shots of DOOM. (see Chapter [5-2]) The FIRST known release of DOOM 
+screen shots of DOOM. (see Chapter [5-3]) The FIRST known release of DOOM 
 is explained in Chapter [5-1].
 
-Note: ANY working demo/beta of DOOM that you have played is COMPLETELY
-illegal (unless you are a beta tester).  If you own a copy, delete it
-IMMEDIATELY.
+Note: Unless you are an official id Software Beta-Tester, any Beta
+version that you may have in your posession is a violation of U.S.
+federal copyright laws.  Violation of these laws can result in fines
+of up to $250,000 and jail terms of up to 5 years.  If you are in
+posession of a Beta version, it is suggested that you delete your
+copy immediately.
 
 -------------------------                              
 CHAPTER 6: DOOM Marketing
@@ -254,26 +320,43 @@ CHAPTER 6: DOOM Marketing
 [6-1]: How will DOOM be marketed?
 =================================
         The first episode of DOOM will be shareware (8 levels + secret),
-and will be available to the general public.  Two additional episodes
-will be available immediately after release, which feature a "journey
-to another dimension."  These additional episodes will sold by mail 
-order from id Software.
+and will be available to the general public.  As with all of id Software's
+games, the shareware version of DOOM will have NO registration fee.  Two 
+additional episodes will be available immediately after release, which 
+feature a "journey to another dimension."  These additional episodes will 
+sold by mail order from id Software.
         A commercial episode will be released sometime in 1994.
 
 [6-2]: How much will DOOM cost?
 ===============================
-        The registered version of DOOM will cost $40.00 (US Currency) plus
+        The mail-order version of DOOM will cost $40.00 (US Currency) plus
 a minimal shipping and handling charge.
+        The commercial episode's price has not been set as yet.
 
 ----------------------------------------
 CHAPTER 7: What will I need to run DOOM?
 ----------------------------------------
 
+[7-1]: What is REQUIRED to run DOOM?
+====================================
         DOOM will require a 386sx IBM compatible computer running DOS, VGA 
-(320x200x256) graphics, and 2mb of RAM.  DOOM will support the Adlib, 
-SoundBlaster, SoundBlaster Pro, SoundBlaster 16, Roland Sound Canvas,
-and the Pro Audio Spectrum (in native mode).
+(320x200x256) graphics, and 4mb of RAM.
+        DOOM will also be ported to the Atari Jaguar.  No other ports
+are planned at this time that id Software "can talk about."
+        The shareware episode of DOOM MAY EXCEED 1.44mb in compressed form,
+and the "commercial" episodes (together) will be somewhere in the
+neighborhood of 10mb, uncompressed.
 
+[7-2]: What soundcards will DOOM support?
+========================================
+        DOOM will support the Adlib, SoundBlaster, SoundBlaster Pro, 
+SoundBlaster 16, Roland Sound Canvas, and the Pro Audio Spectrum (in 
+native mode).
+        DOOM supports MPU-401 uarts which are what most General MIDI
+cards use.  This includes Creative Labs' Waveblaster.
+
+[7-2-1]: Will DOOM support the Gravis UltraSound?
+-------------------------------------------------
         You will be happy to know that id is working hand-in-hand with
 both Gravis and Forte to make sure the game supports the GUS in native
 mode.  "If it can be done, we will do it!" says Jay Wilbur of id
@@ -302,9 +385,18 @@ it will--the game is running with native GUS support in right now) the
 code will be in.  If the code is not in, please don't come and try to kill
 us, we did everything we could to make it happen."
 
-        The shareware episode of DOOM MAY EXCEED 1.44mb in compressed form,
-and the "commercial" episodes (together) will be somewhere in the
-neighborhood of 10mb, uncompressed.
+[7-3]: What game controllers will DOOM support?
+==============================================
+        DOOM will support keyboard, mouses (plural of "mouse" when talking
+about computers, believe me), joysticks, and trackballs (functioning
+as a mouse).
+        DOOM will also support the Gravis Gamepad.
+
+[7-3-1]: Will DOOM support the Logitech Cyberman?
+-------------------------------------------------
+        As of now, it seems that DOOM will *NOT* support the
+Cyberman.  Id Software does not feel it is the best controller
+for DOOM.
 
 ----------------------------------------------------------
 CHAPTER 8: What makes DOOM different from Wolfenstein 3-D?
@@ -322,7 +414,7 @@ environment, makes the world much more real, thus bringing the
 player more into the game experience.  Others have attempted
 this, but DOOM's texture mapping is fast, accurate, and
 seamless.  Texture-mapping the floors and ceilings is a big
-improvement over Wolfenstein.  With their new advanced graphic
+improvement over Wolfenstein 3-D.  With their new advanced graphic
 development techniques, allowing game art to be generated five
 times faster, id brings new meaning to "state-of-the-art".
 
@@ -380,7 +472,7 @@ you can switch to their view.  This feature, added to the 3-D realism, makes
 DOOM a very powerful cooperative game and its release a landmark
 event in the software industry.
         This is the first game to really exploit the power of LANs and
-modems to their full potential.  In 1993, we fully expect to be
+modems to their full potential.  In 1994, we fully expect to be
 the number one cause of decreased productivity in businesses
 around the world.
         See Chapter 9 for more information on multi-playing.
@@ -403,6 +495,9 @@ first thought.  However, id is thinking of keeping 386-optimized code
 in the game as a selectable option.  Another id idea is developing an
 alternate set of levels that will optimize performance on 386 systems,
 but the actual code wouldn't change.
+        According to id, 386's SHOULD be able to get a decent frame
+rate while playing DOOM by using Medium Detail and sizing the screen
+down a notch or two.
         Lastly, id is "looking into" adding a VESA SVGA page-flip mode
 that will be "mostly-compatible with a lot of" SVGA board and will
 speed up performance.  This would not be the default mode, and would NOT
@@ -443,54 +538,112 @@ try using these at home. :)
 ---------------------------------------------------
 CHAPTER 9: How will 2-4 player action work in DOOM?
 ---------------------------------------------------
+        DOOM will support 2-4 players in a multi-player mode.
+DOOM will be playable over networks, modems and by serial link.
+The shareware version of DOOM *will* support multi-players.
 
-        DOOM will support Novell Netware/IPX in the initial shareware
-version.  TCP/IP and other protocols will be supported in a later version
-soon after DOOM's release.  Using this network support, DOOM could be
-played in a workplace type environment.
-        DOOM will also work in two player mode by modem or serial
-link.
+[9-1]: What will the multi-player gameplay be like?
+===================================================
         In DOOM, players will be able to see each other, and watch
 each other jerk in pain as they are hit during the game.  Players
 will be able to watch others get hurt, die, and move throughout
 the labyrinth.  DOOM will allow players to play together, working as 
 a team.  In this cooperative mode, players can see each other on an
 "automap" and switch to each other's view.
+
+[9-1-1]: How will players communicate?
+--------------------------------------                
+        Players can communicate in real-time messages while playing 
+DOOM.  Game play will not stop while a player sends a message.  To send
+a message, you would type a "chat-mode activator key," then the
+destination (or you can specify to send to all players).  You can then
+enter your message, hit enter, and the message is sent.
+
+[9-1-2]: Can players exchange supplies?
+---------------------------------------
+        As of now, players will not be able to exchange supplies
+during the game.  Supplies includes ammo, weapons, or health.  However,
+when you pickup a weapon, it does not disappear from the "playing
+field."  Other players may still take the same weapon.  Weapons
+can be taken indefinately.
+
+
+[9-1-3]: What happens when a player dies?
+-----------------------------------------
+        As of now, nothing happens.  The player just dies.  His supplies
+cannot be taken by other players.  However, when you pickup a weapon, it 
+does not disappear from the "playing field."  Other players may still
+take the same weapon.  Weapons can be taken indefinately.
+
+[9-2]: What exactly is "DeathMatch" mode?
+=========================================
         DOOM has a "DeathMatch" mode where every player is out for
 himself.  At the beginning, the level will be infested with enemies 
 and power-ups.  Everyone must kill all the demons to ready the battlefield 
 for the player vs. player manhunt (my favorite gaming word).  In this mode, 
-players will not be able to see the other players in the automap, nor switch 
-to their view.  Players will not be able to view other's health in the
-mode, because of the disadvantage this can cause.
-        With InterNet access, a 56K line, and only a few router hops,
-you should be able to run DOOM over the InterNet.  An InterNet server is 
+players will not be able to see the other players in the automap, nor 
+switch to their view.  Players will not be able to view other's health 
+in the mode, because of the disadvantage this can cause.
+
+[9-3]: How will DOOM work with networks?
+========================================
+        DOOM will the IPX (Novell Netware) protocol in the initial 
+shareware version.  Any network supporting the protocol should work fine.
+TCP/IP and other protocols will be supported in a later version
+soon after DOOM's release.  Using this network support, DOOM could be
+played in a workplace type environment.
+        
+[9-4]: How will DOOM work with modems?
+======================================
+        DOOM will work in two player mode by modem or serial
+link.  The minimum baud rate to play DOOM will be 9600 bps.  There
+is no maximum baud rate, except for hardware/phone line limitations.
+
+[9-5]: Can I play DOOM over the Internet?
+=========================================
+        With Internet access, a 56K line, and only a few router hops,
+you should be able to run DOOM over the InterNet.  An Internet server is 
 being planned to handle many DOOM players at once, but this is not a 
 definite, and cannot be designed until the release of DOOM.  "I'll get to 
-work on it as soon as the game comes out =)", says Saqib A Qureshi. 
+work on it as soon as the game comes out =)", says Saqib A. Qureshi. 
 (qureshi@ug.cs.dal.ca)
-        The shareware version of DOOM *will* support multi-players.
+
+-------------------------------------------
+CHAPTER 10: What will DOOM's music be like?
+-------------------------------------------
+        
+        Many people have been requesting that specific songs be
+added to DOOM.  DOOM's music will be ALL original and composed
+by Robert Prince.  However, his tunes may have traces of Alice In Chains,
+Stone Temple, Pilots, Soundgarden, and other similar groups.  There
+will be "lots of excellent suspense music" as well.
 
 ------------------------------------------
-CHAPTER 10: How can I contact id Software?
+CHAPTER 11: How can I contact id Software?
 ------------------------------------------
 
-        id Software can be contacted via the InterNet.  If you would like to
+        Id Software can be contacted via the InterNet.  If you would like to
 ask any questions about DOOM (that are not answered in here), send
 E-mail to help@idsoftware.com.        
-        id Software can also be reached at their 800 number.  The
+        Id Software can also be reached at their 800 number.  The
 number is (800)-ID-GAMES.  This number is for ordering games ONLY.  This
 number is not for technical support or inquires.
 
 -------------------------
-CHAPTER 11: DOOM iNsAnItY
+CHAPTER 12: DOOM iNsAnItY
 -------------------------
 
         This chapter features humor about DOOM, written by ANYONE who's  
 willing to try (or maybe even on accident).  Anyway, here they are.
 
-[11-1]: A word from Douglas J. Bottoms
-======================================
+[12-1]: Comedy
+==============
+
+        This is the chapter of DOOM iNsAnItY where free-form comedy
+is written.
+
+[12-1-1]: A word from Douglas J. Bottoms
+----------------------------------------
         FOREWORD:  Here's the first addition to DOOM iNsAnItY!
 This was posted on comp.sys.ibm.pc.games.action on Thursday,
 October 21, 1993.  He speaks on a new game idea: id programmers
@@ -524,17 +677,20 @@ reflect the thoughts of any other individual or group affiliated with Eli
 Lilly and Company.
 ----------
 
-[11-2]: Top Ten Things to Do While Waiting for DOOM
-===================================================
-        FOREWORD:  This was posted by an unknown source at an unknown
-location, on August 27, 1993.  If you know who the writer is, please
-send me some E-mail so I can give appropriate credit.
+[12-2]: Top Ten Lists
+=====================
+        Here, humorous top ten lists regarding DOOM are written.
+
+[12-2-1]: Top Ten Things to Do While Waiting for DOOM
+-----------------------------------------------------
+        FOREWORD:  This was posted on Amercia Online, by someone
+using the name "Wolkonsky" on August 27, 1993.
 
 ----------
         Well, here we are waiting another 2-3 months [for DOOM].  What else 
 can we do? 
 
-1) Search the InterNet for Beta Version.
+1) Search the Internet for Beta Version.
 2) See if we can go through Wolfenstein 3-D with our eyes closed.
 3) Use MapEdit/WolfEdit to make Wolfenstein 3-D "look like" DOOM.
 4) Find out where the id "lab" is and "encourage" them.
@@ -546,11 +702,42 @@ can we do?
 9) Or lastly, look at DOOM slides and "pretend" we are playing.
 ----------
 
-[11-3]: Top Ten Things Being Removed From DOOM During Delay
-===========================================================
-        FOREWORD:  This was posted by an unknown source at an unknown
-location, on August 31, 1993.  If you know who the writer is, please
-send me some E-mail so I can give appropriate credit.
+[12-2-2]: Top Ten Things To Do Until DOOM Arrives
+-------------------------------------------------
+        FOREWORD:  This was posted on Amercia Online, by someone
+using the name "ScottBro" on October 7, 1993.
+                         
+----------
+                          Top  10  Things  To Do
+                           Until  DOOM  arrives
+
+10.  Get a marker and change boxes of George Lucas's "LOOM" to "DOOM" to
+     confuse over-anxious gamers.
+9.   Issue bogus press release from the Bulletin of the Atomic Scientist,
+     saying the DOOMsday clock will strike midnight sometime before
+     September 30, 1993.
+8.   Get a date with someone from L7.
+7.   When feeling depressed due to the wait, chant the B.J. Blaskowitz mantra,
+     "This is my rifle, This is my gun,
+      This is for killing, this is for fun.
+6.   Memorize the July Computer Gaming World, pages 104-5, preview of DOOM.
+5.   Get network and sound card installed on all systems at the office.
+4.   Make DOOM acronyms, like
+     "Dantes Obsessive Outrageous Marauders"
+3.   Tell boss I'll need two weeks vacation on very short notice during the
+     third quarter, due to pending family crisis.
+2.   Figure a way to persuade Id to allow imports of faces on monsters, so
+     we can make creatures like the:
+     Sunnunu Bloated Beast, the Michael Bolton Shrieker, and the Ex-Wife
+     from Hell, where she belongs.
+1.   Try and make friends with the Big Blue guys from Wolfie;
+     We might need help this time.
+----------
+
+[12-2-3]: Top Ten Things Being Removed From DOOM During Delay
+-------------------------------------------------------------
+        FOREWORD:  This was posted on Amercia Online, by someone
+using the name "Wolkonsky" on August 31, 1993.
 
 ----------
         The DOOM Delay of `93 might be worse than we first thought! Here is 
@@ -570,8 +757,8 @@ a list of things that I heard were being taken out of DOOM.
 10) The Bathroom Scenes.
 ----------
 
-[11-4]: Top Ten Reasons DOOM Was Delayed
-========================================
+[12-2-4]: Top Ten Reasons DOOM Was Delayed
+------------------------------------------
         FOREWORD:  This was posted by an unknown source at an unknown
 location, on September 21, 1993.  If you know who the writer is, please
 send me some E-mail so I can give appropriate credit.
@@ -624,24 +811,83 @@ DAVE: "And the number one reason DOOM's release was delayed..."
  1. They want the game's release to be just in time for Christmas shopping.
 ----------
 
+[12-3]: DOOM R.E.M.
+===================
+        David Reeve Sward suggested that I add a section in the FAQ
+for people who have been dreaming about DOOM while sleeping.  I told him
+it was crazy until three people posted messages about having "DOOM Dreams."
+Here they are, pixelated and all!
+
+[12-3-1]: Pixelated Demons 
+--------------------------
+        This dreams was posted by David Reeve Sward on Usenet in the group
+comp.sys.ibm.pc.games.action on Tuesday, November 2, 1993.
+
+----------
+A few days ago I awoke in the middle of a dream about DOOM...!  I was
+firing the shotgun at a pixelated (yes, my dream was pixelated) demon
+when my alarm clock went off (well, it turned the radio on :).  Haven't
+seen any alpha or beta version, only the screen shots.  Time to schedule
+an appointment with a local shrink...
+
+I can't imagine what shape I'll be in once the game is actually released :).
+----------
+
+[12-3-2]: The Mythical Beta Releases
+------------------------------------
+        This dreams was posted by Christopher Johnson on Usenet in the group
+comp.sys.ibm.pc.games.action on Tuesday, November 2, 1993.
+
+----------
+Strange enough, I had a dream about DOOM last evening, too.  I dreamt that I
+had found the mythical beta release version lying around on a FTP site,
+downloaded it, and actually got to play it before anyone else.  Now, I know
+I could just do this anyways, but I have too many morals.
+What are you doing to us, Jay, now we're DREAMING about getting 
+DOOM... SIGH..
+---------
+
+[12-3-3]: You Don't Take Mastercard?!
+-------------------------------------
+        This dreams was posted from szwells@hamlet.ucdavis.edu on Usenet 
+in the group comp.sys.ibm.pc.games.action on Tuesday, November 2, 1993.
+
+----------        
+        While you all were dreaming, I was having some serious nightmares.
+DOOM was released early and I went down to buy it ASAP.  When I opened my 
+wallet, it was empty.  And they wouldn't accept credit or personal checks...  
+I spent the rest of the night trying to scrounge up the cash to buy it.  
+It was not a pretty sight!
+----------
+
 ----------------------
-CHAPTER 12: Conclusion
+CHAPTER 13: Conclusion
 ----------------------
 
-        Well, there's v2.0 of the "Official" DOOM FAQ by Hank Leukart.  
+        Well, there's v2.5 of the "Official" DOOM FAQ by Hank Leukart.  
 Hopefully, this version of the FAQ should have been more informative than 
 the first version, since id got involved, and started helping out.  Keep
-up the good work, Id!  The FAQ will become MUCH more complicated after
+up the good work, id!  The FAQ will become MUCH more complicated after
 the game is released.  There will be more chapters, and they will
 have many more sub chapters.  If you know things that I don't feel free 
 to suggest them via E-mail to "ap641@cleveland.freenet.edu".
         SUPPORT YOUR SHAREWARE COMPANIES!  REGISTER YOUR SHAREWARE!
 
+[13-1]: John Says...
+====================
+        I just thought I'd throw this in to get everyone EVEN MORE excited
+about DOOM!
+        John Romero's latest words on DOOM are as follows:
+
+        "DOOM's [screen] refresh [rate] has been getting faster and
+faster.  This game definitely COOKS and looks totally AWESOME.
+Wolfenstein 3-D now looks like a cartoon."
+
 ----------------------------
-CHAPTER 13: Revision History
+CHAPTER 14: Revision History
 ----------------------------
 
-[13-1]: Pre-Game-Release FAQs
+[14-1]: Pre-Game-Release FAQs
 =============================
 
 v1.0:  First release of the DOOM FAQ.  (October 25, 1993)
@@ -654,7 +900,13 @@ v2.0:  First major revision of the "Official" DOOM FAQ.  Id gets involved,
        from "The DOOM FAQ" to the "The 'Official' DOOM FAQ." (November 1, 
        1993)
 
-[13-2]: Post-Game-Release FAQs
+v2.5:  A standard revision of the "Official" DOOM FAQ.  More information 
+       comes in on what DOOM will and won't support.  More DOOM iNsAnItY is 
+       added. Information on related DOOM software is added.  Information on
+       DOOM's music and multi-playing is added.  Sorry!  The "Official" 
+       DOOM FAQ is no longer 666 lines. :)  (November 13, 1993)
+
+[14-2]: Post-Game-Release FAQs
 ==============================
 
         To be added soon. (I hope!)
