@@ -1,43 +1,32 @@
 *****************************************************************************
 *                           IPX NETWORK FAQ                                 *
-*                                 v1.2                                      *
+*                                 v2.0                                      *
 *****************************************************************************
-* DATE:   6/10/94                                                           * *
-* AUTHOR: Joshua Jackson          (jsoftware@delphi.com                     *
-*         Jackson Software                                                  *
-*         10506 Bayard Rd                                                   *
-*         Minerva, OH  44657                                                *
-*         (216) 868-1169                                                    *
+* DATE:   11/13/95                                                          * *
+* AUTHOR: Joshua Jackson          (jayjay@sal-junction.com)                 *
+*         Performance Peripherals                                           *
+*         4168 Americana Dr. #204                                          *
+*         Cuyahoga Falls, Oh 44224                                          *
+*         (216) 922-3487                                                    *
 *****************************************************************************
 
 ------------
 !!!NOTICE!!!
 ------------
 
-   Anyone who has been sending EMAIL to my former EMAIL address:
+   Anyone who has been sending EMAIL to my former EMAIL addresses:
 
-          joshjackson@delphi.com
+          joshjackson@delphi.com -or-
+          jsoftware@delphi.com
 
-should re-address it to jsoftware@delphi.com.   My previous account is no
+should re-address it to jayjay@sal-junction.com My previous accounts are no
 longer online.
-
----------
-A REQUEST
----------
-
-   I would be most greatful if someone out there that is good at ASCII art,
-PLEASE send me a header for this FAQ.  I had originally used the one from the
-DOOM.FAQ.  Only to find out that that header has a copyright on it.  For now,
-the header on this FAQ is a tad generic.  Anyone willing to design a good
-header will be credited for it.
-                                  
-                                  Josh
 
 ----------------
 ACKNOWLEDGEMENTS
 ----------------
 
-   Thanks Id for such a KICK ASS game!!  DOOM is a registered trademark of Id 
+   Thanks Id for such a KICK ASS game!!  DOOM is a registered trademark of iD 
    Software.
    Hank Leukart for the "OFFICIAL" DOOM FAQ.
    Matt Fell for the Unofficial DOOM Specs v1.3
@@ -51,8 +40,10 @@ References are made to the following programs, here is a list of the authors:
    IDBSP10          : Ron Rossbach
    BSP11X, BSP11TC  : Collin Reed
    BSP11W           : Collin Reed, Alex Korobka
-   VNB1050          : Robert Fenske, Jr.
-   DOOM, IPXSETUP   : The Mighty Wizards of ID
+   VNB1050, WARMxx  : Robert Fenske, Jr.
+   DOOM, DOOM II,
+   IPXSETUP         : The Mighty Wizards of iD
+   HERETIC, HEXEN   : Raven Software / iD Software
 
 --------
 CONTENTS
@@ -76,11 +67,11 @@ CONTENTS
       [3-2] Speeding up your game play (Notes for level builders)
       [3-3] Recommended add on software
             [3-3-1] IPXFER
-            [3-3-2] DFE
-            [3-3-3] IPXSETUP 1.1
+            [3-3-2] BSPCOMP
 
 =SECTION FOUR= Technical Information
       [4-1] DOOM's IPX communications
+      [4-2] The doomdata_t structure during game play
 
 ------------------------------------------------------------------------------
 SECTION *1*:  Introduction
@@ -113,12 +104,12 @@ adjustment and re-release it.
 
    The author accepts no responsibility for any damage whether it be hardware,
 software, or mental caused by the use of the information contained in this
-FAQ.  All the information presented here is, to the best of my knowledge,
+FAQ.  All the information presented is, to the best of my knowledge,
 technically correct.
 
 NOTE:  I am not a certified network technician.  All of the information in
        this FAQ was obtained through personal experience.  I have been working
-       with IPX based networks (mostly Novell) for the last five years and
+       with IPX based networks (mostly Novell) for the last six years and
        have become quite familiar with both their inner and outer workings.
        Therefor I do not claim that all of the information contained in this
        document to be free of error, but it is working for me, so I hope it
@@ -176,12 +167,12 @@ at your local Radio Shack store.
    If you would like to order LAN cards, you may do so through me (Jackson
    Software) by contacting me at the following:
 
-      internet: jsoftware@delphi.com
+      internet: jayjay@sal-junction.com
       Snail   : Joshua Jackson
-                Jackson Software
-                10506 Bayard Rd.
-                Minerva, OH  44657
-      Phone   : (216) 868-1169
+                Performance Peripherals
+                4168 Americana Dr. #204
+                Cuyahoga Falls, OH 44224
+      Phone   : (216) 922-3487
 
    For those of you wishing to setup a DOOM network, I am currently offering
    you a deal that you won't find anywhere else:  I am selling NE2000 compat.
@@ -198,7 +189,7 @@ at your local Radio Shack store.
       278-112  BNC T-Adapter   $3.19 ea
       (You will need one per network card)
 
-   Next is the terminators.  The parts to make one of these from Radio Shack
+   Next are the terminators.  The parts to make one of these from Radio Shack
    are the following:
 
       278-251  BNC male to F female   $1.99 ea
@@ -207,7 +198,7 @@ at your local Radio Shack store.
 
       271-1311 5pack of 100ohm Resistors $.49 ea
       (You will need two resistors per terminator and two terminators per
-       network)
+       network - a total of 4 for those of you not up on your math skills :)
 
    Building the Terminator:
 
@@ -281,15 +272,6 @@ run with MORE than 2 player while using this file and you are NOT on a full
 Local Area Network, please write or call and let me know exactly what you
 did you make this configuration functional.
 
-This is purely speculation, but I believe that the IPX.COM file is geared
-toward a server based network and is not designed for peer to peer
-communication with the lack of some form of packet routing service available
-(such as a hub or router in a LAN).
-
-=================
-***NEW to v1.1***
-=================
-
 It was brought to my attention that v1.0 of this FAQ did not mention anything
 about the required NET.CFG that must accompany the above mentioned drivers.
 When setting up your <vendor specific driver> and linking it (in memory) to
@@ -308,8 +290,12 @@ The values for Int and Port are assumes to be in hexidecimal format.  These
 values MUST be modified to reflect the settings of your card.  The first line
 should contain the name of your vendor specific driver.
 
-NOTE FOR CD-ROM DRIVE OWNERS:  Port address 0x300 is the factory default for
-most CD-ROMs.  If you have a CD-ROM and you are using it proprietary card,
+If you have difficulties getting the computers to connect once you have gotten
+all the hardware and software setup, check the Frame and Protocol settings,
+they must match on each computer.
+
+NOTE FOR NON-IDE CD-ROM DRIVE OWNERS:  Port address 0x300 is the factory default 
+for most CD-ROMs.  If you have a CD-ROM and you are using it proprietary card,
 make sure that your LAN card and CD-ROM aren't in conflict.
 
 I also would reccomend creating a set of files that load your network drivers
@@ -426,17 +412,6 @@ questions (hence the name FAQ I guess)
        if generated by the IPX driver if you try to open an already open
        IPX socket (communications channel).
 
-    Q) What can I do about "OPEN SOCKET 0xFF" short of rebooting the all of
-       the computers?
-    A) #1 Write a program that closes the open socket (yeah, right! :)
-       #2 Obtain a copy of the IPXSETUP.EXE that I have modified and
-          placed on Software Creations and the ftp site: infant2.sphs.indiana.
-          edu  called IPXSTP11.ZIP  (located in the /pub/doom/multi_doom/net
-          directory)  I have corrected the bug in the program so that it will
-          close the open socket before terminating.  Other than this bug fix,
-          IPXSETUP 1.1 is identical to the original IPXSETUP by ID  (I used
-          their source and simply recompiled it)
-
      Q) Why is my network game play so slow?
      A) #1 The speed of your network is limited to the following:
            -The speed of the SLOWEST computer
@@ -484,29 +459,35 @@ NODE builders  (Best - Worst)
 
 Name          Description/Problems
 -------------------------------------------------------------------------
-IDBSP10.EXE   A port of John Carmack's source for Id's NODE compiler.
+IDBSP1x.EXE   A port of John Carmack's source for Id's NODE compiler.
               Absolutely AWESOME!  This is by far the best node builder
               that I have run across.  No problems to mention.
               This program was written for GCC therefor is 32bit DOS extended
               and does not have any memory problems
 
-BSP11X,       An excellent series of NODE builders! Before the above
-BSP11TC,      mentioned program can into existence, this was my node builder
-BSP11W.EXE    of choice.  Problems:  does not calculate REJECT data therefor
-              some games can be slowed down, especially if there are a lot of
-              monsters lurking about.  Also, BSP11X and BSP11TC will run out
-              of memory on large PWADs.  BSP11W works in both Windows and DOS,
-              if you use it in DOS, you are limited to 640k, and for you 
-              speed freaks out there like myself, you probably don't want to
-              start up Windows just to compile your PWAD (unless you use a
-              Windows WAD editor,  yech!)
+NODECOMP.EXE  Well, of course this program gets a good rating, I wrote it. :)
+              It is based on several node builders that are out there.  The
+              node calculations are based on a cross-breed of IDBSP and BSP12x.
+              It also has several options that can make game play a tad more
+              interesting... If you're curious, check it out. (BSPCOMP.ZIP)
 
-VNB1050.EXE   Builds a glitch free set of nodes, but does so in such a fashion
-              that they are not optimized for use with the DOOM game engine.
+BSP1x.EXE     An excellent series of NODE builders! Before the above
+              mentioned programs can into existence, this was my node builder
+              of choice.  Problems:  does not calculate REJECT data therefor
+              some games can be slowed down, especially if there are a lot of
+              monsters lurking about.  
+
+WARMxx.EXE,   Builds a glitch free set of nodes, but does so in such a fashion
+VNBxx.EXE     that they are not optimized for use with the DOOM game engine.
               This will seriously slow down game play.  If you have a faster
               computer, you may never notice this, but on a 386, you will most
               likely find that the games are a bit choppy when looking out 
               across large areas.
+              One great advantage to the WARM series of utilities is the
+              ability to do a great number of manipluation on the wad files
+              themselves.  You can flip, rotate, merge, and otherwise greatly
+              alter the levels themselves with a series of command line
+              switches.
 
 DEU's         Well, I LOVE the editor, but their node builder still needs a
               little bit of work.  In some complex areas, it will give you
@@ -516,79 +497,51 @@ DEU's         Well, I LOVE the editor, but their node builder still needs a
 Here is my personal setup for creating PWADs:
 
    DEU521GCC  The 32 bit extended port of DEU 5.21
-   IDBSP10    For recompiling the NODES and other related BSP information
+   IDBSP12/
+   BSPCOMP    For recompiling the NODES and other related BSP information
 
 
-[3-3] Recommended add on software
+[3-3] Recommended add-on software
+
+      This section has shrunk greatly since the last version of this FAQ,
+      I have not been keeping up with software development in the last
+      year for these games... Working WAY to much.
       
       [3-3-1] IPXFER
 
-         file: IPXFER10.ZIP
+         file: IPXFER21.ZIP
 
          I wrote this package of software for sending files back and forth
-         across an IPX network.  I hate to brag, but I have received SEVERAL
-         email messages about how useful this program is and have even had
-         a few people wanting to register it (it's freeware, but if you want
-         to send money for a registration fee, I'll gladly repay the favor in 
-         DOOM related software that I have collected from MANY sources, free 
-         of charge)
+         across an IPX network.
 
-         IPXFER is currently at version 1.00 and is available on Software
-         Creations BBS and at the ftp site: infant2.sphs.indiana.edu   If the
-         copy you have is less than 1.00 you should upgrade as soon as 
-         possible.  I did release a v.99beta that is still floating around
-         out there.  The beta release works ok, but is VERY limited as
-         compared to v1.00.   NOTE- if the version your have doesn't display
-         a blue status window while sending files, it's version .99.
+         IPXFER is currently at version 2.10 and is available all over the
+         place, just do a search for IPXFER with your favorite FTP search
+         engine.  I have even found this program (and some of its lesser
+         versions) burnt on many of the shareware CDs out there, so check
+         you local BBS's as well.
 
          It is designed to eliminate the headache of flipping floppies when
          you are swapping PWADS (wow, what a tongue twister).  It will 
-         transmit data at rates between 50k - 250k per sec, depending on the
+         transmit data at rates between 100k - 350k per sec, depending on the
          speed of the slowest computer and the speed at which your computer
          writes to the harddrive (a cache helps) It is also capable of 
          multiple file transfers (you can tell it to send *.*).
 
-      [3-3-2] DFE
+	 file: BSPCOMP.ZIP
 
-         file: DFE133.ZIP
+	 A node compiler that I wrote that has a boat load of built in features
+         for manipulating a WAD file to put a twist on playing your favorite
+         levels.  It can flip and expand the levels, plus includes a few 
+         other nifty effects.
 
-         DFE stands for DOOM Front End.  If you have a copy that is below
-         version 1.33, you should upgrade as soon a possible!  The lesser
-         versions of this program were rather bug infested, sorry about that
-         :(
-
-         This program is basically like a menu system that allows you to
-         choose what Episode/Level you want to play, Load an external PWAD,
-         Select Number of player, and whether you want there to be No 
-         Monsters.  It supports Single Player, Modem, Serial, and IPX network
-         games.  It also has a built in Map/Sprite Viewer that will allow you
-         to locate all of the Weapons/Monsters/Goodies on a level and view
-         them.  The Map viewer can load external PWAD files and display their
-         maps as well.
-
-         This file is available at the same locations as IPXFER10.ZIP
-
-      [3-3-3] IPXSETUP 1.1
-
-         file: IPXSTP11.ZIP
-
-         This program is a modified version of Id's IPXSETUP.EXE.  It has
-         been modified to eliminate that annoying little tick "OPEN SOCKET
-         0xFF" after you abort a Network game start up session (IPXSETUP).
-
-         This program is 100% identical to Id's IPXSETUP other than the fact
-         the this bug has been fixed.
-
-         NOTE: If you download a copy of either IPXFER10.ZIP or DFE133.ZIP,
-         the IPXSETUP 1.1 is included.
-
-         This file is available at the same locations as IPXFER10.ZIP
+         This node builder is based on several other node builders, I attempted
+         to duplicate some the better features os each.  It is very fast
+         (for being written in Pascal) and extremely efficient.  It can
+         rebuld the entire DOOM/DOOM2/HERETIC IWAD files in real mode...
+         the DPMI version (included in the ZIP) can handle any legit wad file
+         that you can throw at it.
 
 
-      Software Creations BBS 14.4k Lines:
-
-         (508) 368-7036
-         (508) 368-4137
 
 ------------------------------------------------------------------------------
 SECTION *4*:  Technical Information
@@ -614,7 +567,7 @@ leave the socket open, the following little program will close it for you.
 NOTE: IPXSETUP.EXE allows you to change the default socket for communications.                                 
       This is accomplished by specifying the -PORT parameter, followed by the
       socket ID you wish for DOOM to use.  IF you are in a server based
-      network, BE CAREFUL when you do this!!!  The followinf sockets are
+      network, BE CAREFUL when you do this!!!  The following sockets are
       defined are reserved by XEROX:
 
          1        Routing Information Packet
@@ -660,16 +613,64 @@ format:
          doomdata_t  data;
       } packet_t;
 
-If anyone has information about the actual data being passed between the
-computers in the doomdata_t structure, PLEASE send me some info!!  I have
-been looking far and wide for someone who has this information, but it seems
-to be a rather well kept secret.
+[4-2] The doomdata_t structure during game play
+
+Here are the pertinent defs:
+
+typedef struct
+{
+	char	forwardmove;
+	char	sidemove;
+	short	angleturn;
+   short consistancy;   
+   byte  chatchar;   
+	byte	buttons;
+} ticcmd_t
+
+#define  BT_ATTACK      1
+#define  BT_USE         2
+#define  BT_CHANGE      4     // if true, the next 3 bits hold weapon number
+#define  BT_WEAPONMASK  (8+16+32)
+#define	BT_WEAPONSHIFT	3
+#define  BT_SPECIAL     128   // game events, not really buttons
+#define  BTS_SAVEMASK   (4+8+16)
+#define	BTS_SAVESHIFT	2
+#define	BT_SPECIALMASK	3
+#define  BTS_PAUSE      1  // pause the game
+#define	BTS_SAVEGAME	2	// save the game at each console
+                           // savegame numbers occupy the second
+                           // byte of buttons
+typedef struct
+{
+	unsigned	checksum;
+	byte		retransmitfrom;	// high bit is retransmit request
+                              // only valid if NCMD_RETRANSMIT
+	byte		starttic;
+	byte		player, numtics;
+	ticcmd_t	cmnds[BACKUPTICS];
+} doomdata_t
+
+int		NetbufferSize (void)
+{
+	return (int)&( ((doomdata_t *)0)->cmds[netbuffer->numtics]);
+}
+
+unsigned	NetbufferChecksum (void)
+{
+unsigned	c;
+int		i, l;
+
+	c = 0x1234567;
+
+	l = (NetbufferSize () - (int)&(((doomdata_t*)0)->retransmitfrom))/4;
+	for (i=0 ; i<l ; i++)
+      c += ((unsigned *)*netbuffer->retransmitfrom)[i] * (i + 1);
+
+	return c & NCMD_CHECKSUM;
+}
 
 If you are interested in IPX programming, there are MANY good books out there
 on the topic.
 
 
-                                 Happy Hunting!
-
-                                 Josh
-                                 jsoftware@delphi.com
+                               
